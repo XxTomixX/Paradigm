@@ -1,7 +1,0 @@
-15.10.2020
-	-Wstępny diagram
-	-Napisanie Historyjek
-
-19.10.2020
-	-Uzupełnienie diagramu
-	-Omawianie historyjek
