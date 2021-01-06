@@ -123,19 +123,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Administrator.cpp" />
+    <ClCompile Include="Bankomat.cpp" />
+    <ClCompile Include="Blad.cpp" />
     <ClCompile Include="Blik.cpp" />
     <ClCompile Include="Klient.cpp" />
     <ClCompile Include="Konto.cpp" />
+    <ClCompile Include="Kredyt.cpp" />
     <ClCompile Include="Kurs.cpp" />
     <ClCompile Include="Lokata.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Przelew.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Administrator.h" />
+    <ClInclude Include="Bankomat.h" />
+    <ClInclude Include="Blad.h" />
     <ClInclude Include="Blik.h" />
     <ClInclude Include="Data.h" />
     <ClInclude Include="Klient.h" />
     <ClInclude Include="Konto.h" />
+    <ClInclude Include="Kredyt.h" />
     <ClInclude Include="Kurs.h" />
     <ClInclude Include="Lokata.h" />
     <ClInclude Include="Osoba.h" />

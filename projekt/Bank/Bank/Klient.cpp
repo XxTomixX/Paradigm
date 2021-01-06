@@ -106,7 +106,7 @@ void Klient::zamroz_konto() {
 }
 
 bool Klient::sprawdz_poprawnosc_danych(int id, string haslo, int string_imie, int string_nazwisko) {
-	// TODO - implement Klient::sprawdz_poprawnosc_danych
+	// TODO - implement Klient::sprawdz_poprawnosc_danych //sprawdza poprawnoœæ danych
 	throw "Not yet implemented";
 }
 

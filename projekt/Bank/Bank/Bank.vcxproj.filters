@@ -36,6 +36,18 @@
     <ClCompile Include="Przelew.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Kredyt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bankomat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Blad.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Administrator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Blik.h">
@@ -60,6 +72,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Przelew.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Kredyt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bankomat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Blad.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Administrator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

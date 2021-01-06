@@ -1,2 +1,64 @@
-﻿  Klient.cpp
-  Bank.vcxproj -> D:\Git\Paradigm\projekt\Bank\Debug\Bank.exe
+﻿  Administrator.cpp
+d:\git\paradigm\projekt\bank\bank\administrator.h(17): error C3646: 'pobierz_dane_kont': unknown override specifier
+d:\git\paradigm\projekt\bank\bank\administrator.h(17): error C2059: syntax error: '('
+d:\git\paradigm\projekt\bank\bank\administrator.h(17): error C2238: unexpected token(s) preceding ';'
+d:\git\paradigm\projekt\bank\bank\administrator.h(19): error C2061: syntax error: identifier 'Konto'
+d:\git\paradigm\projekt\bank\bank\administrator.h(21): error C2061: syntax error: identifier 'Konto'
+d:\git\paradigm\projekt\bank\bank\administrator.h(23): error C2061: syntax error: identifier 'Konto'
+d:\git\paradigm\projekt\bank\bank\administrator.h(25): error C2061: syntax error: identifier 'Konto'
+d:\git\paradigm\projekt\bank\bank\administrator.h(27): error C3646: 'pobierz_liste_bledow': unknown override specifier
+d:\git\paradigm\projekt\bank\bank\administrator.h(27): error C2059: syntax error: '('
+d:\git\paradigm\projekt\bank\bank\administrator.h(27): error C2238: unexpected token(s) preceding ';'
+d:\git\paradigm\projekt\bank\bank\administrator.h(29): error C2061: syntax error: identifier 'Blad'
+d:\git\paradigm\projekt\bank\bank\administrator.h(31): error C3646: 'zaktualizuj_liste_bledow': unknown override specifier
+d:\git\paradigm\projekt\bank\bank\administrator.h(31): error C2059: syntax error: '('
+d:\git\paradigm\projekt\bank\bank\administrator.h(31): error C2238: unexpected token(s) preceding ';'
+d:\git\paradigm\projekt\bank\bank\administrator.h(33): error C3646: 'znajdz_konto': unknown override specifier
+d:\git\paradigm\projekt\bank\bank\administrator.h(33): error C2059: syntax error: '('
+d:\git\paradigm\projekt\bank\bank\administrator.h(33): error C2238: unexpected token(s) preceding ';'
+d:\git\paradigm\projekt\bank\bank\administrator.cpp(15): error C2039: 'pobierz_dane_kont': is not a member of 'Administrator'
+  d:\git\paradigm\projekt\bank\bank\administrator.h(5): note: see declaration of 'Administrator'
+d:\git\paradigm\projekt\bank\bank\administrator.cpp(20): error C2511: 'void Administrator::zaktualizuj_dane_konta(Konto)': overloaded member function not found in 'Administrator'
+  d:\git\paradigm\projekt\bank\bank\administrator.h(5): note: see declaration of 'Administrator'
+d:\git\paradigm\projekt\bank\bank\administrator.cpp(25): error C2511: 'void Administrator::zamroz_konto(Konto)': overloaded member function not found in 'Administrator'
+  d:\git\paradigm\projekt\bank\bank\administrator.h(5): note: see declaration of 'Administrator'
+d:\git\paradigm\projekt\bank\bank\administrator.cpp(30): error C2511: 'void Administrator::wyswietl_historie_dzialan(Konto)': overloaded member function not found in 'Administrator'
+  d:\git\paradigm\projekt\bank\bank\administrator.h(5): note: see declaration of 'Administrator'
+d:\git\paradigm\projekt\bank\bank\administrator.cpp(35): error C2511: 'void Administrator::modyfikuj_stan_dzialania(Konto)': overloaded member function not found in 'Administrator'
+  d:\git\paradigm\projekt\bank\bank\administrator.h(5): note: see declaration of 'Administrator'
+d:\git\paradigm\projekt\bank\bank\administrator.cpp(40): error C2039: 'pobierz_liste_bledow': is not a member of 'Administrator'
+  d:\git\paradigm\projekt\bank\bank\administrator.h(5): note: see declaration of 'Administrator'
+d:\git\paradigm\projekt\bank\bank\administrator.cpp(45): error C2511: 'void Administrator::sprawdz_stan_bledu(Blad)': overloaded member function not found in 'Administrator'
+  d:\git\paradigm\projekt\bank\bank\administrator.h(5): note: see declaration of 'Administrator'
+d:\git\paradigm\projekt\bank\bank\administrator.cpp(50): error C2039: 'zaktualizuj_liste_bledow': is not a member of 'Administrator'
+  d:\git\paradigm\projekt\bank\bank\administrator.h(5): note: see declaration of 'Administrator'
+d:\git\paradigm\projekt\bank\bank\administrator.cpp(55): error C2039: 'znajdz_konto': is not a member of 'Administrator'
+  d:\git\paradigm\projekt\bank\bank\administrator.h(5): note: see declaration of 'Administrator'
+  Blad.cpp
+d:\git\paradigm\projekt\bank\bank\blad.h(10): error C3646: 'tytul': unknown override specifier
+d:\git\paradigm\projekt\bank\bank\blad.h(10): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+d:\git\paradigm\projekt\bank\bank\blad.h(11): error C3646: 'tresc': unknown override specifier
+d:\git\paradigm\projekt\bank\bank\blad.h(11): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+d:\git\paradigm\projekt\bank\bank\blad.h(17): error C2061: syntax error: identifier 'string'
+d:\git\paradigm\projekt\bank\bank\blad.cpp(6): error C2511: 'void Blad::utworz_blad(std::string,std::string)': overloaded member function not found in 'Blad'
+  d:\git\paradigm\projekt\bank\bank\blad.h(7): note: see declaration of 'Blad'
+  Kredyt.cpp
+d:\git\paradigm\projekt\bank\bank\kredyt.h(11): error C3646: 'typ_kredytu': unknown override specifier
+d:\git\paradigm\projekt\bank\bank\kredyt.h(11): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+d:\git\paradigm\projekt\bank\bank\kredyt.h(13): error C3646: 'waluta_kredytu': unknown override specifier
+d:\git\paradigm\projekt\bank\bank\kredyt.h(13): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+d:\git\paradigm\projekt\bank\bank\kredyt.h(20): error C2061: syntax error: identifier 'string'
+d:\git\paradigm\projekt\bank\bank\kredyt.h(24): error C2061: syntax error: identifier 'string'
+d:\git\paradigm\projekt\bank\bank\kredyt.cpp(7): error C2511: 'void Kredyt::przewalutowanie_kredytu(std::string)': overloaded member function not found in 'Kredyt'
+  d:\git\paradigm\projekt\bank\bank\kredyt.h(8): note: see declaration of 'Kredyt'
+d:\git\paradigm\projekt\bank\bank\kredyt.cpp(17): error C2511: 'void Kredyt::utworz_kredyt(std::string,double,std::string,double)': overloaded member function not found in 'Kredyt'
+  d:\git\paradigm\projekt\bank\bank\kredyt.h(8): note: see declaration of 'Kredyt'
+  main.cpp
+d:\git\paradigm\projekt\bank\bank\administrator.h(27): error C3646: 'pobierz_liste_bledow': unknown override specifier
+d:\git\paradigm\projekt\bank\bank\administrator.h(27): error C2059: syntax error: '('
+d:\git\paradigm\projekt\bank\bank\administrator.h(27): error C2238: unexpected token(s) preceding ';'
+d:\git\paradigm\projekt\bank\bank\administrator.h(29): error C2061: syntax error: identifier 'Blad'
+d:\git\paradigm\projekt\bank\bank\administrator.h(31): error C3646: 'zaktualizuj_liste_bledow': unknown override specifier
+d:\git\paradigm\projekt\bank\bank\administrator.h(31): error C2059: syntax error: '('
+d:\git\paradigm\projekt\bank\bank\administrator.h(31): error C2238: unexpected token(s) preceding ';'
+  Generating Code...
