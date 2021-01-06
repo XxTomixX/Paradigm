@@ -1,0 +1,5 @@
+﻿Klient.obj : error LNK2019: unresolved external symbol sqlite3_close referenced in function "public: void __cdecl Klient::zarejestruj(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?zarejestruj@Klient@@QEAAXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+Klient.obj : error LNK2019: unresolved external symbol sqlite3_open referenced in function "public: void __cdecl Klient::zarejestruj(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?zarejestruj@Klient@@QEAAXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+Klient.obj : error LNK2019: unresolved external symbol sqlite3_errmsg referenced in function "public: void __cdecl Klient::zarejestruj(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?zarejestruj@Klient@@QEAAXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+sqlite3.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\Git\Paradigm\projekt\Bank\x64\Debug\Bank.exe : fatal error LNK1120: 3 unresolved externals
