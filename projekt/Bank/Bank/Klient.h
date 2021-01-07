@@ -41,11 +41,12 @@ public:
 
 	bool sprawdz_kod(int code);
 
-
-	Klient(string im, string na, int pe, int ni) :Osoba(im, na)
+	Klient(string im,string na,int pe, int ni):Osoba(im,na)
 	{
 		pesel = pe;
 		nip = ni;
 	}
-	
+
 };
+
+
