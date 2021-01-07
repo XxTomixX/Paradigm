@@ -1,8 +1,7 @@
 #ifndef BLAD_H
 #define BLAD_H
-
 #include "Data.h"
-using namespace std;
+
 
 class Blad {
 

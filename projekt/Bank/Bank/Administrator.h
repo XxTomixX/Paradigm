@@ -1,6 +1,8 @@
 #ifndef ADMINISTRATOR_H
 #define ADMINISTRATOR_H
 #include "Osoba.h"
+#include "Konto.h"
+#include "Blad.h"
 
 class Administrator : Osoba {
 
