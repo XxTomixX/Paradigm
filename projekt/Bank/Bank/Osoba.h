@@ -1,3 +1,5 @@
+#ifndef OSOBA_H
+#define OSOBA_H
 #include <iostream>
 
 using namespace std;
@@ -18,5 +20,5 @@ public:
 
 };
 
-
+#endif
 
