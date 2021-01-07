@@ -101,7 +101,7 @@ bool Klient::sprawdz_poprawnosc_danych(string haslo, string email, string tel) {
 	}
 	else if (dlugoschasla < 9)
 	{
-		wyswietl_blad("Krótkie has³o");
+		wyswietl_blad("Krï¿½tkie hasï¿½o");
 		return false;
 	}
 	else
@@ -135,38 +135,38 @@ bool Klient::sprawdz_poprawnosc_danych(string haslo, string email, string tel) {
 		{
 			if (tel[i] < 48 || tel[i] > 57)
 			{
-				wyswietl_blad("Wykryto inne znaki ni¿cyfry");
+				wyswietl_blad("Wykryto inne znaki niï¿½cyfry");
 				return false;
 			}
 		}
 
 		if (dlugostel < 9)
 		{
-			wyswietl_blad("Za krótki numer telefonu");
+			wyswietl_blad("Za krï¿½tki numer telefonu");
 			return false;
 		}
 
 		if (dlugostel > 9)
 		{
-			wyswietl_blad("Za d³ógi numer telefonu");
+			wyswietl_blad("Za dï¿½ï¿½gi numer telefonu");
 			return false;
 		}
 
 		if (liczba == false)
 		{
-			wyswietl_blad("Brak liczby w haœle");
+			wyswietl_blad("Brak liczby w haï¿½le");
 			return false;
 		}
 
 		if (malelitery == false)
 		{
-			wyswietl_blad("Brak ma³ych liter w haœle");
+			wyswietl_blad("Brak maï¿½ych liter w haï¿½le");
 			return false;
 		}
 
 		if (duzelitery == false)
 		{
-			wyswietl_blad("Brak du¿ych liter w haœle");
+			wyswietl_blad("Brak duï¿½ych liter w haï¿½le");
 			return false;
 		}
 	}

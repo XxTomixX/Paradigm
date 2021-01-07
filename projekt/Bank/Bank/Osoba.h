@@ -1,11 +1,11 @@
-#ifndef OSOBA_H
-#define OSOBA_H
-
 #include <iostream>
 
 using namespace std;
 
 class Osoba {
+
+
+	
 
 public:
 	string imie;
@@ -20,4 +20,3 @@ public:
 
 
 
-#endif
