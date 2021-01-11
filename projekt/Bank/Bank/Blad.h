@@ -1,6 +1,11 @@
 #ifndef BLAD_H
 #define BLAD_H
-#include "Data.h"
+#include <string>
+#include <time.h>
+#include <iostream>
+#include <math.h>
+
+using namespace std;
 
 
 class Blad {
@@ -10,7 +15,8 @@ private:
 	string tresc;
 	int id_bledu;
 	bool czy_naprawiony;
-	Data data;
+	string data;
+	
 
 public:
 	void utworz_blad(string tytul, string tresc);
