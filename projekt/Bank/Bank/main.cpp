@@ -1,20 +1,25 @@
 
 #include "Osoba.h"
 #include "Klient.h"
+
 #include "Konto.h"
+#include "Przelew.h"
+#include "Kredyt.h"
+#include "Lokata.h"
+
+
 #include "Administrator.h"
 #include "Blik.h"
 #include "Data.h"
 #include "Kurs.h"
-#include "Kredyt.h"
-#include "Lokata.h"
-#include "Przelew.h"
+
 #include "Blad.h"
 #include "Bankomat.h"
 #include "main.h"
 
 #include <iostream>
 #include <string>
+#include <locale.h>
 
 using namespace std;
 
@@ -22,6 +27,7 @@ void rejestracja();
 
 int main()
 {
+	 setlocale(LC_CTYPE, "Polish");
 	//Klient k("BBBBB", "xsss", 123123, 12332);
 	//k.zarejestruj("1xxxxQxxx","asdad@gmail.com","121123123");
 
@@ -57,12 +63,15 @@ int main()
 
 void menu_logowanie(int operacja)
 {
-	Klient logowany;
-	string id;
-	string haslo;
+	
+	
 	int log = 0;
+
 	while (log != 3)
 	{
+		Klient* logowany = new Klient();
+		string id ="";
+		string haslo="";
 		cout << "1: Klient" << endl;
 		cout << "2: Administrator" << endl;
 		cout << "3: Menu" << endl;
@@ -75,8 +84,10 @@ void menu_logowanie(int operacja)
 			cin >> id;
 			cout << "Podaj haslo konta" << endl;
 			cin >> haslo;
-			logowany.zaloguj(id, haslo);
-	
+
+			cout << id << " " << haslo << endl;
+			logowany->zaloguj(id, haslo);
+			delete logowany;
 			break;
 
 		case 2:
@@ -88,6 +99,7 @@ void menu_logowanie(int operacja)
 			break;
 		}
 	}
+
 }
 
 void rejestracja()
@@ -137,6 +149,7 @@ void rejestracja()
 		else
 		{
 			k->podajidkont(haslo);
+			delete k;
 		}
 
 	}

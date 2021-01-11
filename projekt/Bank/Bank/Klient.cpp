@@ -5,24 +5,37 @@
 
 
 void Klient::zaloguj(string id, string haslo) {
-	//string sql = "SELECT Email,Tel,ID,Saldo,Zamrozone FROM Klienci WHERE ID = '" + id + "' AND Haslo = '" + haslo + "';";
+	string sql = "SELECT Email,Tel,ID,Saldo,Zamrozone FROM Klienci WHERE ID = '" + id + "' AND Haslo = '" + haslo + "';";
 
-	string sql = "SELECT Email,Tel,ID,Saldo,Zamrozone FROM Klienci WHERE Nazwisko = 'a';";
-
+	konta.clear();
 	konta = Baza::daneklientazbazy("klienci.db", sql);
+
 	if (konta.empty())
 	{
 		wyswietl_blad("Błędne haslo lub ID");
 	}
 	else
 	{
-		//konta to lista kont klienta o danym hasle
+		if (!konta[0]->get_zamrozone())
+		{
+			konta[0]->operacje_na_koncie();
+		}
+		else
+		{
+			wyswietl_blad("Twoje konto zostało zamrożone");
+			
+		}
+		wyloguj();
 	}
 }
 
 void Klient::wyloguj() {
-	// TODO - implement Klient::wyloguj
-	throw "Not yet implemented";
+	while (!konta.empty())
+	{
+		delete konta.back();
+		konta.pop_back();
+	}
+	konta.clear();
 }
 
 bool Klient::zarejestruj(string haslo, string email, string tel) {
@@ -98,15 +111,7 @@ bool Klient::zarejestruj(string haslo, string email, string tel) {
 	
 }
 
-void Klient::usun_konto() {
-	// TODO - implement Klient::usun_konto
-	throw "Not yet implemented";
-}
 
-void Klient::zamroz_konto() {
-	// TODO - implement Klient::zamroz_konto
-	throw "Not yet implemented";
-}
 
 bool Klient::sprawdz_poprawnosc_danych(string haslo, string email, string tel) {
 	int dlugoschasla = haslo.length();
@@ -191,11 +196,6 @@ bool Klient::sprawdz_poprawnosc_danych(string haslo, string email, string tel) {
 	return true;
 }
 
-string Klient::odczytaj_dane_klienta(int id, string haslo) {
-	// TODO - implement Klient::odczytaj_dane_klienta
-	throw "Not yet implemented";
-}
-
 string Klient::wyswietl_blad(string blad) {
 	
 	cout << blad << endl;
@@ -220,14 +220,9 @@ bool Klient::wprowadz_konto_do_bazy(string haslo, string email, string tel) {
 		"VALUES ( ABS(random() % (9999999999 - 1000000000) + 1000000000),'" + imie + "','" + nazwisko + "','" 
 		+ pesel + "','" + nip + "','" + haslo + "','" + email + "'," + tel + ",0,0,0 ); ";
 
-	Baza::klientdanedobazy("klienci.db", sql);
+	Baza::klientoperacjanabazie("klienci.db", sql);
 
 	return false;
-}
-
-bool Klient::usun_konto_z_bazy(int id, string haslo, int string_imie, int string_nazwisko, int int_pesel) {
-	// TODO - implement Klient::usun_konto_z_bazy
-	throw "Not yet implemented";
 }
 
 void Klient::wyslij_kod(int id, int nrT) {
@@ -235,10 +230,6 @@ void Klient::wyslij_kod(int id, int nrT) {
 	throw "Not yet implemented";
 }
 
-int Klient::wybierz_metode() {
-	// TODO - implement Klient::wybierz_metode
-	throw "Not yet implemented";
-}
 
 bool Klient::sprawdz_kod(int code) {
 	// TODO - implement Klient::sprawdz_kod

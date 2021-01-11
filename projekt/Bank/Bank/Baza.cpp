@@ -34,9 +34,9 @@ sqlite3* Baza::polaczdobazy(string nazwabazy) {
 }
 
 //Zapisywanie danych do bazy
-bool Baza::klientdanedobazy(string nazwabazy, string sql) {
+bool Baza::klientoperacjanabazie(string nazwabazy, string sql) {
 	
-	sqlite3 *db = polaczdobazy("Klienci.db");
+	sqlite3 *db = polaczdobazy(nazwabazy);
 
 	int rc;
 	char *zErrMsg = 0;
@@ -100,20 +100,22 @@ bool Baza::czyistnieje(string nazwabazy, string sql) {
 	return istnieje;
 }
 
-//Zwraca listê obiektów kont klienta o podanym haœle
+//Zwraca konto klienta o podanym haœle
 vector<Konto*> danezbazy;
-int back_danezbazy(void *NotUsed, int argc, char **argv, char **azColName) {
+int back_danezbazyklienta(void *NotUsed, int argc, char **argv, char **azColName) {
 
+	
 	cout << "===================" << endl;
 	for (int i = 0; i < argc; i++)
 	{
 		cout<<i<<" "<< argv[i] << endl;
 	}
 	
+	danezbazy.clear();
 	string id = (string)argv[2];
 	Konto* kontozbazy = new Konto((string)argv[0], (string)argv[1], stoll(id), atof(argv[3]), stoi(argv[4]));
 	danezbazy.push_back(kontozbazy);
-	cout<<"sss"<<danezbazy[0]->get_id();
+	//cout<<"sss"<<danezbazy[0]->get_id();
 	cout << endl;
 	return 0;
 }
@@ -124,7 +126,7 @@ vector<Konto*> Baza::daneklientazbazy(string nazwabazy, string sql) {
 
 	int rc;
 	char *zErrMsg = 0;
-	rc = sqlite3_exec(db, sql.c_str(), back_danezbazy, NULL, &zErrMsg);
+	rc = sqlite3_exec(db, sql.c_str(), back_danezbazyklienta, NULL, &zErrMsg);
 
 	if (rc != SQLITE_OK) {
 		//fprintf(stderr, "SQL error: %s\n", zErrMsg);

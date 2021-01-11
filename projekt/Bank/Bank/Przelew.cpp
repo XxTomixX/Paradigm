@@ -1,4 +1,7 @@
 #include "Przelew.h"
+//#include "Konto.h"
+
+using namespace std;
 
 void Przelew::wyslij_kod_potwierdzajacy() {
 	// TODO - implement Przelew::wyslij_kod_potwierdzajacy
@@ -10,7 +13,7 @@ bool Przelew::zweryfikuj_dane() {
 	throw "Not yet implemented";
 }
 
-void Przelew::stworz_przelew(Konto odbiorca, int kwota_double) {
+void Przelew::stworz_przelew(unsigned long int id_odbiorca, int kwota_double) {
 	// TODO - implement Przelew::stworz_przelew
 	throw "Not yet implemented";
 }
@@ -36,6 +39,11 @@ void Przelew::zapisz_przelew_w_bazie() {
 }
 
 bool Przelew::potwierdz_przelew() {
+	// TODO - implement Przelew::potwierdz_przelew
+	throw "Not yet implemented";
+}
+
+void Przelew::anuluj_przelew() {
 	// TODO - implement Przelew::potwierdz_przelew
 	throw "Not yet implemented";
 }

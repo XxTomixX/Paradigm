@@ -1,23 +1,24 @@
 #ifndef PRZELEW_H
 #define PRZELEW_H
 
-#include "Konto.h"
 #include "Data.h"
+
+using namespace std;
 
 class Przelew {
 
 private:
-	Konto odbiorca;
+	
+	unsigned long int id_odbiorca;
 	double kwota;
-	Data data_nadania;
-	int id_przelewu;
+	unsigned long int id_przelewu;
 
 public:
 	void wyslij_kod_potwierdzajacy();
 
 	bool zweryfikuj_dane();
 
-	void stworz_przelew(Konto odbiorca, int kwota_double);
+	void stworz_przelew(unsigned long int id_odbiorca, int kwota_double);
 
 	bool wyslij_przelew();
 
@@ -30,6 +31,12 @@ public:
 	void zapisz_przelew_w_bazie();
 
 	bool potwierdz_przelew();
+
+	Przelew(unsigned long int id_o=0, double kwo = 0, unsigned long int id_p = 0):id_odbiorca(id_o),kwota(kwo),id_przelewu(id_p)
+	{
+	
+	}
+
 };
 
 #endif
