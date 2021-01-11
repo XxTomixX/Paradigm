@@ -2,22 +2,23 @@
 #include "Konto.h"
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
 class Klient : Osoba {
 
 private:
-	int pesel;
-	int nip;
-	Konto konto;
+	string pesel;
+	string nip;
+	vector<Konto*> konta;
 
 public:
-	void zaloguj(int id, string haslo);
+	void zaloguj(string id, string haslo);
 
 	void wyloguj();
 
-	void zarejestruj(string haslo, string email, string tel);
+	bool zarejestruj(string haslo, string email, string tel);
 
 	void usun_konto();
 
@@ -41,10 +42,11 @@ public:
 
 	bool sprawdz_kod(int code);
 
-	Klient(string im,string na,int pe, int ni):Osoba(im,na)
+	void podajidkont(string haslo);
+
+	Klient(string im = "",string na = "",string pe = "", string ni = ""):Osoba(im = "", na = ""),pesel(pe),nip(ni)
 	{
-		pesel = pe;
-		nip = ni;
+	
 	}
 
 };

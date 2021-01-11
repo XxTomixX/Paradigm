@@ -1,9 +1,23 @@
 #include "Klient.h"
-#include "sql/sqlite3.h" 
+#include "Baza.h"
+#include "sql/sqlite3.h"
+#include <vector>
 
-void Klient::zaloguj(int id, string haslo) {
-	// TODO - implement Klient::zaloguj
-	throw "Not yet implemented";
+
+void Klient::zaloguj(string id, string haslo) {
+	//string sql = "SELECT Email,Tel,ID,Saldo,Zamrozone FROM Klienci WHERE ID = '" + id + "' AND Haslo = '" + haslo + "';";
+
+	string sql = "SELECT Email,Tel,ID,Saldo,Zamrozone FROM Klienci WHERE Nazwisko = 'a';";
+
+	konta = Baza::daneklientazbazy("klienci.db", sql);
+	if (konta.empty())
+	{
+		wyswietl_blad("Błędne haslo lub ID");
+	}
+	else
+	{
+		//konta to lista kont klienta o danym hasle
+	}
 }
 
 void Klient::wyloguj() {
@@ -11,7 +25,7 @@ void Klient::wyloguj() {
 	throw "Not yet implemented";
 }
 
-void Klient::zarejestruj(string haslo, string email, string tel) {
+bool Klient::zarejestruj(string haslo, string email, string tel) {
 	
 	bool poprawnedane = sprawdz_poprawnosc_danych(haslo,email,tel);
 	
@@ -22,16 +36,19 @@ void Klient::zarejestruj(string haslo, string email, string tel) {
 		if (klientistnieje)
 		{
 			wyswietl_blad("Taki klient istnieje");
+			return false;
 		}
 		else
 		{
 			wprowadz_konto_do_bazy(haslo, email, tel);
+			return true;
 		}
 
 	}
 	else
 	{
 		wyswietl_blad("Niepoprawne dane");
+		return false;
 	}
 
 	/*
@@ -185,99 +202,25 @@ string Klient::wyswietl_blad(string blad) {
 	return blad;
 }
 
-bool istnieje = false;
-int calldata(void *NotUsed, int argc, char **argv, char **azColName) {
-
-	if (argc == 0) { istnieje = false; }
-	else { istnieje = true; }
-
-	for (int i = 0; i < argc; i++) 
-	{
-		cout << argv[i] << endl;
-	}
-	cout << endl;
-	return 0;
-}
-
 bool Klient::czy_klient_istnieje() {
 	
-	sqlite3 *db;
-	char *zErrMsg = 0;
-	int rc;
-	string sql;
-	
-	rc = sqlite3_open("klienci.db", &db);
+	string sql = "SELECT ID FROM Klienci WHERE Imie = '" + imie + "' AND Nazwisko = '" + nazwisko + "' AND Pesel = '" + pesel + "';";
+	return Baza::czyistnieje("klienci.db", sql);
+}
 
-	if (rc) {
-		fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
-	}
-	else {
-		fprintf(stdout, "Opened database successfully\n");
-	}
+void Klient::podajidkont(string haslo) {
 
-	cout << imie << " " << nazwisko << " " << pesel<<endl;
-	sql = "SELECT * FROM Klienci WHERE Imie = '"+imie+"' AND Nazwisko = '"+nazwisko+"' AND Pesel = " + to_string(pesel) +";";
-	cout << sql<<endl;
-
-	rc = sqlite3_exec(db, sql.c_str(), calldata, NULL, &zErrMsg);
-
-	if (rc != SQLITE_OK) {
-		fprintf(stderr, "SQL error: %s\n", zErrMsg);
-		sqlite3_free(zErrMsg);
-	}
-	else {
-		fprintf(stdout, "Checking client\n");
-	}
-	sqlite3_close(db);
-	cout << endl;
-
-	if (istnieje)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-	
-
-	
+	string sql = "SELECT ID FROM Klienci WHERE Haslo = '" + haslo + "';";
+	Baza::idkont("klienci.db", sql);
 }
 
 bool Klient::wprowadz_konto_do_bazy(string haslo, string email, string tel) {
 	
-	sqlite3 *db;
-	char *zErrMsg = 0;
-	int rc;
-	string sql;
+	string sql = "INSERT INTO Klienci (ID,Imie,Nazwisko,Pesel,Nip,Haslo,Email,Tel,Saldo,Zamrozone,LogDwa) "
+		"VALUES ( ABS(random() % (9999999999 - 1000000000) + 1000000000),'" + imie + "','" + nazwisko + "','" 
+		+ pesel + "','" + nip + "','" + haslo + "','" + email + "'," + tel + ",0,0,0 ); ";
 
-
-	rc = sqlite3_open("Klienci.db", &db);
-
-	if (rc) {
-		fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
-	}
-	else {
-		fprintf(stderr, "Opened database successfully\n");
-	}
-
-
-	sql = "INSERT INTO Klienci (ID,Imie,Nazwisko,Pesel,Nip,Haslo,Email,Tel,Saldo,Zamrozone,LogDwa) "
-		"VALUES ( ABS(random() % (9999999999 - 1000000000) + 1000000000),'"+imie+"','"+nazwisko+"' ,"+to_string(pesel)+", "+to_string(nip)+",'"+haslo+"','"+email+"',"+tel+",0,0,0 ); ";
-
-
-
-	rc = sqlite3_exec(db, sql.c_str(), NULL, 0, &zErrMsg);
-
-	if (rc != SQLITE_OK) {
-		fprintf(stderr, "SQL error: %s\n", zErrMsg);
-		sqlite3_free(zErrMsg);
-	}
-	else {
-		fprintf(stdout, "Records created successfully\n");
-	}
-	sqlite3_close(db);
-	
+	Baza::klientdanedobazy("klienci.db", sql);
 
 	return false;
 }

@@ -6,10 +6,9 @@
 class Konto {
 
 private:
-	string haslo;
 	string email;
 	string nr_telefonu;
-	int id;
+	long long int id;
 	double saldo_konta;
 	bool czy_zamrozone;
 
@@ -29,6 +28,18 @@ public:
 	void zamroz_srodki();
 
 	void zaaktualizuj_dane_konta();
+
+	long long int get_id();
+
+	Konto(string em,string nr,long long int i,double sal,bool czy)
+	{
+		 email = em;
+		 nr_telefonu =nr;
+		 id=i;
+		 saldo_konta=sal;
+		 czy_zamrozone=czy;
+	}
+
 };
 
 #endif
