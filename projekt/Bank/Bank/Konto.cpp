@@ -30,6 +30,9 @@ Konto Konto::dostep_do_konta() {
 	throw "Not yet implemented";
 }
 
+long long int Konto::get_id() {
+	return id;
+}
 void Konto::zamroz_srodki() {
 	// TODO - implement Konto::zamroz_srodki
 	throw "Not yet implemented";

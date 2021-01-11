@@ -1,9 +1,23 @@
 #include "Klient.h"
-#include "sql/sqlite3.h" 
+#include "Baza.h"
+#include "sql/sqlite3.h"
+#include <vector>
 
-void Klient::zaloguj(int id, string haslo) {
-	// TODO - implement Klient::zaloguj
-	throw "Not yet implemented";
+
+void Klient::zaloguj(string id, string haslo) {
+	//string sql = "SELECT Email,Tel,ID,Saldo,Zamrozone FROM Klienci WHERE ID = '" + id + "' AND Haslo = '" + haslo + "';";
+
+	string sql = "SELECT Email,Tel,ID,Saldo,Zamrozone FROM Klienci WHERE Nazwisko = 'a';";
+
+	konta = Baza::daneklientazbazy("klienci.db", sql);
+	if (konta.empty())
+	{
+		wyswietl_blad("BÅ‚Ä™dne haslo lub ID");
+	}
+	else
+	{
+		//konta to lista kont klienta o danym hasle
+	}
 }
 
 void Klient::wyloguj() {
@@ -11,25 +25,39 @@ void Klient::wyloguj() {
 	throw "Not yet implemented";
 }
 
-void Klient::zarejestruj(string haslo) {
+bool Klient::zarejestruj(string haslo, string email, string tel) {
 	
-	if (haslo == "")
+	bool poprawnedane = sprawdz_poprawnosc_danych(haslo,email,tel);
+	
+	if (poprawnedane == true)
 	{
-		wyswietl_blad("Wprowadzono nieprawid³owe dane");
+		bool klientistnieje = czy_klient_istnieje();
+
+		if (klientistnieje)
+		{
+			wyswietl_blad("Taki klient istnieje");
+			return false;
+		}
+		else
+		{
+			wprowadz_konto_do_bazy(haslo, email, tel);
+			return true;
+		}
+
 	}
-	else if (haslo.length() < 9)
+	else
 	{
-		wyswietl_blad("Krótkie has³o");
+		wyswietl_blad("Niepoprawne dane");
+		return false;
 	}
 
-	
 	/*
 	sqlite3 *db;
 	char *zErrMsg = 0;
 	int rc;
 	string sql;
 
-	
+
 	rc = sqlite3_open("klienci.db", &db);
 
 	if (rc) {
@@ -39,13 +67,20 @@ void Klient::zarejestruj(string haslo) {
 		fprintf(stdout, "Opened database successfully\n");
 	}
 
-	
-	sql = "CREATE TABLE Klienci(" 
-		"ID INT PRIMARY KEY," 
-		"Imie           TEXT    NOT NULL," 
+
+	sql = "CREATE TABLE Klienci("
+		"ID INT PRIMARY KEY,"
+		"Imie           TEXT    NOT NULL,"
 		"Nazwisko       TEXT    NOT NULL,"
-		"Pesel          INT     NOT NULL," 
-		"Pin          INT     NOT NULL);";
+		"Pesel          INT     NOT NULL,"
+		"Nip          INT     NOT NULL,"
+		"Haslo       TEXT    NOT NULL,"
+		"Email       TEXT    NOT NULL,"
+		"Tel       TEXT    NOT NULL,"
+		"Saldo       DOUBLE    NOT NULL,"
+		"Zamrozone       BOOL    NOT NULL,"
+		"LogDwa       BOOL    NOT NULL"
+		");";
 
 
 	rc = sqlite3_exec(db, sql.c_str(), NULL, 0, &zErrMsg);
@@ -61,38 +96,6 @@ void Klient::zarejestruj(string haslo) {
 	*/
 
 	
-	sqlite3 *db;
-	char *zErrMsg = 0;
-	int rc;
-	string sql;
-
-
-	rc = sqlite3_open("Klienci.db", &db);
-
-	if (rc) {
-		fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
-	}
-	else {
-		fprintf(stderr, "Opened database successfully\n");
-	}
-
-
-	sql = "INSERT INTO Klienci (Imie,Nazwisko,Pesel,Pin) "
-		"VALUES ('Paul', 'G',10202020233, 2137 ); ";
-		
-
-	
-	rc = sqlite3_exec(db, sql.c_str(), NULL, 0, &zErrMsg);
-
-	if (rc != SQLITE_OK) {
-		fprintf(stderr, "SQL error: %s\n", zErrMsg);
-		sqlite3_free(zErrMsg);
-	}
-	else {
-		fprintf(stdout, "Records created successfully\n");
-	}
-	sqlite3_close(db);
-	
 }
 
 void Klient::usun_konto() {
@@ -105,9 +108,87 @@ void Klient::zamroz_konto() {
 	throw "Not yet implemented";
 }
 
-bool Klient::sprawdz_poprawnosc_danych(int id, string haslo, int string_imie, int string_nazwisko) {
-	// TODO - implement Klient::sprawdz_poprawnosc_danych //sprawdza poprawnoœæ danych
-	throw "Not yet implemented";
+bool Klient::sprawdz_poprawnosc_danych(string haslo, string email, string tel) {
+	int dlugoschasla = haslo.length();
+	int dlugostel = tel.length();
+	if (haslo == "")
+	{
+		wyswietl_blad("Wprowadzono puste haslo");
+		return false;
+	}
+	else if (dlugoschasla < 9)
+	{
+		wyswietl_blad("Krï¿½tkie hasï¿½o");
+		return false;
+	}
+	else
+	{
+		bool liczba = false;
+		bool malelitery = false;
+		bool duzelitery = false;
+
+		for (int i = dlugoschasla - 1; i >= 0; i--)
+		{
+			
+			if (haslo[i] >= 48 && haslo[i] <= 57)
+			{
+				liczba = true;
+			}
+
+			if (haslo[i] >= 97 && haslo[i] <= 122)
+			{
+				malelitery = true;
+			}
+
+			if (haslo[i] >= 65 && haslo[i] <= 90)
+			{
+				duzelitery = true;
+			}
+
+
+		}
+
+		for (int i = dlugostel - 1; i >= 0; i--)
+		{
+			if (tel[i] < 48 || tel[i] > 57)
+			{
+				wyswietl_blad("Wykryto inne znaki niï¿½cyfry");
+				return false;
+			}
+		}
+
+		if (dlugostel < 9)
+		{
+			wyswietl_blad("Za krï¿½tki numer telefonu");
+			return false;
+		}
+
+		if (dlugostel > 9)
+		{
+			wyswietl_blad("Za dï¿½ï¿½gi numer telefonu");
+			return false;
+		}
+
+		if (liczba == false)
+		{
+			wyswietl_blad("Brak liczby w haï¿½le");
+			return false;
+		}
+
+		if (malelitery == false)
+		{
+			wyswietl_blad("Brak maï¿½ych liter w haï¿½le");
+			return false;
+		}
+
+		if (duzelitery == false)
+		{
+			wyswietl_blad("Brak duï¿½ych liter w haï¿½le");
+			return false;
+		}
+	}
+
+	return true;
 }
 
 string Klient::odczytaj_dane_klienta(int id, string haslo) {
@@ -121,14 +202,27 @@ string Klient::wyswietl_blad(string blad) {
 	return blad;
 }
 
-bool Klient::czy_klient_istnieje(int id) {
-	// TODO - implement Klient::czy_klient_istnieje
-	throw "Not yet implemented";
+bool Klient::czy_klient_istnieje() {
+	
+	string sql = "SELECT ID FROM Klienci WHERE Imie = '" + imie + "' AND Nazwisko = '" + nazwisko + "' AND Pesel = '" + pesel + "';";
+	return Baza::czyistnieje("klienci.db", sql);
 }
 
-bool Klient::wprowadz_konto_do_bazy(int id, string haslo, int string_imie, int string_nazwisko, int int_pesel) {
-	// TODO - implement Klient::wprowadz_konto_do_bazy
-	throw "Not yet implemented";
+void Klient::podajidkont(string haslo) {
+
+	string sql = "SELECT ID FROM Klienci WHERE Haslo = '" + haslo + "';";
+	Baza::idkont("klienci.db", sql);
+}
+
+bool Klient::wprowadz_konto_do_bazy(string haslo, string email, string tel) {
+	
+	string sql = "INSERT INTO Klienci (ID,Imie,Nazwisko,Pesel,Nip,Haslo,Email,Tel,Saldo,Zamrozone,LogDwa) "
+		"VALUES ( ABS(random() % (9999999999 - 1000000000) + 1000000000),'" + imie + "','" + nazwisko + "','" 
+		+ pesel + "','" + nip + "','" + haslo + "','" + email + "'," + tel + ",0,0,0 ); ";
+
+	Baza::klientdanedobazy("klienci.db", sql);
+
+	return false;
 }
 
 bool Klient::usun_konto_z_bazy(int id, string haslo, int string_imie, int string_nazwisko, int int_pesel) {

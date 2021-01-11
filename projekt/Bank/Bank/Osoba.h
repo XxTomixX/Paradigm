@@ -1,17 +1,17 @@
 #ifndef OSOBA_H
 #define OSOBA_H
-
 #include <iostream>
 
 using namespace std;
 
 class Osoba {
 
-private:
-	string imie;
-	string nazwisko;
+
+	
 
 public:
+	string imie;
+	string nazwisko;
 	Osoba(string im, string na)
 	{
 		imie = im;
@@ -20,6 +20,5 @@ public:
 
 };
 
-
-
 #endif
+

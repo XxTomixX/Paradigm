@@ -134,10 +134,12 @@
     <ClCompile Include="Lokata.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Przelew.cpp" />
+    <ClCompile Include="Baza.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Administrator.h" />
     <ClInclude Include="Bankomat.h" />
+    <ClInclude Include="Baza.h" />
     <ClInclude Include="Blad.h" />
     <ClInclude Include="Blik.h" />
     <ClInclude Include="Data.h" />
@@ -146,6 +148,7 @@
     <ClInclude Include="Kredyt.h" />
     <ClInclude Include="Kurs.h" />
     <ClInclude Include="Lokata.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="Osoba.h" />
     <ClInclude Include="Przelew.h" />
   </ItemGroup>
