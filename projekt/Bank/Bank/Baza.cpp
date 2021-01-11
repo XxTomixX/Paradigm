@@ -1,5 +1,6 @@
 #include "Baza.h"
 #include "Konto.h"
+#include "Blad.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -168,4 +169,145 @@ void Baza::idkont(string nazwabazy, string sql) {
 	sqlite3_close(db);
 }
 
+// BLAD
 
+void Baza::stworzBazeBledow() {
+	sqlite3* db;
+	char* zErrMsg = 0;
+	int rc;
+	string sql;
+
+
+	rc = sqlite3_open("blad.db", &db);
+
+	if (rc) {
+		fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+	}
+	else {
+		fprintf(stdout, "Opened database successfully\n");
+	}
+
+
+	sql = "CREATE TABLE Blad("
+		"ID INT PRIMARY KEY,"
+		"Tytul           TEXT    NOT NULL,"
+		"Tresc       TEXT    NOT NULL,"
+		"Status       INT    NOT NULL,"
+		"Data       TEXT    NOT NULL"
+		");";
+
+
+	rc = sqlite3_exec(db, sql.c_str(), NULL, 0, &zErrMsg);
+
+	if (rc != SQLITE_OK) {
+		fprintf(stderr, "SQL error: %s\n", zErrMsg);
+		sqlite3_free(zErrMsg);
+	}
+	else {
+		fprintf(stdout, "Table created successfully\n");
+	}
+	sqlite3_close(db);
+
+}
+
+bool Baza::dodaj_blad_do_bazy(string nazwabazy, string sql) {
+
+	sqlite3* db = polaczdobazy(nazwabazy);
+	int rc;
+	char* zErrMsg = 0;
+	rc = sqlite3_exec(db, sql.c_str(), NULL, NULL, &zErrMsg);
+
+	if (rc != SQLITE_OK) {
+		//fprintf(stderr, "SQL error: %s\n", zErrMsg);
+		sqlite3_free(zErrMsg);
+		sqlite3_close(db);
+		return false;
+	}
+	else {
+		//fprintf(stdout, "Ok \n");
+		sqlite3_close(db);
+		return true;
+	}
+}
+
+// ADMIN
+
+void Baza::stworzBazeAdmin() {
+	sqlite3* db;
+	char* zErrMsg = 0;
+	int rc;
+	string sql;
+
+
+	rc = sqlite3_open("admin.db", &db);
+
+	if (rc) {
+		fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+	}
+	else {
+		fprintf(stdout, "Opened database successfully\n");
+	}
+
+
+	sql = "CREATE TABLE Admin("
+		"ID INT PRIMARY KEY,"
+		"Imie           TEXT    NOT NULL,"
+		"Nazwisko       TEXT    NOT NULL,"
+		"Haslo       TEXT    NOT NULL,"
+		"Email       TEXT    NOT NULL"
+		");";
+
+
+	rc = sqlite3_exec(db, sql.c_str(), NULL, 0, &zErrMsg);
+
+	if (rc != SQLITE_OK) {
+		fprintf(stderr, "SQL error: %s\n", zErrMsg);
+		sqlite3_free(zErrMsg);
+	}
+	else {
+		fprintf(stdout, "Table created successfully\n");
+	}
+	sqlite3_close(db);
+
+}
+
+bool Baza::dodaj_admina_do_bazy(string nazwabazy, string sql) {
+
+	sqlite3* db = polaczdobazy(nazwabazy);
+	int rc;
+	char* zErrMsg = 0;
+	rc = sqlite3_exec(db, sql.c_str(), NULL, NULL, &zErrMsg);
+
+	if (rc != SQLITE_OK) {
+		//fprintf(stderr, "SQL error: %s\n", zErrMsg);
+		sqlite3_free(zErrMsg);
+		sqlite3_close(db);
+		return false;
+	}
+	else {
+		//fprintf(stdout, "Ok \n");
+		sqlite3_close(db);
+		return true;
+	}
+}
+
+bool Baza::wykonaj(string nazwa, string sql) {
+
+	sqlite3* db = polaczdobazy(nazwa);
+	int rc;
+	char* zErrMsg = 0;
+	rc = sqlite3_exec(db, sql.c_str(), NULL, NULL, &zErrMsg);
+
+	if (rc != SQLITE_OK) {
+		//fprintf(stderr, "SQL error: %s\n", zErrMsg);
+		sqlite3_free(zErrMsg);
+		sqlite3_close(db);
+		return false;
+	}
+	else {
+		//fprintf(stdout, "Ok \n");
+		sqlite3_close(db);
+		return true;
+	}
+
+}

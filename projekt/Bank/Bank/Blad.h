@@ -19,6 +19,7 @@ private:
 	
 
 public:
+	Blad() {};
 	void utworz_blad(string tytul, string tresc);
 };
 
