@@ -1,5 +1,6 @@
 #include "Baza.h"
 #include "Konto.h"
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -8,7 +9,11 @@
 #include "sql/sqlite3.h" 
 
 using namespace std;
-
+/*
+vector<Przelew*> przelewy;
+vector<Kredyt*> kredyty;
+vector<Lokata*> lokaty;
+*/
 
 //Metoda ³¹czy z baz¹ danych o podanej nazwie
 sqlite3* Baza::polaczdobazy(string nazwabazy) {
@@ -170,4 +175,68 @@ void Baza::idkont(string nazwabazy, string sql) {
 	sqlite3_close(db);
 }
 
+//Zwraca Kredyty klienta o ID
+vector<Kredyt*> danezbazykredyty;
+int back_danezbazykredyty(void *NotUsed, int argc, char **argv, char **azColName) {
 
+
+	cout << "===================" << endl;
+	for (int i = 0; i < argc; i++)
+	{
+		cout << i << " " << argv[i] << endl;
+	}
+
+	danezbazykredyty.clear();
+	string id = (string)argv[2];
+	//Kredyt* kredytzbazy = new Kredyt();
+	//danezbazykredyty.push_back(kredytzbazy);
+	//cout<<"sss"<<danezbazy[0]->get_id();
+	cout << endl;
+	return 0;
+}
+
+vector<Kredyt*> Baza::danezbazykredyt(string nazwabazy, string sql) {
+
+	sqlite3 *db = polaczdobazy(nazwabazy);
+
+	int rc;
+	char *zErrMsg = 0;
+	rc = sqlite3_exec(db, sql.c_str(), back_danezbazyklienta, NULL, &zErrMsg);
+
+	if (rc != SQLITE_OK) {
+		//fprintf(stderr, "SQL error: %s\n", zErrMsg);
+		sqlite3_free(zErrMsg);
+	}
+	else {
+		fprintf(stdout, "Wypisano \n");
+	}
+	sqlite3_close(db);
+
+
+	return danezbazykredyty;
+}
+
+//Zapisywanie danych do bazy
+bool Baza::kredytoperacjanabazie(string nazwabazy, string sql) {
+
+	sqlite3 *db = polaczdobazy(nazwabazy);
+
+	int rc;
+	char *zErrMsg = 0;
+	rc = sqlite3_exec(db, sql.c_str(), NULL, NULL, &zErrMsg);
+
+	if (rc != SQLITE_OK) {
+		fprintf(stderr, "SQL error: %s\n", zErrMsg);
+		sqlite3_free(zErrMsg);
+		sqlite3_close(db);
+		return false;
+	}
+	else {
+		fprintf(stdout, "Ok \n");
+		sqlite3_close(db);
+		return true;
+	}
+
+
+
+}

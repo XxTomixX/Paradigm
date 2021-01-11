@@ -5,6 +5,38 @@
 
 
 void Klient::zaloguj(string id, string haslo) {
+	/*
+	sqlite3 *db;
+	char *zErrMsg = 0;
+	int rc;
+	string sql;
+	rc = sqlite3_open("kredyty.db", &db);
+	if (rc) {
+		fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+	}
+	else {
+		fprintf(stdout, "Opened database successfully\n");
+	}
+	sql = "CREATE TABLE Kredyty("
+		"ID INT PRIMARY KEY,"
+		"KlientID INT NOT NULL,"
+		"Typ           TEXT    NOT NULL,"
+		"Kwota       DOUBLE    NOT NULL,"
+		"Waluta          TEXT     NOT NULL,"
+		"Opocentowanie   INT     NOT NULL,"
+		"Zaciagniecie       Date    NOT NULL,"
+		"Splata       Date    NOT NULL);";
+	rc = sqlite3_exec(db, sql.c_str(), NULL, 0, &zErrMsg);
+	if (rc != SQLITE_OK) {
+		fprintf(stderr, "SQL error: %s\n", zErrMsg);
+		sqlite3_free(zErrMsg);
+	}
+	else {
+		fprintf(stdout, "Table created successfully\n");
+	}
+	sqlite3_close(db);
+	*/
+	
 	string sql = "SELECT Email,Tel,ID,Saldo,Zamrozone FROM Klienci WHERE ID = '" + id + "' AND Haslo = '" + haslo + "';";
 
 	konta.clear();
@@ -23,10 +55,10 @@ void Klient::zaloguj(string id, string haslo) {
 		else
 		{
 			wyswietl_blad("Twoje konto zostało zamrożone");
-			
 		}
 		wyloguj();
 	}
+	
 }
 
 void Klient::wyloguj() {
@@ -63,52 +95,6 @@ bool Klient::zarejestruj(string haslo, string email, string tel) {
 		wyswietl_blad("Niepoprawne dane");
 		return false;
 	}
-
-	/*
-	sqlite3 *db;
-	char *zErrMsg = 0;
-	int rc;
-	string sql;
-
-
-	rc = sqlite3_open("klienci.db", &db);
-
-	if (rc) {
-		fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
-	}
-	else {
-		fprintf(stdout, "Opened database successfully\n");
-	}
-
-
-	sql = "CREATE TABLE Klienci("
-		"ID INT PRIMARY KEY,"
-		"Imie           TEXT    NOT NULL,"
-		"Nazwisko       TEXT    NOT NULL,"
-		"Pesel          INT     NOT NULL,"
-		"Nip          INT     NOT NULL,"
-		"Haslo       TEXT    NOT NULL,"
-		"Email       TEXT    NOT NULL,"
-		"Tel       TEXT    NOT NULL,"
-		"Saldo       DOUBLE    NOT NULL,"
-		"Zamrozone       BOOL    NOT NULL,"
-		"LogDwa       BOOL    NOT NULL"
-		");";
-
-
-	rc = sqlite3_exec(db, sql.c_str(), NULL, 0, &zErrMsg);
-
-	if (rc != SQLITE_OK) {
-		fprintf(stderr, "SQL error: %s\n", zErrMsg);
-		sqlite3_free(zErrMsg);
-	}
-	else {
-		fprintf(stdout, "Table created successfully\n");
-	}
-	sqlite3_close(db);
-	*/
-
-	
 }
 
 

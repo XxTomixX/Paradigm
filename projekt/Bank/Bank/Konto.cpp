@@ -2,11 +2,6 @@
 #include "Baza.h"
 #include <vector>
 
-Kurs Konto::podaj_kurs(double i, string waluta) {
-	// TODO - implement Konto::podaj_kurs
-	throw "Not yet implemented";
-}
-
 void Konto::zglos_blad(string tytul, string tresc) {
 	// TODO - implement Konto::zglos_blad
 	throw "Not yet implemented";
@@ -22,9 +17,8 @@ double Konto::stan_konta() {
 	throw "Not yet implemented";
 }
 
-string Konto::wyswietl_komunikat(int numer_komunikatu) {
-	// TODO - implement Konto::wyswietl_komunikat
-	throw "Not yet implemented";
+void Konto::wyswietl_komunikat(string komunikat) {
+	cout << komunikat << endl;
 }
 
 long long int Konto::get_id() {
@@ -63,7 +57,14 @@ void Konto::operacje_na_koncie() {
 
 	int kwota = 0;
     string waluta = "";
+
 	int opreacja = 0;
+	int opreacja_kredyt = 0;
+
+	Kredyt* nowy = NULL;
+	string id = "";
+	string haslo = "";
+
 	while (opreacja != 7)
 	{
 		cout << "1: Przelew" << endl;
@@ -82,6 +83,8 @@ void Konto::operacje_na_koncie() {
 
 		case 2:
 			
+			kredyt_menu(opreacja_kredyt, nowy);
+
 			break;
 
 		case 3:
@@ -89,15 +92,7 @@ void Konto::operacje_na_koncie() {
 			break;
 
 		case 4:
-			kwota = 0;
-			cout << "Podaj kwote";
-			cin >> kwota;
-
-			waluta = "";
-			cout << "Podaj walute (USD lub EUR)";
-			cin >> waluta;
-
-			Kurs::sprawdz_kurs(kwota, waluta);
+			przewalutowanie(kwota, waluta);
 
 			break;
 
@@ -118,4 +113,67 @@ void Konto::operacje_na_koncie() {
 		}
 	}
 
+}
+
+void Konto::kredyt_menu(int &opreacja_kredyt, Kredyt * &nowy)
+{
+	string typ = "";
+	double kwota = 0;
+	string waluta = "";
+	double oprocentowanie = 0;
+	string data_zaciagniecia = "";
+	string termin_splaty = "";
+	unsigned long int id_kredytu = 0;
+
+	while (opreacja_kredyt != 3)
+	{
+		cout << "1: WeŸ kredyt" << endl;
+		cout << "2: Lista kredytów" << endl;
+		cout << "3: Opcje konta" << endl;
+		cin >> opreacja_kredyt;
+		switch (opreacja_kredyt)
+		{
+		case 1:
+
+			cout <<"Podaj typ kredytu: ";
+			cin >> typ;
+			cout << "Podaj kwote kredytu: ";
+			cin >> kwota;
+			nowy = new Kredyt(typ,kwota,waluta,oprocentowanie,data_zaciagniecia,termin_splaty);
+
+			if (nowy->sprawdz_zdolnosc_kredytowa())
+			{
+				cout << "aaaaaaaaaaaaaaaaaaaaass";
+				nowy->zapisz_kredyt_w_bazie(id);
+			}
+			else
+			{
+				wyswietl_komunikat("Brak zdolnoœci kredytowej");
+				delete nowy;
+			}
+
+			break;
+
+		case 2:
+
+			break;
+
+		default:
+
+			break;
+		}
+	}
+}
+
+double Konto::przewalutowanie(int &kwota,string &waluta)
+{
+	kwota = 0;
+	cout << "Podaj kwote (z³): ";
+	cin >> kwota;
+
+	waluta = "";
+	cout << "Podaj walute (USD lub EUR): ";
+	cin >> waluta;
+
+	return Kurs::sprawdz_kurs(kwota, waluta);
 }

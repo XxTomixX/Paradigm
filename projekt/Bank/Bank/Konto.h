@@ -23,7 +23,6 @@ private:
 
 
 public:
-	Kurs podaj_kurs(double i, string waluta);
 
 	void zglos_blad(string tytul, string tresc);
 
@@ -31,13 +30,17 @@ public:
 
 	double stan_konta();
 
-	string wyswietl_komunikat(int numer_komunikatu);
+	void wyswietl_komunikat(string komunikat);
 
 	void zamroz_srodki();
 
 	void zaaktualizuj_dane_konta();
 
 	void operacje_na_koncie();
+
+	void kredyt_menu(int &opreacja_kredyt, Kredyt * &nowy);
+
+	double przewalutowanie(int &kwota, std::string &waluta);
 
 	long long int get_id();
 

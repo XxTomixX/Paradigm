@@ -1,4 +1,5 @@
 #include "Kredyt.h"
+#include "Baza.h"
 
 #include <iostream>
 
@@ -10,13 +11,8 @@ void Kredyt::przewalutowanie_kredytu(string waluta) {
 }
 
 bool Kredyt::sprawdz_zdolnosc_kredytowa() {
-	// TODO - implement Kredyt::sprawdz_zdolnosc_kredytowa
-	throw "Not yet implemented";
-}
-
-void Kredyt::utworz_kredyt(string typ_kredytu, double kwota, string waluta_kredytu, double oprocentowanie) {
-	// TODO - implement Kredyt::utworz_kredyt
-	throw "Not yet implemented";
+	//Sprawdzenie klienta w krajowych rejestrach (zewnêtrzy system)
+	return true;
 }
 
 bool Kredyt::sprawdzanie_poprawnosci_danych_kredytowych() {
@@ -29,7 +25,14 @@ void Kredyt::zaakceptuj_kredyt() {
 	throw "Not yet implemented";
 }
 
-void Kredyt::zapisz_kredyt_w_bazie() {
-	// TODO - implement Kredyt::zapisz_kredyt_w_bazie
+void Kredyt::lista_kredytow() {
+	// TODO - implement Kredyt::zaakceptuj_kredyt
 	throw "Not yet implemented";
+}
+
+void Kredyt::zapisz_kredyt_w_bazie(unsigned long int id) {
+	string sql = "INSERT INTO Kredyty (ID,KlientID,Typ,Kwota,Waluta,Oprocentowanie,Zaciagniecie,Splata) "
+		"VALUES ( ABS(random() % (9999999999 - 1000000000) + 1000000000),'" + to_string(id) + "','" + typ_kredytu + "','"
+		+ to_string(kwota) + "','" + waluta_kredytu + "','" + to_string(oprocentowanie) + "',date('now'),date('now','+6 month')); ";
+	Baza::kredytoperacjanabazie("kredyty.db", sql);
 }

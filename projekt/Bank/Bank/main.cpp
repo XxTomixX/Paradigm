@@ -31,6 +31,11 @@ int main()
 	//Klient k("BBBBB", "xsss", 123123, 12332);
 	//k.zarejestruj("1xxxxQxxx","asdad@gmail.com","121123123");
 
+	 
+	
+	
+
+
 	int operacja = 0;
 	
 	while (operacja != 3)
