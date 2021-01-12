@@ -1,21 +1,5 @@
-﻿  Administrator.cpp
-C:\Users\paw19\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(158,17): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\uFFFD" nie może być przedstawiony w bieżącej stronie kodowej (1252)
-C:\Users\paw19\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(188,18): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\uFFFD" nie może być przedstawiony w bieżącej stronie kodowej (1252)
-C:\Users\paw19\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(194,18): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\uFFFD" nie może być przedstawiony w bieżącej stronie kodowej (1252)
-C:\Users\paw19\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(200,18): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\uFFFD" nie może być przedstawiony w bieżącej stronie kodowej (1252)
-  Baza.cpp
-C:\Users\paw19\Documents\GitHub\Paradigm\projekt\Bank\Bank\Baza.cpp(309,68): warning C4244: "argument": konwersja z "__int64" do "int", możliwa utrata danych
-  Blad.cpp
-  Klient.cpp
-  Konto.cpp
-C:\Users\paw19\Documents\GitHub\Paradigm\projekt\Bank\Bank\Konto.cpp(147,33): warning C4244: "argument": konwersja z "__int64" do "unsigned long", możliwa utrata danych
-  Kredyt.cpp
-  Przelew.cpp
-C:\Users\paw19\Documents\GitHub\Paradigm\projekt\Bank\Bank\Przelew.cpp(6,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
-C:\Users\paw19\Documents\GitHub\Paradigm\projekt\Bank\Bank\Przelew.cpp(93,11): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\u0142" nie może być przedstawiony w bieżącej stronie kodowej (1252)
-C:\Users\paw19\Documents\GitHub\Paradigm\projekt\Bank\Bank\Przelew.cpp(98,11): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\u0142" nie może być przedstawiony w bieżącej stronie kodowej (1252)
-  main.cpp
-  Generowanie kodu...
-C:\Users\paw19\Documents\GitHub\Paradigm\projekt\Bank\Bank\Przelew.cpp(19): warning C4715: "Przelew::wyslij_kod_potwierdzajacy”: niewszystkie ścieżki kodu zwracają wartość
-LINK : warning LNK4098: domyslna biblioteka "LIBCMT" powoduje konflikt z innymi bibliotekami; uzyj opcji /NODEFAULTLIB:biblioteka
+﻿  Przelew.cpp
+C:\Users\paw19\Documents\GitHub\Paradigm\projekt\Bank\Bank\Przelew.cpp(62,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+C:\Users\paw19\Documents\GitHub\Paradigm\projekt\Bank\Bank\Przelew.cpp(127,11): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\u0142" nie może być przedstawiony w bieżącej stronie kodowej (1252)
+C:\Users\paw19\Documents\GitHub\Paradigm\projekt\Bank\Bank\Przelew.cpp(133,11): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\u0142" nie może być przedstawiony w bieżącej stronie kodowej (1252)
   Bank.vcxproj -> C:\Users\paw19\Documents\GitHub\Paradigm\projekt\Bank\Debug\Bank.exe
