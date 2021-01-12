@@ -19,6 +19,8 @@ private:
 	
 
 public:
+	Blad() {};
+	Blad(string tt, string tr, int i, bool cn, string d) : tytul(tt), tresc(tr), id_bledu(i), czy_naprawiony(cn), data(d) {};
 	void utworz_blad(string tytul, string tresc);
 };
 
