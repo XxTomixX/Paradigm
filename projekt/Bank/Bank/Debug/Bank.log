@@ -1,4 +1,13 @@
-﻿  Baza.cpp
+﻿  Administrator.cpp
+d:\git\paradigm\projekt\bank\bank\administrator.cpp(144): warning C4566: character represented by universal-character-name '\uFFFD' cannot be represented in the current code page (1250)
+d:\git\paradigm\projekt\bank\bank\administrator.cpp(174): warning C4566: character represented by universal-character-name '\uFFFD' cannot be represented in the current code page (1250)
+d:\git\paradigm\projekt\bank\bank\administrator.cpp(180): warning C4566: character represented by universal-character-name '\uFFFD' cannot be represented in the current code page (1250)
+d:\git\paradigm\projekt\bank\bank\administrator.cpp(186): warning C4566: character represented by universal-character-name '\uFFFD' cannot be represented in the current code page (1250)
+  Baza.cpp
   Klient.cpp
+  Konto.cpp
+d:\git\paradigm\projekt\bank\bank\konto.cpp(147): warning C4244: 'argument': conversion from '__int64' to 'unsigned long', possible loss of data
+  Kredyt.cpp
+  main.cpp
   Generating Code...
   Bank.vcxproj -> D:\Git\Paradigm\projekt\Bank\Debug\Bank.exe

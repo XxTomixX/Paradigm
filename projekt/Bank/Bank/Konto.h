@@ -2,6 +2,12 @@
 #define KONTO_H
 
 #include "Kurs.h"
+#include "Kredyt.h"
+#include "Przelew.h"
+#include "Lokata.h"
+#include <vector>
+
+using namespace std;
 
 class Konto {
 
@@ -11,9 +17,12 @@ private:
 	long long int id;
 	double saldo_konta;
 	bool czy_zamrozone;
+	vector<Przelew*> przelewy;
+	vector<Kredyt*> kredyty;
+	vector<Lokata*> lokaty;
+
 
 public:
-	Kurs podaj_kurs(double i, string waluta);
 
 	void zglos_blad(string tytul, string tresc);
 
@@ -21,23 +30,29 @@ public:
 
 	double stan_konta();
 
-	string wyswietl_komunikat(int numer_komunikatu);
-
-	Konto dostep_do_konta();
+	void wyswietl_komunikat(string komunikat);
 
 	void zamroz_srodki();
 
 	void zaaktualizuj_dane_konta();
 
+	void operacje_na_koncie();
+
+	void kredyt_menu(int &opreacja_kredyt, Kredyt * &nowy);
+
+	double przewalutowanie(int &kwota, std::string &waluta);
+
 	long long int get_id();
 
-	Konto(string em,string nr,long long int i,double sal,bool czy)
+	void usun_konto();
+	
+	void zamroz_konto();
+	
+	bool get_zamrozone();
+
+	Konto(string em = "",string nr = "",long long int i = 0,double sal = 0,bool czy = false):email(em),nr_telefonu(nr),id(i),saldo_konta(sal),czy_zamrozone(czy)
 	{
-		 email = em;
-		 nr_telefonu =nr;
-		 id=i;
-		 saldo_konta=sal;
-		 czy_zamrozone=czy;
+	
 	}
 
 };

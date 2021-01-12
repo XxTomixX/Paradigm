@@ -12,7 +12,7 @@ private:
 	string waluta;
 
 public:
-	double sprawdz_kurs(int kwota);
+	static double sprawdz_kurs(double kwota,string waluta);
 };
 
 #endif
