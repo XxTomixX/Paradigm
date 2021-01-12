@@ -1,11 +1,11 @@
 #include "Lokata.h"
 
-bool Lokata::zweryfikuj_dane(int typ_lokaty_string, double kwota, int oprocentowanie, Data data_otworzenia, int id_lokaty) {
+bool Lokata::zweryfikuj_dane(int typ_lokaty_string, double kwota, int oprocentowanie, string data_otworzenia, int id_lokaty) {
 	// TODO - implement Lokata::zweryfikuj_dane
 	throw "Not yet implemented";
 }
 
-void Lokata::stworz_lokate(int typ_lokaty_string, double kwota, int oprocentowanie, Data data_otworzenia, int id_lokaty) {
+void Lokata::stworz_lokate(int typ_lokaty_string, double kwota, int oprocentowanie, string data_otworzenia, int id_lokaty) {
 	// TODO - implement Lokata::stworz_lokate
 	throw "Not yet implemented";
 }

@@ -2,6 +2,7 @@
 #include "Baza.h"
 #include "Konto.h"
 
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -37,35 +38,6 @@ sqlite3* Baza::polaczdobazy(string nazwabazy) {
 	}
 	
 	
-}
-
-//Zapisywanie danych do bazy
-bool Baza::klientoperacjanabazie(string nazwabazy, string sql) {
-	
-	sqlite3 *db = polaczdobazy(nazwabazy);
-
-	int rc;
-	char *zErrMsg = 0;
-	rc = sqlite3_exec(db, sql.c_str(), NULL, NULL, &zErrMsg);
-
-	if (rc != SQLITE_OK) {
-		//fprintf(stderr, "SQL error: %s\n", zErrMsg);
-		sqlite3_free(zErrMsg);
-		sqlite3_close(db);
-		return false;
-	}
-	else {
-		//fprintf(stdout, "Ok \n");
-		sqlite3_close(db);
-		return true;
-	}
-	
-
-	
-}
-bool Baza::admindanedobazy(string nazwabazy, string sql) {
-	// TODO - implement Klient::wyloguj
-	throw "Not yet implemented";
 }
 
 //Czy klient istnieje zwraca bool
@@ -217,28 +189,6 @@ vector<Kredyt*> Baza::danezbazykredyt(string nazwabazy, string sql) {
 	return danezbazykredyty;
 }
 
-//Zapisywanie danych do bazy
-bool Baza::kredytoperacjanabazie(string nazwabazy, string sql) {
-
-	sqlite3 *db = polaczdobazy(nazwabazy);
-
-	int rc;
-	char *zErrMsg = 0;
-	rc = sqlite3_exec(db, sql.c_str(), NULL, NULL, &zErrMsg);
-
-	if (rc != SQLITE_OK) {
-		fprintf(stderr, "SQL error: %s\n", zErrMsg);
-		sqlite3_free(zErrMsg);
-		sqlite3_close(db);
-		return false;
-	}
-	else {
-		fprintf(stdout, "Ok \n");
-		sqlite3_close(db);
-		return true;
-	}
-}
-
 // BLAD
 
 void Baza::stworzBazeBledow() {
@@ -280,26 +230,6 @@ void Baza::stworzBazeBledow() {
 
 }
 
-bool Baza::dodaj_blad_do_bazy(string nazwabazy, string sql) {
-
-	sqlite3* db = polaczdobazy(nazwabazy);
-	int rc;
-	char* zErrMsg = 0;
-	rc = sqlite3_exec(db, sql.c_str(), NULL, NULL, &zErrMsg);
-
-	if (rc != SQLITE_OK) {
-		//fprintf(stderr, "SQL error: %s\n", zErrMsg);
-		sqlite3_free(zErrMsg);
-		sqlite3_close(db);
-		return false;
-	}
-	else {
-		//fprintf(stdout, "Ok \n");
-		sqlite3_close(db);
-		return true;
-	}
-}
-
 // ADMIN
 
 void Baza::stworzBazeAdmin() {
@@ -339,26 +269,6 @@ void Baza::stworzBazeAdmin() {
 	}
 	sqlite3_close(db);
 
-}
-
-bool Baza::dodaj_admina_do_bazy(string nazwabazy, string sql) {
-
-	sqlite3* db = polaczdobazy(nazwabazy);
-	int rc;
-	char* zErrMsg = 0;
-	rc = sqlite3_exec(db, sql.c_str(), NULL, NULL, &zErrMsg);
-
-	if (rc != SQLITE_OK) {
-		//fprintf(stderr, "SQL error: %s\n", zErrMsg);
-		sqlite3_free(zErrMsg);
-		sqlite3_close(db);
-		return false;
-	}
-	else {
-		//fprintf(stdout, "Ok \n");
-		sqlite3_close(db);
-		return true;
-	}
 }
 
 bool Baza::wykonaj(string nazwa, string sql) {
@@ -418,4 +328,37 @@ vector<Blad*> Baza::daneBlad(string nazwabazy, string sql) {
 	return wektor_bledow;
 }
 
+//Zwraca konto admina o podanym hasle
+vector<Administrator*> Admin_danezbazy;
+int back_danezbazyadmin(void* NotUsed, int argc, char** argv, char** azColName) {
 
+	cout << "===================" << endl;
+	for (int i = 0; i < argc; i++)
+	{
+		cout << i << " " << argv[i] << endl;
+	}
+
+	danezbazy.clear();
+	string id = (string)argv[0];
+	Administrator* Admin_kontozbazy = new Administrator(stoll(id), (string)argv[1], (string)argv[2], (string)argv[3], (string)argv[4]);
+	Admin_danezbazy.push_back(Admin_kontozbazy);
+	return 0;
+}
+
+vector<Administrator*> Baza::daneadminazbazy(string nazwabazy, string sql) {
+
+	sqlite3* db = polaczdobazy(nazwabazy);
+	int rc;
+	char* zErrMsg = 0;
+	rc = sqlite3_exec(db, sql.c_str(), back_danezbazyadmin, NULL, &zErrMsg);
+
+	if (rc != SQLITE_OK) {
+		//fprintf(stderr, "SQL error: %s\n", zErrMsg);
+		sqlite3_free(zErrMsg);
+	}
+	else {
+		fprintf(stdout, "Wypisano \n");
+	}
+	sqlite3_close(db);
+	return Admin_danezbazy;
+}

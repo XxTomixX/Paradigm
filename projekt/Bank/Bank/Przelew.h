@@ -1,8 +1,6 @@
 #ifndef PRZELEW_H
 #define PRZELEW_H
 
-#include "Data.h"
-
 using namespace std;
 
 class Przelew {
