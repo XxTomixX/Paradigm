@@ -311,3 +311,39 @@ bool Baza::wykonaj(string nazwa, string sql) {
 	}
 
 }
+
+vector<Blad*> wektor_bledow;
+int back_daneBlad(void* NotUsed, int argc, char** argv, char** azColName) {
+
+	cout << "===================" << endl;
+	for (int i = 0; i < argc; i++)
+	{
+		cout << i << " " << argv[i] << endl;
+	}
+
+	string id = (string)argv[2];
+	Blad* bladzBazy = new Blad((string)argv[0], (string)argv[1], stoll(id), stoi(argv[3]), string(argv[4]));
+	wektor_bledow.push_back(bladzBazy);
+	return 0;
+}
+
+vector<Blad*> Baza::daneBlad(string nazwabazy, string sql) {
+
+	sqlite3* db = polaczdobazy(nazwabazy);
+
+	int rc;
+	char* zErrMsg = 0;
+	rc = sqlite3_exec(db, sql.c_str(), back_danezbazy, NULL, &zErrMsg);
+
+	if (rc != SQLITE_OK) {
+		//fprintf(stderr, "SQL error: %s\n", zErrMsg);
+		sqlite3_free(zErrMsg);
+	}
+	else {
+		fprintf(stdout, "Wypisano \n");
+	}
+	sqlite3_close(db);
+
+
+	return wektor_bledow;
+}

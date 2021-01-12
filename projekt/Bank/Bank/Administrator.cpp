@@ -83,18 +83,21 @@ void Administrator::modyfikuj_stan_dzialania(int id) {
 }
 
 void Administrator::pobierz_liste_bledow() {
-	// TODO - implement Administrator::pobierz_liste_bledow
-	throw "Not yet implemented";
+	string sql;
+	sql = "SELECT Tytul,Tresc,ID,Status,Data FROM Blad;";
+	Baza::daneBlad("blad.db", sql);
 }
 
 void Administrator::sprawdz_stan_bledu(int id) {
-	// TODO - implement Administrator::sprawdz_stan_bledu
-	throw "Not yet implemented";
+	string sql;
+	sql = "SELECT Tytul,Tresc,ID,Status,Data FROM Blad WHERE ID = '"+to_string(id)+"';";
+	Baza::daneBlad("blad.db", sql);
 }
 
-void Administrator::zaktualizuj_liste_bledow() {
-	// TODO - implement Administrator::zaktualizuj_liste_bledow
-	throw "Not yet implemented";
+void Administrator::zaktualizuj_liste_bledow() { // skasuj bledy o status=1
+	string sql;
+	sql = "DELETE FROM Blad WHERE Status = 1;";
+	Baza::wykonaj("blad.db", sql);
 }
 
 void Administrator::znajdz_konto() {
@@ -102,9 +105,10 @@ void Administrator::znajdz_konto() {
 	throw "Not yet implemented";
 }
 
-void Administrator::zmien_status_bledu(int id,int status) {
-	// TODO - implement Administrator::zmien_status_bledu
-	throw "Not yet implemented";
+void Administrator::zmien_status_bledu(int id,int status) { // zmien status na 0 albo na 1
+	string sql;
+	sql = "UPDATE Blad SET Status = '" + to_string(status) + "' WHERE ID = '" + to_string(id) + "';";
+	Baza::wykonaj("blad.db", sql);
 }
 
 void Administrator::monitoruj_lokaty() {
@@ -125,6 +129,8 @@ void Administrator::monituruj_przelewy() {
 
 void Administrator::rejestracja(int id_od_banku, string haslo,string email) {
 
+	// stworz baze przy pierwszej rejestracji
+
 	//Baza::stworzBazeAdmin();
 
 	bool poprawnedane = sprawdz_poprawnosc_danych(haslo);
@@ -138,6 +144,8 @@ void Administrator::rejestracja(int id_od_banku, string haslo,string email) {
 }
 
 bool Administrator::sprawdz_poprawnosc_danych(string haslo) {
+
+	// haslo >9 liter
 
 	int dlugoschasla = haslo.length();
 	if (haslo == "")
