@@ -56,9 +56,6 @@
     <ClInclude Include="Blik.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Data.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Klient.h">
       <Filter>Header Files</Filter>
     </ClInclude>

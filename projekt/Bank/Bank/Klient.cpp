@@ -206,7 +206,7 @@ bool Klient::wprowadz_konto_do_bazy(string haslo, string email, string tel) {
 		"VALUES ( ABS(random() % (9999999999 - 1000000000) + 1000000000),'" + imie + "','" + nazwisko + "','" 
 		+ pesel + "','" + nip + "','" + haslo + "','" + email + "'," + tel + ",0,0,0 ); ";
 
-	Baza::klientoperacjanabazie("klienci.db", sql);
+	Baza::wykonaj("klienci.db", sql);
 
 	return false;
 }

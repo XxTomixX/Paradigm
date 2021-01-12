@@ -144,7 +144,6 @@
     <ClInclude Include="Baza.h" />
     <ClInclude Include="Blad.h" />
     <ClInclude Include="Blik.h" />
-    <ClInclude Include="Data.h" />
     <ClInclude Include="Klient.h" />
     <ClInclude Include="Konto.h" />
     <ClInclude Include="Kredyt.h" />

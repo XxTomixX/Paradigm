@@ -34,5 +34,5 @@ void Kredyt::zapisz_kredyt_w_bazie(unsigned long int id) {
 	string sql = "INSERT INTO Kredyty (ID,KlientID,Typ,Kwota,Waluta,Oprocentowanie,Zaciagniecie,Splata) "
 		"VALUES ( ABS(random() % (9999999999 - 1000000000) + 1000000000),'" + to_string(id) + "','" + typ_kredytu + "','"
 		+ to_string(kwota) + "','" + waluta_kredytu + "','" + to_string(oprocentowanie) + "',date('now'),date('now','+6 month')); ";
-	Baza::kredytoperacjanabazie("kredyty.db", sql);
+	Baza::wykonaj("kredyty.db", sql);
 }

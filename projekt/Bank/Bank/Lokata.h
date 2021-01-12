@@ -1,7 +1,7 @@
 #ifndef LOKATA_H
 #define LOKATA_H
 
-#include "Data.h"
+#include <string>
 #include <iostream>
 
 using namespace std;
@@ -12,13 +12,13 @@ private:
 	string typ_lokaty;
 	double kwota;
 	int oprocentowanie;
-	Data data_otworzenia;
+	string data_otworzenia;
 	int id_lokaty;
 
 public:
-	bool zweryfikuj_dane(int typ_lokaty_string, double kwota, int oprocentowanie, Data data_otworzenia, int id_lokaty);
+	bool zweryfikuj_dane(int typ_lokaty_string, double kwota, int oprocentowanie, string data_otworzenia, int id_lokaty);
 
-	void stworz_lokate(int typ_lokaty_string, double kwota, int oprocentowanie, Data data_otworzenia, int id_lokaty);
+	void stworz_lokate(int typ_lokaty_string, double kwota, int oprocentowanie, string data_otworzenia, int id_lokaty);
 
 	void anuluj_lokate();
 

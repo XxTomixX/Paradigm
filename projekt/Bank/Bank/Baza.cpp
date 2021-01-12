@@ -39,30 +39,6 @@ sqlite3* Baza::polaczdobazy(string nazwabazy) {
 	
 }
 
-//Zapisywanie danych do bazy
-bool Baza::klientoperacjanabazie(string nazwabazy, string sql) {
-	
-	sqlite3 *db = polaczdobazy(nazwabazy);
-
-	int rc;
-	char *zErrMsg = 0;
-	rc = sqlite3_exec(db, sql.c_str(), NULL, NULL, &zErrMsg);
-
-	if (rc != SQLITE_OK) {
-		//fprintf(stderr, "SQL error: %s\n", zErrMsg);
-		sqlite3_free(zErrMsg);
-		sqlite3_close(db);
-		return false;
-	}
-	else {
-		//fprintf(stdout, "Ok \n");
-		sqlite3_close(db);
-		return true;
-	}
-	
-
-	
-}
 bool Baza::admindanedobazy(string nazwabazy, string sql) {
 	// TODO - implement Klient::wyloguj
 	throw "Not yet implemented";
@@ -217,28 +193,6 @@ vector<Kredyt*> Baza::danezbazykredyt(string nazwabazy, string sql) {
 	return danezbazykredyty;
 }
 
-//Zapisywanie danych do bazy
-bool Baza::kredytoperacjanabazie(string nazwabazy, string sql) {
-
-	sqlite3 *db = polaczdobazy(nazwabazy);
-
-	int rc;
-	char *zErrMsg = 0;
-	rc = sqlite3_exec(db, sql.c_str(), NULL, NULL, &zErrMsg);
-
-	if (rc != SQLITE_OK) {
-		fprintf(stderr, "SQL error: %s\n", zErrMsg);
-		sqlite3_free(zErrMsg);
-		sqlite3_close(db);
-		return false;
-	}
-	else {
-		fprintf(stdout, "Ok \n");
-		sqlite3_close(db);
-		return true;
-	}
-}
-
 // BLAD
 
 void Baza::stworzBazeBledow() {
@@ -280,26 +234,6 @@ void Baza::stworzBazeBledow() {
 
 }
 
-bool Baza::dodaj_blad_do_bazy(string nazwabazy, string sql) {
-
-	sqlite3* db = polaczdobazy(nazwabazy);
-	int rc;
-	char* zErrMsg = 0;
-	rc = sqlite3_exec(db, sql.c_str(), NULL, NULL, &zErrMsg);
-
-	if (rc != SQLITE_OK) {
-		//fprintf(stderr, "SQL error: %s\n", zErrMsg);
-		sqlite3_free(zErrMsg);
-		sqlite3_close(db);
-		return false;
-	}
-	else {
-		//fprintf(stdout, "Ok \n");
-		sqlite3_close(db);
-		return true;
-	}
-}
-
 // ADMIN
 
 void Baza::stworzBazeAdmin() {
@@ -339,26 +273,6 @@ void Baza::stworzBazeAdmin() {
 	}
 	sqlite3_close(db);
 
-}
-
-bool Baza::dodaj_admina_do_bazy(string nazwabazy, string sql) {
-
-	sqlite3* db = polaczdobazy(nazwabazy);
-	int rc;
-	char* zErrMsg = 0;
-	rc = sqlite3_exec(db, sql.c_str(), NULL, NULL, &zErrMsg);
-
-	if (rc != SQLITE_OK) {
-		//fprintf(stderr, "SQL error: %s\n", zErrMsg);
-		sqlite3_free(zErrMsg);
-		sqlite3_close(db);
-		return false;
-	}
-	else {
-		//fprintf(stdout, "Ok \n");
-		sqlite3_close(db);
-		return true;
-	}
 }
 
 bool Baza::wykonaj(string nazwa, string sql) {

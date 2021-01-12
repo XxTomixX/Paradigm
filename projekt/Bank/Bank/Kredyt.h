@@ -1,9 +1,8 @@
 #ifndef KREDYT_H
 #define KREDYT_H
-
-#include "Data.h"
-
+#include <string>
 using namespace std;
+
 
 class Kredyt {
 

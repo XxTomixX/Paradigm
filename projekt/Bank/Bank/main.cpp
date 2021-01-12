@@ -10,7 +10,6 @@
 
 #include "Administrator.h"
 #include "Blik.h"
-#include "Data.h"
 #include "Kurs.h"
 
 #include "Blad.h"

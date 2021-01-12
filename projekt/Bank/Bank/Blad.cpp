@@ -14,6 +14,6 @@ void Blad::utworz_blad(string tytul, string tresc) {
 	string sql;
 	sql = "INSERT INTO Blad (ID,Tytul,Tresc,Status,Data) "
 		"VALUES ( ABS(random() % (9999999999 - 1000000000) + 1000000000),'" + tytul + "','" + tresc + "','" + to_string(czy_naprawiony) + "','" + data + "'); ";
-	Baza::dodaj_blad_do_bazy("blad.db", sql);
+	Baza::wykonaj("blad.db", sql);
 	
 }

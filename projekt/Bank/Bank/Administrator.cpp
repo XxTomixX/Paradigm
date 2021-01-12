@@ -214,7 +214,7 @@ bool Administrator::wprowadz_konto_do_bazy(int id, string haslo, string email) {
 	string sql;
 	sql = "INSERT INTO Admin (ID,Imie,Nazwisko, Haslo,Email) "
 		"VALUES ( '"+to_string(id)+"','" + imie + "','" + nazwisko + "','" + haslo + "','" + email + "'); ";
-	Baza::dodaj_admina_do_bazy("admin.db", sql);
+	Baza::wykonaj("admin.db", sql);
 	return false;
 
 }

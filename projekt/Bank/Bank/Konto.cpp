@@ -37,12 +37,12 @@ void Konto::zaaktualizuj_dane_konta() {
 void Konto::usun_konto() {
 
 	string sql = "DELETE FROM Klienci WHERE Id='"+to_string(id)+"';";
-	Baza::klientoperacjanabazie("klienci.db", sql);
+	Baza::wykonaj("klienci.db", sql);
 }
 
 void Konto::zamroz_konto() {
 	string sql = "UPDATE Klienci SET Zamrozone = '"+to_string(1)+"' WHERE ID = '"+ to_string(id) +"';";
-	Baza::klientoperacjanabazie("klienci.db", sql);
+	Baza::wykonaj("klienci.db", sql);
 }
 
 bool Konto::get_zamrozone()
