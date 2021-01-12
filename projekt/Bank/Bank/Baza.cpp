@@ -403,7 +403,7 @@ vector<Blad*> Baza::daneBlad(string nazwabazy, string sql) {
 
 	int rc;
 	char* zErrMsg = 0;
-	rc = sqlite3_exec(db, sql.c_str(), back_danezbazy, NULL, &zErrMsg);
+	rc = sqlite3_exec(db, sql.c_str(), back_daneBlad, NULL, &zErrMsg);
 
 	if (rc != SQLITE_OK) {
 		//fprintf(stderr, "SQL error: %s\n", zErrMsg);

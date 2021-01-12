@@ -2,6 +2,7 @@
 #include <string>
 #include "sql/sqlite3.h" 
 #include "Konto.h" 
+#include "Blad.h" 
 
 #include <vector>
 
