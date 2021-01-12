@@ -2,13 +2,25 @@
 
 
 int Blik::generuj_kod_blik() {
-	// TODO - implement Blik::generuj_kod_blik
-	throw "Not yet implemented";
+	srand(time(NULL));
+	int tab_blik[6];
+	int x;
+	cout << "Kod blik" << endl;
+	for (int i = 0; i < 6; i++)
+	{
+		x = (rand() % 10);
+
+		tab_blik[i] = x;
+
+		cout << tab_blik[i] << " ";
+		return tab_blik[i];
+	}
+	//return tab_blik[];
 }
 
 string Blik::wyswietl_blad() {
-	// TODO - implement Blik::wyswietl_blad
-	throw "Not yet implemented";
+	cout << "Wystapil blad. Skonczyl sie czas lub kod blik sie nie pokrywa";
+	return 0;
 }
 
 int Blik::terminal_request() {
