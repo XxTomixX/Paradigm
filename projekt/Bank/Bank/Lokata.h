@@ -12,17 +12,21 @@ private:
 	string typ_lokaty;
 	double kwota;
 	int oprocentowanie;
-	string data_otworzenia;
-	int id_lokaty;
+	long long int id_lokaty;
 
 public:
-	bool zweryfikuj_dane(int typ_lokaty_string, double kwota, int oprocentowanie, string data_otworzenia, int id_lokaty);
 
-	void stworz_lokate(int typ_lokaty_string, double kwota, int oprocentowanie, string data_otworzenia, int id_lokaty);
+	void anuluj_lokate(long long int id);
 
-	void anuluj_lokate();
+	void zapisz_lokate_do_bazy(long long int id);
 
-	void zapisz_lokate_do_bazy(Lokata L);
+	void get_informacje();
+
+	Lokata(string typ = "",double kwo = 0, int opr = 0, long long  int id_lo = 0):typ_lokaty(typ),kwota(kwo),oprocentowanie(opr),id_lokaty(id_lo)
+	{
+
+	}
+
 };
 
 #endif

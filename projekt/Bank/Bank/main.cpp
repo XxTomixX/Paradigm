@@ -3,17 +3,16 @@
 #include "Klient.h"
 
 #include "Konto.h"
+#include "Bankomat.h"
 #include "Przelew.h"
 #include "Kredyt.h"
 #include "Lokata.h"
-
 
 #include "Administrator.h"
 #include "Blik.h"
 #include "Kurs.h"
 
 #include "Blad.h"
-#include "Bankomat.h"
 #include "main.h"
 
 #include <iostream>
@@ -26,23 +25,16 @@ void rejestracja();
 
 int main()
 {
-	 setlocale(LC_CTYPE, "Polish");
-	//Klient k("BBBBB", "xsss", 123123, 12332);
-	//k.zarejestruj("1xxxxQxxx","asdad@gmail.com","121123123");
-
-	 
+	setlocale(LC_CTYPE, "Polish");
 	
-	
-
-
 	int operacja = 0;
 	
 	while (operacja != 3)
 	{
 		cout << "Witaj w Banku" << endl;
 		cout << "1: Zaloguj" << endl;
-		cout << "2: Zarejestruj siê" << endl;
-		cout << "3: WyjdŸ" << endl;
+		cout << "2: Zarejestruj siÄ™" << endl;
+		cout << "3: WyjdÅº" << endl;
 	
 		cin >> operacja;
 		switch (operacja)
@@ -209,3 +201,8 @@ void rejestracja()
 		}
 	}
 }
+
+	
+	
+	
+

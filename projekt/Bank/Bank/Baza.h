@@ -4,7 +4,6 @@
 #include "Konto.h" 
 #include "Blad.h" 
 #include "Administrator.h"
-
 #include <vector>
 
 using namespace std;
@@ -18,8 +17,11 @@ public:
 	static bool czyistnieje(string nazwabazy, string sql);
 	static void idkont(string nazwabazy, string sql);
 	static vector<Kredyt*> danezbazykredyt(string nazwabazy, string sql);
+	static vector<Lokata*> danezbazylokat(string nazwabazy, string sql);
   
-    static void stworzBazeBledow();
+	
+
+	static void stworzBazeBledow();
 	static vector<Blad*> daneBlad(string nazwabazy, string sql);
 
 	static void stworzBazeAdmin();

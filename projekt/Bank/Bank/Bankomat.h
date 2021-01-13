@@ -1,20 +1,27 @@
 #ifndef BANKOMAT_H
 #define BANKOMAT_H
 
+#include "Konto.h"
+
 using namespace std;
 
 class Bankomat {
 
 private:
-	double ilosc_gotowki_w_bankomacie;
-	int id_bankomatu;
+	double gotowka;
 
 public:
-	bool wplac_pieniadze(double kwota);
+	bool wplac_pieniadze(Konto* konto);
 
-	bool wyplac_pieniadze(double kwota);
+	bool wyplac_pieniadze(Konto* konto);
 
-	bool czy_poprawna_ilosc_gotowki_w_maszynie(int kwota);
+	bool czy_poprawna_ilosc_gotowki_w_maszynie();
+
+	Bankomat(double ilosc_wpl = 0) :gotowka(ilosc_wpl)
+	{
+
+	}
+
 };
 
 #endif
