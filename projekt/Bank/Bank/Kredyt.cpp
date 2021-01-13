@@ -5,6 +5,7 @@
 
 using namespace std;
 
+//Zamiana waluty kredytu w bazie
 void Kredyt::przewalutowanie_kredytu() {
 
 		if (waluta_kredytu == "ZL")
@@ -40,6 +41,7 @@ bool Kredyt::sprawdz_zdolnosc_kredytowa() {
 	return true;
 }
 
+//Sprawdza czy nie podano za d³ugiego typu kredytu
 bool Kredyt::sprawdzanie_poprawnosci_danych_kredytowych() {
 	
 	if (typ_kredytu.length() > 20)
@@ -50,6 +52,7 @@ bool Kredyt::sprawdzanie_poprawnosci_danych_kredytowych() {
 	return true;
 }
 
+//Potwierdzenie wziêcia kredytu
 bool Kredyt::zaakceptuj_kredyt() {
 	int akceptacja_kredytu = 0;
 	cout << "Czy akceptujesz kredyt ? (1 tak 0 nie): ";
@@ -59,6 +62,8 @@ bool Kredyt::zaakceptuj_kredyt() {
 	return (bool)akceptacja_kredytu;
 }
 
+
+//Dodanie kredytu do bazy
 void Kredyt::zapisz_kredyt_w_bazie(long long int id) {
 
 	//Dodanie kredytu do bazy
@@ -81,6 +86,7 @@ void Kredyt::zapisz_kredyt_w_bazie(long long int id) {
 
 }
 
+//Zwraca informacje o kredycie
 void Kredyt::get_informacje()
 {
 

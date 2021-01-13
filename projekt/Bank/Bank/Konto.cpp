@@ -4,11 +4,7 @@
 #include <vector>
 #include <iomanip>
 
-void Konto::zglos_blad(string tytul, string tresc) {
-	// TODO - implement Konto::zglos_blad
-	throw "Not yet implemented";
-}
-
+//Wypisujê stan konta
 double Konto::stan_konta() {
 	
 	string sql = "SELECT Email,Tel,ID,Saldo,Zamrozone FROM Klienci WHERE ID = '" + to_string(id)+"';";
@@ -19,24 +15,32 @@ double Konto::stan_konta() {
 	return saldo_konta;
 }
 
+void Konto::zglos_blad(string tytul, string tresc) {
+	// TODO - implement Konto::zglos_blad
+	throw "Not yet implemented";
+}
+
 void Konto::wyswietl_komunikat(string komunikat) {
 	cout << komunikat << endl;
 }
 
-long long int Konto::get_id() {
-	return id;
-}
-
+//usuwa konto z bazy
 void Konto::usun_konto() {
 
 	string sql = "DELETE FROM Klienci WHERE Id='"+to_string(id)+"';";
 	Baza::wykonaj("klienci.db", sql);
 }
 
+//zamrozenie konta 
 void Konto::zamroz_konto() {
 	string sql = "UPDATE Klienci SET Zamrozone = '"+to_string(1)+"' WHERE ID = '"+ to_string(id) +"';";
 	Baza::wykonaj("klienci.db", sql);
 }
+
+long long int Konto::get_id() {
+	return id;
+}
+
 
 bool Konto::get_zamrozone()
 {
@@ -61,11 +65,11 @@ void Konto::operacje_na_koncie() {
 	string id = "";
 	string haslo = "";
 
-	double ilosc_gotowki = 0.0;
+	
 
 	while (opreacja != 10)
 	{
-		Bankomat* maszyna=new Bankomat;
+		
 		Przelew* now = new Przelew;
 		cout << "1: Przelew" << endl;
 		cout << "2: Kredyt" << endl;
@@ -87,9 +91,7 @@ void Konto::operacje_na_koncie() {
 			break;
 
 		case 2:
-			
 			kredyt_menu();
-
 			break;
 
 		case 3:
@@ -97,8 +99,7 @@ void Konto::operacje_na_koncie() {
 			break;
 
 		case 4:
-			przewalutowanie();
-
+			zmiananakurs();
 			break;
 
 		case 5:
@@ -116,32 +117,49 @@ void Konto::operacje_na_koncie() {
 			break;
 
 		case 8:
-			
-			cout << "Podaj ile gotówki wp³aciæ " << endl;
-			cin >> ilosc_gotowki;
-			maszyna = new Bankomat(ilosc_gotowki);
-			maszyna->wplac_pieniadze(this);
-			stan_konta();
+			wplac_gotowke();
 			break;
 
 		case 9:
-
-			cout << "Podaj ile gotówki wyplacic " << endl;
-			cin >> ilosc_gotowki;
-			maszyna = new Bankomat(ilosc_gotowki);
-			maszyna->wyplac_pieniadze(this);
-			stan_konta();
+			wyplac_gotowke();
 			break;
 
 		default:
 			break;
 		}
 		delete now;
-		delete maszyna;
+		
 	}
 	
 }
 
+//odejmowanie gotówki z konta
+void Konto::wyplac_gotowke()
+{
+	Bankomat* maszyna = new Bankomat;
+	double ilosc_gotowki = 0.0;
+	cout << "Podaj ile gotówki wyplacic " << endl;
+	cin >> ilosc_gotowki;
+	maszyna = new Bankomat(ilosc_gotowki);
+	maszyna->wyplac_pieniadze(this);
+	stan_konta();
+	delete maszyna;
+}
+
+//dodawanie gotówki do konta
+void Konto::wplac_gotowke()
+{
+	Bankomat* maszyna = new Bankomat;
+	double ilosc_gotowki = 0.0;
+	cout << "Podaj ile gotówki wp³aciæ " << endl;
+	cin >> ilosc_gotowki;
+	maszyna = new Bankomat(ilosc_gotowki);
+	maszyna->wplac_pieniadze(this);
+	stan_konta();
+	delete maszyna;
+}
+
+//obsluga menu przelewu
 void Konto::przelew_menu(int& opreacja_przelew, Przelew*& now)
 {
 	unsigned long int id_odbiorca = 0;
@@ -177,20 +195,10 @@ void Konto::przelew_menu(int& opreacja_przelew, Przelew*& now)
 	}
 }
 
+//obsluga menu kredytu
 void Konto::kredyt_menu()
 {
 	int opreacja_kredyt = 0;
-	Kredyt* nowy = NULL;
-
-	string typ = "";
-	double kwota = 0.0;
-	string waluta = "";
-	double oprocentowanie = 0.0;
-	string data_zaciagniecia = "";
-	string termin_splaty = "";
-	long long int id_kredytu = 0;
-
-	string sql;
 
 	while (opreacja_kredyt != 4)
 	{
@@ -202,40 +210,16 @@ void Konto::kredyt_menu()
 		switch (opreacja_kredyt)
 		{
 		case 1:
-
-			cout <<"Podaj typ kredytu: ";
-			cin >> typ;
-			cout << "Podaj kwote kredytu: ";
-			cin >> kwota;
-			nowy = new Kredyt(typ,kwota,waluta,oprocentowanie,data_zaciagniecia,termin_splaty);
-			nowy->zapisz_kredyt_w_bazie(id);
-
-
-
-			delete nowy;
-		
+			tworzenie_kredytu();
 			break;
 
 		case 2:
 	
 			lista_kredytow();
-
 			break;
 
 		case 3:
-			lista_kredytow();
-
-			if (kredyty.size() < 0)
-			{
-				cout << "Brak kredytów" << endl;
-			}
-			else
-			{
-				int przewalutowany_kredyt = 0;
-				cout << "Wybierz kredyt: " << endl;
-				cin >> przewalutowany_kredyt;
-				kredyty[przewalutowany_kredyt]->przewalutowanie_kredytu();
-			}
+			przewalutowanie_kredytu();
 			break;
 		default:
 			break;
@@ -243,6 +227,45 @@ void Konto::kredyt_menu()
 	}
 }
 
+//przewalutowanie kredytu
+void Konto::przewalutowanie_kredytu()
+{
+	lista_kredytow();
+
+	if (kredyty.size() < 0)
+	{
+		cout << "Brak kredytów" << endl;
+	}
+	else
+	{
+		int przewalutowany_kredyt = 0;
+		cout << "Wybierz kredyt: " << endl;
+		cin >> przewalutowany_kredyt;
+		kredyty[przewalutowany_kredyt]->przewalutowanie_kredytu();
+	}
+}
+
+
+//tworzy i zapisujê kredyt w bazie
+void Konto::tworzenie_kredytu()
+{
+	Kredyt* nowy = NULL;
+	string typ = "";
+	double kwota = 0.0;
+	string waluta = "";
+	double oprocentowanie = 0.0;
+	string data_zaciagniecia = "";
+	string termin_splaty = "";
+	cout << "Podaj typ kredytu: ";
+	cin >> typ;
+	cout << "Podaj kwote kredytu: ";
+	cin >> kwota;
+	nowy = new Kredyt(typ, kwota, waluta, oprocentowanie, data_zaciagniecia, termin_splaty);
+	nowy->zapisz_kredyt_w_bazie(id);
+	delete nowy;
+}
+
+//obsluga menu lokaty
 void Konto::lokata_menu()
 {
 	int operacja_lokaty = 0;
@@ -274,6 +297,7 @@ void Konto::lokata_menu()
 	}
 }
 
+//usuwa lokate z bazy i przypisujê kwotê do konta
 void Konto::anuluj_lokate()
 {
 	lista_lokat();
@@ -290,6 +314,7 @@ void Konto::anuluj_lokate()
 	}
 }
 
+//tworzy lokate w bazie
 void Konto::tworzenie_lokaty()
 {
 	string typ = "";
@@ -311,6 +336,7 @@ void Konto::tworzenie_lokaty()
 	delete nowa;
 }
 
+//wyœwietla listê lokat
 void Konto::lista_lokat()
 {
 	string sql = "SELECT * FROM Lokaty WHERE KlientID = '" + to_string(id) + "';";
@@ -322,6 +348,7 @@ void Konto::lista_lokat()
 	}
 }
 
+//wyœwietla listê kredytów
 void Konto::lista_kredytow()
 {
 	string sql = "SELECT * FROM Kredyty WHERE KlientID = '" + to_string(id) + "';";
@@ -333,7 +360,8 @@ void Konto::lista_kredytow()
 	}
 }
 
-double Konto::przewalutowanie()
+//przelicza podan¹ iloœæ z³otówek na USD lib EUR
+double Konto::zmiananakurs()
 {
 	double kwota = 0.0;
 	string waluta = "";

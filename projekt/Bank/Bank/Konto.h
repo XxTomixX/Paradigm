@@ -33,9 +33,17 @@ public:
 
 	void operacje_na_koncie();
 
+	void wyplac_gotowke();
+
+	void wplac_gotowke();
+
 	void przelew_menu(int& opreacja_przelew, Przelew*& nowy);
 
 	void kredyt_menu();
+
+	void przewalutowanie_kredytu();
+
+	void tworzenie_kredytu();
 
 	void lokata_menu();
 
@@ -47,7 +55,7 @@ public:
 
 	void lista_kredytow();
 
-	double przewalutowanie();
+	double zmiananakurs();
 
 	long long int get_id();
 

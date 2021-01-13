@@ -1,5 +1,6 @@
 #include "Kurs.h"
 
+//Przelicza z³otówki na USD lub EUR
 double Kurs::sprawdz_kurs(double kwota, string waluta) {
 	if (waluta == "EUR")
 	{

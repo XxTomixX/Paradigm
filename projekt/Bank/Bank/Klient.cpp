@@ -3,7 +3,7 @@
 #include "sql/sqlite3.h"
 #include <vector>
 
-
+//Logowanie pozwala na dostęp do operacji na koncie
 void Klient::zaloguj(string id, string haslo) {
 	
 	string sql = "SELECT Email,Tel,ID,Saldo,Zamrozone FROM Klienci WHERE ID = '" + id + "' AND Haslo = '" + haslo + "';";
@@ -30,6 +30,7 @@ void Klient::zaloguj(string id, string haslo) {
 	
 }
 
+//Usunięcie obiektu konto
 void Klient::wyloguj() {
 	while (!konta.empty())
 	{
@@ -39,6 +40,7 @@ void Klient::wyloguj() {
 	konta.clear();
 }
 
+//Zapisanie klienta (konto do bazy)
 bool Klient::zarejestruj(string haslo, string email, string tel) {
 	
 	bool poprawnedane = sprawdz_poprawnosc_danych(haslo,email,tel);
@@ -67,7 +69,7 @@ bool Klient::zarejestruj(string haslo, string email, string tel) {
 }
 
 
-
+//Sprawdza popdawność niktórych wprowadzanych danych
 bool Klient::sprawdz_poprawnosc_danych(string haslo, string email, string tel) {
 	int dlugoschasla = haslo.length();
 	int dlugostel = tel.length();
@@ -151,24 +153,30 @@ bool Klient::sprawdz_poprawnosc_danych(string haslo, string email, string tel) {
 	return true;
 }
 
+//Wyświetla błąd
 string Klient::wyswietl_blad(string blad) {
 	
 	cout << blad << endl;
 	return blad;
 }
 
+
+//Sprawdza czy istnieje już taki klient w bazie
 bool Klient::czy_klient_istnieje() {
 	
 	string sql = "SELECT ID FROM Klienci WHERE Imie = '" + imie + "' AND Nazwisko = '" + nazwisko + "' AND Pesel = '" + pesel + "';";
 	return Baza::czyistnieje("klienci.db", sql);
 }
 
+//Zwraca id konta o danym haśle
 void Klient::podajidkont(string haslo) {
 
 	string sql = "SELECT ID FROM Klienci WHERE Haslo = '" + haslo + "';";
 	Baza::idkont("klienci.db", sql);
 }
 
+
+//Wprowadzenie konta do bazy
 bool Klient::wprowadz_konto_do_bazy(string haslo, string email, string tel) {
 	
 	string sql = "INSERT INTO Klienci (ID,Imie,Nazwisko,Pesel,Nip,Haslo,Email,Tel,Saldo,Zamrozone,LogDwa) "
@@ -180,13 +188,3 @@ bool Klient::wprowadz_konto_do_bazy(string haslo, string email, string tel) {
 	return false;
 }
 
-void Klient::wyslij_kod(int id, int nrT) {
-	// TODO - implement Klient::wyslij_kod
-	throw "Not yet implemented";
-}
-
-
-bool Klient::sprawdz_kod(int code) {
-	// TODO - implement Klient::sprawdz_kod
-	throw "Not yet implemented";
-}

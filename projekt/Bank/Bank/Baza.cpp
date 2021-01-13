@@ -11,7 +11,7 @@
 
 using namespace std;
 
-//Metoda ³¹czy z baz¹ danych o podanej nazwie
+//Nawiązanie połączenia z bazą
 sqlite3* Baza::polaczdobazy(string nazwabazy) {
 
 	sqlite3 *db;
@@ -33,8 +33,6 @@ sqlite3* Baza::polaczdobazy(string nazwabazy) {
 	
 	
 }
-
-//Funkcje i metody klienta
 
 //Czy klient istnieje zwraca bool
 bool istnieje = false;
@@ -108,8 +106,7 @@ vector<Konto*> Baza::daneklientazbazy(string nazwabazy, string sql) {
 	return danezbazy;
 }
 
-//Funkcja pomocnicza sqlite3 i metoda zwracaj¹ca id konta
-
+//Funkcja pomocnicza sqlite3 i metoda zwracajaca id konta
 int back_idkonta(void *NotUsed, int argc, char **argv, char **azColName) {
 
 	cout << "ID twojego konta to: " << endl;
@@ -291,6 +288,8 @@ void Baza::stworzBazeAdmin() {
 
 }
 
+
+//Wykonuje polecenia SQL na bazie
 bool Baza::wykonaj(string nazwa, string sql) {
 
 	sqlite3* db = polaczdobazy(nazwa);
@@ -312,6 +311,7 @@ bool Baza::wykonaj(string nazwa, string sql) {
 
 }
 
+//Zwraca błędy z bazy 
 vector<Blad*> wektor_bledow;
 int back_daneBlad(void* NotUsed, int argc, char** argv, char** azColName) {
 

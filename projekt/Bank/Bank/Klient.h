@@ -28,10 +28,6 @@ public:
 
 	bool wprowadz_konto_do_bazy(string haslo, string email, string tel);
 
-	void wyslij_kod(int id, int nrT);
-
-	bool sprawdz_kod(int code);
-
 	void podajidkont(string haslo);
 
 
