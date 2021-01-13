@@ -12,10 +12,11 @@ using namespace std;
 class Konto {
 
 private:
+	
 	string email;
 	string nr_telefonu;
 	long long int id;
-	double saldo_konta;
+	long double saldo_konta;
 	bool czy_zamrozone;
 	vector<Przelew*> przelewy;
 	vector<Kredyt*> kredyty;
@@ -26,21 +27,21 @@ public:
 
 	void zglos_blad(string tytul, string tresc);
 
-	bool modyfikuj_stan_konta(string operacja, int kwota);
-
 	double stan_konta();
 
 	void wyswietl_komunikat(string komunikat);
 
-	void zamroz_srodki();
-
-	void zaaktualizuj_dane_konta();
-
 	void operacje_na_koncie();
 
-	void kredyt_menu(int &opreacja_kredyt, Kredyt * &nowy);
+	void kredyt_menu();
 
-	double przewalutowanie(int &kwota, std::string &waluta);
+	void lokata_menu();
+
+	void lista_lokat();
+
+	void lista_kredytow();
+
+	double przewalutowanie();
 
 	long long int get_id();
 
@@ -50,7 +51,9 @@ public:
 	
 	bool get_zamrozone();
 
-	Konto(string em = "",string nr = "",long long int i = 0,double sal = 0,bool czy = false):email(em),nr_telefonu(nr),id(i),saldo_konta(sal),czy_zamrozone(czy)
+	long double get_saldo();
+
+	Konto(string em = "",string nr = "",long long int i = 0,long double sal = 0,bool czy = false):email(em),nr_telefonu(nr),id(i),saldo_konta(sal),czy_zamrozone(czy)
 	{
 	
 	}

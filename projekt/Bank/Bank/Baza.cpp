@@ -10,11 +10,6 @@
 #include "sql/sqlite3.h" 
 
 using namespace std;
-/*
-vector<Przelew*> przelewy;
-vector<Kredyt*> kredyty;
-vector<Lokata*> lokaty;
-*/
 
 //Metoda ³¹czy z baz¹ danych o podanej nazwie
 sqlite3* Baza::polaczdobazy(string nazwabazy) {
@@ -39,10 +34,7 @@ sqlite3* Baza::polaczdobazy(string nazwabazy) {
 	
 }
 
-bool Baza::admindanedobazy(string nazwabazy, string sql) {
-	// TODO - implement Klient::wyloguj
-	throw "Not yet implemented";
-}
+//Funkcje i metody klienta
 
 //Czy klient istnieje zwraca bool
 bool istnieje = false;
@@ -86,16 +78,9 @@ bool Baza::czyistnieje(string nazwabazy, string sql) {
 vector<Konto*> danezbazy;
 int back_danezbazyklienta(void *NotUsed, int argc, char **argv, char **azColName) {
 
-	
-	cout << "===================" << endl;
-	for (int i = 0; i < argc; i++)
-	{
-		cout<<i<<" "<< argv[i] << endl;
-	}
-	
 	danezbazy.clear();
 	string id = (string)argv[2];
-	Konto* kontozbazy = new Konto((string)argv[0], (string)argv[1], stoll(id), atof(argv[3]), stoi(argv[4]));
+	Konto* kontozbazy = new Konto((string)argv[0], (string)argv[1], stoll(id), stold(argv[3]), stoi(argv[4]));
 	danezbazy.push_back(kontozbazy);
 	//cout<<"sss"<<danezbazy[0]->get_id();
 	cout << endl;
@@ -153,21 +138,14 @@ void Baza::idkont(string nazwabazy, string sql) {
 }
 
 //Zwraca Kredyty klienta o ID
-vector<Kredyt*> danezbazykredyty;
+vector<Kredyt*> danekredytowe;
 int back_danezbazykredyty(void *NotUsed, int argc, char **argv, char **azColName) {
 
-
-	cout << "===================" << endl;
-	for (int i = 0; i < argc; i++)
-	{
-		cout << i << " " << argv[i] << endl;
-	}
-
-	danezbazykredyty.clear();
-	string id = (string)argv[2];
-	//Kredyt* kredytzbazy = new Kredyt();
-	//danezbazykredyty.push_back(kredytzbazy);
-	//cout<<"sss"<<danezbazy[0]->get_id();
+	string id_kredyt = (string)argv[0];
+	//Kredyt(string typ = "", double kwo = 0, string waluta = "", double opr = 0, string data_za = "", string term = "", long int id = 0) 
+	Kredyt* kredyt = new Kredyt((string)argv[2], atof(argv[3]), (string)argv[4], atof(argv[5]), (string)argv[6], (string)argv[7], stoll(id_kredyt));
+	danekredytowe.push_back(kredyt);
+	cout<<"                         sss"<< stoll(id_kredyt);
 	cout << endl;
 	return 0;
 }
@@ -175,13 +153,13 @@ int back_danezbazykredyty(void *NotUsed, int argc, char **argv, char **azColName
 vector<Kredyt*> Baza::danezbazykredyt(string nazwabazy, string sql) {
 
 	sqlite3 *db = polaczdobazy(nazwabazy);
-
+	danekredytowe.clear();
 	int rc;
 	char *zErrMsg = 0;
-	rc = sqlite3_exec(db, sql.c_str(), back_danezbazyklienta, NULL, &zErrMsg);
+	rc = sqlite3_exec(db, sql.c_str(), back_danezbazykredyty, NULL, &zErrMsg);
 
 	if (rc != SQLITE_OK) {
-		//fprintf(stderr, "SQL error: %s\n", zErrMsg);
+		fprintf(stderr, "SQL error: %s\n", zErrMsg);
 		sqlite3_free(zErrMsg);
 	}
 	else {
@@ -190,8 +168,46 @@ vector<Kredyt*> Baza::danezbazykredyt(string nazwabazy, string sql) {
 	sqlite3_close(db);
 
 
-	return danezbazykredyty;
+	return danekredytowe;
 }
+
+//Zwraca Lokaty klienta o ID
+vector<Lokata*> danelokat;
+int back_danezbazylokaty(void *NotUsed, int argc, char **argv, char **azColName) {
+
+	string id_lokat = (string)argv[0];
+	//Kredyt(string typ = "", double kwo = 0, string waluta = "", double opr = 0, string data_za = "", string term = "", long int id = 0) 
+	Lokata* lokata = new Lokata((string)argv[2], atof(argv[3]), (int)argv[4], stoll(id_lokat));
+	danelokat.push_back(lokata);
+	//cout << "                         sss" << stoll(id_kredyt);
+	cout << endl;
+	return 0;
+}
+
+vector<Lokata*> Baza::danezbazylokat(string nazwabazy, string sql) {
+
+	sqlite3 *db = polaczdobazy(nazwabazy);
+	danelokat.clear();
+	int rc;
+	char *zErrMsg = 0;
+	rc = sqlite3_exec(db, sql.c_str(), back_danezbazylokaty, NULL, &zErrMsg);
+
+	if (rc != SQLITE_OK) {
+		fprintf(stderr, "SQL error: %s\n", zErrMsg);
+		sqlite3_free(zErrMsg);
+	}
+	else {
+		fprintf(stdout, "Wypisano \n");
+	}
+	sqlite3_close(db);
+
+
+	return danelokat;
+}
+
+
+
+
 
 // BLAD
 
@@ -283,13 +299,13 @@ bool Baza::wykonaj(string nazwa, string sql) {
 	rc = sqlite3_exec(db, sql.c_str(), NULL, NULL, &zErrMsg);
 
 	if (rc != SQLITE_OK) {
-		//fprintf(stderr, "SQL error: %s\n", zErrMsg);
+		fprintf(stderr, "SQL error: %s\n", zErrMsg);
 		sqlite3_free(zErrMsg);
 		sqlite3_close(db);
 		return false;
 	}
 	else {
-		//fprintf(stdout, "Ok \n");
+		fprintf(stdout, "Ok kr\n");
 		sqlite3_close(db);
 		return true;
 	}

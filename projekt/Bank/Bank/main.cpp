@@ -3,6 +3,7 @@
 #include "Klient.h"
 
 #include "Konto.h"
+#include "Bankomat.h"
 #include "Przelew.h"
 #include "Kredyt.h"
 #include "Lokata.h"
@@ -13,7 +14,6 @@
 #include "Kurs.h"
 
 #include "Blad.h"
-#include "Bankomat.h"
 #include "main.h"
 
 #include <iostream>
