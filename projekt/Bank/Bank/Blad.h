@@ -13,14 +13,14 @@ class Blad {
 private:
 	string tytul;
 	string tresc;
-	int id_bledu;
+	unsigned long int id_bledu;
 	bool czy_naprawiony;
 	string data;
 	
 
 public:
 	Blad() {};
-	Blad(string tt, string tr, int i, bool cn, string d) : tytul(tt), tresc(tr), id_bledu(i), czy_naprawiony(cn), data(d) {};
+	Blad(string tt, string tr, unsigned long int i, bool cn, string d) : tytul(tt), tresc(tr), id_bledu(i), czy_naprawiony(cn), data(d) {};
 	void utworz_blad(string tytul, string tresc);
 };
 
