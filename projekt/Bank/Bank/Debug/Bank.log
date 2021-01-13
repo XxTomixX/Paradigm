@@ -8,19 +8,20 @@ D:\Git\Paradigm\projekt\Bank\Bank\Administrator.cpp(205,18): warning C4566: znak
 D:\Git\Paradigm\projekt\Bank\Bank\Administrator.cpp(211,18): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\uFFFD" nie może być przedstawiony w bieżącej stronie kodowej (1250)
 D:\Git\Paradigm\projekt\Bank\Bank\Administrator.cpp(217,18): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\uFFFD" nie może być przedstawiony w bieżącej stronie kodowej (1250)
   Bankomat.cpp
-  Baza.cpp
-D:\Git\Paradigm\projekt\Bank\Bank\Baza.cpp(325,68): warning C4244: "argument": konwersja z "__int64" do "unsigned long", możliwa utrata danych
-D:\Git\Paradigm\projekt\Bank\Bank\Baza.cpp(363,59): warning C4244: "argument": konwersja z "__int64" do "int", możliwa utrata danych
   Blad.cpp
   Blik.cpp
 D:\Git\Paradigm\projekt\Bank\Bank\Blik.cpp(5,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
   Klient.cpp
   Konto.cpp
   Kredyt.cpp
+  Kurs.cpp
   Lokata.cpp
-  Przelew.cpp
-D:\Git\Paradigm\projekt\Bank\Bank\Przelew.cpp(46,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
   main.cpp
+  Przelew.cpp
+D:\Git\Paradigm\projekt\Bank\Bank\Przelew.cpp(53,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+  Baza.cpp
+D:\Git\Paradigm\projekt\Bank\Bank\Baza.cpp(401,68): warning C4244: "argument": konwersja z "__int64" do "unsigned long", możliwa utrata danych
+D:\Git\Paradigm\projekt\Bank\Bank\Baza.cpp(439,59): warning C4244: "argument": konwersja z "__int64" do "int", możliwa utrata danych
   Generowanie kodu...
-LINK : warning LNK4098: domyślna biblioteka "LIBCMT" powoduje konflikt z innymi bibliotekami; użyj opcji /NODEFAULTLIB:biblioteka
+LINK : warning LNK4098: domyślna biblioteka „LIBCMT” powoduje konflikt z innymi bibliotekami; użyj opcji /NODEFAULTLIB:biblioteka
   Bank.vcxproj -> D:\Git\Paradigm\projekt\Bank\Debug\Bank.exe

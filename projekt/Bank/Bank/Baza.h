@@ -28,6 +28,8 @@ public:
 	static bool wykonaj(string nazwa, string sql);
 	static vector<Administrator*> daneadminazbazy(string nazwabazy, string sql);
   
+	static void stworzBazePrzelewow();
+	static void stworzBazePrzelewowBlik();
 };
 
 
