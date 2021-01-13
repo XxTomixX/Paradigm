@@ -80,6 +80,7 @@ void Konto::operacje_na_koncie() {
 		switch (opreacja)
 		{
 		case 1:
+			operacja_przelew = 1;
 			przelew_menu(operacja_przelew, now);
 			break;
 
@@ -124,7 +125,7 @@ void Konto::przelew_menu(int& opreacja_przelew, Przelew*& now)
 	unsigned long int id_przelewu = 0;;
 	string typ_przelewu = "";
 
-	while (opreacja_przelew != 1)
+	while (opreacja_przelew == 1)
 	{
 		cout << "Czy chcesz wykonac przelew?" << endl<<"1-Tak"<<endl<<"2-Nie"<<endl;
 		cin >> opreacja_przelew;

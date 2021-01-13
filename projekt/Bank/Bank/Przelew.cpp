@@ -1,33 +1,14 @@
 ﻿#include "Przelew.h"
 #include "Baza.h"
 using namespace std;
-/*
-int Przelew::wyslij_kod_potwierdzajacy() {
-	srand(time(NULL));
-	int tab_kod_potwierdz[4];
-	int x;
-	cout << "Kod potwierdzajacy" << endl;
-	for (int i = 0; i < 4; i++)
-	{
-		x = (rand() % 10);
 
-		tab_kod_potwierdz[i] = x;
-
-		cout << tab_kod_potwierdz[i] << " ";
-		if (i == 4) {
-			Przelew::podaj_kod_weryfikacji(tab_kod_potwierdz[i]);
-		}
-		return tab_kod_potwierdz[i];
-	}
-	
-}
-*/
 /*
 bool Przelew::zweryfikuj_dane() {
 	// TODO - implement Przelew::zweryfikuj_dane
 	throw "Not yet implemented";
 }
 */
+
 void Przelew::stworz_przelew(unsigned long int id_odbiorca, double kwota) {
 	int m;
 	cout << "Rodzaje przelewu:" << endl;
@@ -41,9 +22,17 @@ void Przelew::stworz_przelew(unsigned long int id_odbiorca, double kwota) {
 	}
 	else if (m == 2)
 	{
+		Blik* nowy = NULL;
+		Przelew::blik_menu(nowy);
 		//blik
 	}
 
+}
+
+void Przelew::blik_menu(Blik*& nowy)
+{
+	nowy = new Blik();
+	nowy->generuj_i_zweryfikuj_kod_blik();
 }
 
 bool Przelew::wyslij_przelew() {
@@ -66,7 +55,7 @@ void Przelew::kod_weryfikacji() {
 	cout << "Kod potwierdzajacy" << endl;
 	for (int i = 0; i < 4; i++)
 	{
-		x = (rand() % 10)+1;
+		x = (rand() % 9)+1;
 
 		tab_kod_potwierdz[i] = x;
 
@@ -125,9 +114,8 @@ void Przelew::anuluj_przelew() {
 	cin >> a;
 	if (a == 1)
 	{
-		cout << "Przelew został anulowany";
+		cout << "Przelew został anulowany"<<endl;
 		system("pause");
-		//Konto::operacje_na_koncie();
 	}
 	else if (a == 2)
 	{

@@ -1,6 +1,7 @@
 #ifndef PRZELEW_H
 #define PRZELEW_H
 
+#include"Blik.h"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -21,6 +22,8 @@ public:
 	//bool zweryfikuj_dane();
 
 	void stworz_przelew(unsigned long int id_odbiorca, double kwota);
+
+	void blik_menu(Blik*& nowy);
 
 	bool wyslij_przelew();
 

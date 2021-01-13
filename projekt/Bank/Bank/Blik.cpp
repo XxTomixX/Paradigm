@@ -8,7 +8,7 @@ void Blik::generuj_i_zweryfikuj_kod_blik() {
 	cout << "Kod blik" << endl;
 	for (int i = 0; i < 6; i++)
 	{
-		x = (rand() % 10)+1;
+		x = (rand() % 9)+1;
 
 		tab_blik[i] = x;
 
@@ -65,8 +65,7 @@ bool Blik::zweryfikuj_kod() {
 }
 */
 void Blik::stworz_przelew() {
-	// TODO - implement Blik::stworz_przelew
-	throw "Not yet implemented";
+	cout << "Przelew Blik został wykonany" << endl;
 }
 
 void Blik::zapisz_przelew_w_bazie(unsigned long int id_odbiorca, string typ_przelewu) {
@@ -84,9 +83,8 @@ void Blik::anuluj_przelew() {
 	cin >> a;
 	if (a == 1)
 	{
-		cout << "Przelew został anulowany";
+		cout << "Przelew został anulowany"<<endl;
 		system("pause");
-		//Konto::operacje_na_koncie();
 	}
 	else if (a == 2)
 	{
