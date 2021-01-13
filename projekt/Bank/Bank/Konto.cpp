@@ -1,5 +1,6 @@
 #include "Konto.h"
 #include "Baza.h"
+#include "Blad.h"
 #include "Bankomat.h"
 #include <vector>
 #include <iomanip>
@@ -16,8 +17,7 @@ double Konto::stan_konta() {
 }
 
 void Konto::zglos_blad(string tytul, string tresc) {
-	// TODO - implement Konto::zglos_blad
-	throw "Not yet implemented";
+
 }
 
 void Konto::wyswietl_komunikat(string komunikat) {
@@ -67,7 +67,7 @@ void Konto::operacje_na_koncie() {
 
 	
 
-	while (opreacja != 10)
+	while (opreacja != 11)
 	{
 		
 		Przelew* now = new Przelew;
@@ -80,7 +80,8 @@ void Konto::operacje_na_koncie() {
 		cout << "7: Stan Konta" << endl;
 		cout << "8: Wp³aæ gotówke" << endl;
 		cout << "9: Wyp³aæ gotówke" << endl;
-		cout << "10: Wyloguj" << endl;
+	    cout << "10: Zg³oœ b³¹d" << endl;
+		cout << "11: Wyloguj" << endl;
 		cin >> opreacja;
 		cin.ignore();
 		switch (opreacja)
@@ -104,12 +105,12 @@ void Konto::operacje_na_koncie() {
 
 		case 5:
 			usun_konto();
-			opreacja = 10;
+			opreacja = 11;
 			break;
 
 		case 6:
 			zamroz_konto();
-			opreacja =10;
+			opreacja =11;
 			break;
 
 		case 7:
@@ -124,6 +125,10 @@ void Konto::operacje_na_koncie() {
 			wyplac_gotowke();
 			break;
 
+		case 10:
+			zglos_blad();
+			break;
+
 		default:
 			break;
 		}
@@ -131,6 +136,22 @@ void Konto::operacje_na_koncie() {
 		
 	}
 	
+}
+
+void Konto::zglos_blad()
+{
+	Blad* blad = new Blad();
+	string tt = ""; //tylu³
+	string tr = ""; //treœæ
+
+	cout << "PODAJ TYTUL BLEDU: ";
+	getline(cin, tt);
+	cout << "TWOJ TYTUL: " << tt << ".\n";
+	cout << "PODAJ TRESC BLEDU: ";
+	getline(cin, tr);
+	cout << "TWOJA TRESC: " << tr << ".\n";
+	blad->utworz_blad(tt, tr);
+	delete blad;
 }
 
 //odejmowanie gotówki z konta

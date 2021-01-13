@@ -33,6 +33,8 @@ public:
 
 	void operacje_na_koncie();
 
+	void zglos_blad();
+
 	void wyplac_gotowke();
 
 	void wplac_gotowke();

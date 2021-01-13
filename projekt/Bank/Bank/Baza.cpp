@@ -20,18 +20,6 @@ sqlite3* Baza::polaczdobazy(string nazwabazy) {
 	string sql;
 
 	rc = sqlite3_open(nazwabazy.c_str(), &db);
-
-	
-	if (rc) {
-		//fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
-		return NULL;
-	}
-	else {
-		//fprintf(stdout, "Opened database successfully\n");
-		return db;
-	}
-	
-	
 }
 
 //Czy klient istnieje zwraca bool
@@ -142,8 +130,6 @@ int back_danezbazykredyty(void *NotUsed, int argc, char **argv, char **azColName
 	//Kredyt(string typ = "", double kwo = 0, string waluta = "", double opr = 0, string data_za = "", string term = "", long int id = 0) 
 	Kredyt* kredyt = new Kredyt((string)argv[2], atof(argv[3]), (string)argv[4], atof(argv[5]), (string)argv[6], (string)argv[7], stoll(id_kredyt));
 	danekredytowe.push_back(kredyt);
-	cout<<"                         sss"<< stoll(id_kredyt);
-	cout << endl;
 	return 0;
 }
 
@@ -173,10 +159,8 @@ vector<Lokata*> danelokat;
 int back_danezbazylokaty(void *NotUsed, int argc, char **argv, char **azColName) {
 
 	string id_lokat = (string)argv[0];
-	//Kredyt(string typ = "", double kwo = 0, string waluta = "", double opr = 0, string data_za = "", string term = "", long int id = 0) 
 	Lokata* lokata = new Lokata((string)argv[2], atof(argv[3]), (int)argv[4], stoll(id_lokat));
 	danelokat.push_back(lokata);
-	//cout << "                         sss" << stoll(id_kredyt);
 	cout << endl;
 	return 0;
 }
@@ -374,13 +358,11 @@ bool Baza::wykonaj(string nazwa, string sql) {
 	rc = sqlite3_exec(db, sql.c_str(), NULL, NULL, &zErrMsg);
 
 	if (rc != SQLITE_OK) {
-		fprintf(stderr, "SQL error: %s\n", zErrMsg);
 		sqlite3_free(zErrMsg);
 		sqlite3_close(db);
 		return false;
 	}
 	else {
-		fprintf(stdout, "Ok kr\n");
 		sqlite3_close(db);
 		return true;
 	}
