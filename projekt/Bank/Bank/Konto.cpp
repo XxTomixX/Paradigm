@@ -179,9 +179,14 @@ void Konto::przelew_menu(int& opreacja_przelew, Przelew*& now)
 			cin >> id_odbiorca;
 			cout << "Podaj kwote przelewu: ";
 			cin >> kwota;
-			now = new Przelew(id_odbiorca, kwota, id_przelewu, typ_przelewu);
-			now->stworz_przelew(id_odbiorca, kwota);
-
+			if (kwota > saldo_konta) {
+				cout << "Za ma?o ?rodków na koncie" << endl;
+			}
+			else 
+			{
+				now = new Przelew(id_odbiorca, kwota, id_przelewu, typ_przelewu, id);
+				now->stworz_przelew(id_odbiorca, kwota);
+			}
 			break;
 
 		case 2:

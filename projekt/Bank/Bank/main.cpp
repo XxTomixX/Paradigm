@@ -8,6 +8,7 @@
 #include "Kredyt.h"
 #include "Lokata.h"
 
+
 #include "Administrator.h"
 #include "Blik.h"
 #include "Kurs.h"
@@ -26,6 +27,7 @@ void rejestracja();
 int main()
 {
 	setlocale(LC_CTYPE, "Polish");
+	
 	
 	int operacja = 0;
 	

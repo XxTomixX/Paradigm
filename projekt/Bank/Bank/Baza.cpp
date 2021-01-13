@@ -287,7 +287,83 @@ void Baza::stworzBazeAdmin() {
 	sqlite3_close(db);
 
 }
+//Przelewy
+void Baza::stworzBazePrzelewow() {
+	sqlite3* db;
+	char* zErrMsg = 0;
+	int rc;
+	string sql;
 
+
+	rc = sqlite3_open("przelewy.db", &db);
+
+	if (rc) {
+		fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+	}
+	else {
+		fprintf(stdout, "Opened database successfully\n");
+	}
+
+
+	sql = "CREATE TABLE Przelewy("
+		"IDPrzelew INT PRIMARY KEY,"
+		"ID           INT    NOT NULL,"
+		"Typ       INT    NOT NULL,"
+		"Kwota       DOUBLE    NOT NULL"
+		");";
+
+
+	rc = sqlite3_exec(db, sql.c_str(), NULL, 0, &zErrMsg);
+
+	if (rc != SQLITE_OK) {
+		fprintf(stderr, "SQL error: %s\n", zErrMsg);
+		sqlite3_free(zErrMsg);
+	}
+	else {
+		fprintf(stdout, "Table created successfully\n");
+	}
+	sqlite3_close(db);
+
+}
+//Blik
+void Baza::stworzBazePrzelewowBlik() {
+	sqlite3* db;
+	char* zErrMsg = 0;
+	int rc;
+	string sql;
+
+
+	rc = sqlite3_open("przelewy_blik.db", &db);
+
+	if (rc) {
+		fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+	}
+	else {
+		fprintf(stdout, "Opened database successfully\n");
+	}
+
+
+	sql = "CREATE TABLE PrzelewyBlik("
+		"IDPrzelew INT PRIMARY KEY,"
+		"ID           INT    NOT NULL,"
+		"IDN           INT    NOT NULL,"
+		"Typ       INT    NOT NULL,"
+		"Kwota       DOUBLE    NOT NULL"
+		");";
+
+
+	rc = sqlite3_exec(db, sql.c_str(), NULL, 0, &zErrMsg);
+
+	if (rc != SQLITE_OK) {
+		fprintf(stderr, "SQL error: %s\n", zErrMsg);
+		sqlite3_free(zErrMsg);
+	}
+	else {
+		fprintf(stdout, "Table created successfully\n");
+	}
+	sqlite3_close(db);
+
+}
 
 //Wykonuje polecenia SQL na bazie
 bool Baza::wykonaj(string nazwa, string sql) {

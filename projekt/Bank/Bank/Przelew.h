@@ -15,13 +15,14 @@ private:
 	double kwota;
 	unsigned long int id_przelewu;
 	string typ_przelewu;
+	long long int ID;
 
 public:
 
 
 	void stworz_przelew(unsigned long int id_odbiorca, double kwota);
 
-	void blik_menu(Blik*& nowy);
+	void blik_menu(Blik*& nowy, double k, unsigned long int id_od);
 
 	bool wyslij_przelew();
 
@@ -35,7 +36,7 @@ public:
 
 	void potwierdz_przelew();
 
-	Przelew(unsigned long int id_o = 0, double kwo = 0, unsigned long int id_p = 0, string t_p = "") : id_odbiorca(id_o), kwota(kwo), id_przelewu(id_p), typ_przelewu(t_p)
+	Przelew(unsigned long int id_o = 0, double kwo = 0, unsigned long int id_p = 0, string t_p = "", long long int ID = 0) : id_odbiorca(id_o), kwota(kwo), id_przelewu(id_p), typ_przelewu(t_p), ID(ID)
 	{
 
 	}
