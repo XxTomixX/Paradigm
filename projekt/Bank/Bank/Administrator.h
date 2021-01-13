@@ -22,6 +22,7 @@ public:
 	void znajdz_konto();
 	void zaktualizuj_dane_konta(int id);
 	void zamroz_konto(int id);
+	void odmroz_konto(int id);
 	void wyswietl_historie_dzialan(int id);
 	// operacje na bledach
 	void pobierz_liste_bledow();

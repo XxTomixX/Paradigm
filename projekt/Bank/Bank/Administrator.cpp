@@ -5,36 +5,44 @@
 #include "Baza.h"
 #include "sql/sqlite3.h" 
 
+
+// wektor konta utworzony do celow logowania
+// dane pobrane z bazy zostaja zapisane w wektorze, nastepnie wykonuje sie na nich operacje
+// zwiazane z logowaniem, panelem operacji itd
 vector<Administrator*> Admin_Log;
 
+// panel operacji wyswietlany po zalogowaniu
 void Administrator::operacje_na_koncie() {
 	int operacja;
-	int id_k;
+	int id_k;	// po kolei : id konta, dzialania (np przelew), id bledu
 	unsigned long int id_d;
 	unsigned long int id_b;
-	int s;
+	int s;		// status bledu
 
-	string tt;
-	string tr;
+	string tt;	// tytul bledu
+	string tr;	// tresc bledu
 	
 	do
 	{
+		// tymczasowy blad tworzony na potrzeby opcji 13
+		// po wyjsciu z iteracji blad jest usuwany i tworzony ponownie
 		Blad* b = new Blad();
 		cout << "PANEL ADMINISTRATORA ID:\t" << id << endl;
 		cout << "1: Znajdz konto" << endl;
 		cout << "2: Zaktualizuj dane konta" << endl;
 		cout << "3: Zamroz konto" << endl;
-		cout << "4: Wyswietl historie dzialan" << endl;
-		cout << "5: Zmodyfikuj dzialanie" << endl;
-		cout << "6: Monitoruj kredyty" << endl;
-		cout << "7: Monitoruj przelewy" << endl;
-		cout << "8: Monitoruj lokaty" << endl;
-		cout << "9: Pobierz liste bledow" << endl;
-		cout << "10: Sprawdz stan bledu" << endl;
-		cout << "11: Zmien status bledu" << endl;
-		cout << "12: Zaktualizuj liste bledow" << endl;
-		cout << "13: Zglos blad" << endl;
-		cout << "14: Wyloguj" << endl;
+		cout << "4: Odmroz konto" << endl;
+		cout << "5: Wyswietl historie dzialan" << endl;
+		cout << "6: Zmodyfikuj dzialanie" << endl;
+		cout << "7: Monitoruj kredyty" << endl;
+		cout << "8: Monitoruj przelewy" << endl;
+		cout << "9: Monitoruj lokaty" << endl;
+		cout << "10: Pobierz liste bledow" << endl;
+		cout << "11: Sprawdz stan bledu" << endl;
+		cout << "12: Zmien status bledu" << endl;
+		cout << "13: Zaktualizuj liste bledow" << endl;
+		cout << "14: Zglos blad" << endl;
+		cout << "15: Wyloguj" << endl;
 		cin >> operacja;
 		cin.ignore();
 		switch (operacja)
@@ -56,41 +64,46 @@ void Administrator::operacje_na_koncie() {
 		case 4:
 			cout << "\nPODAJ ID KONTA:\n";
 			cin >> id_k;
-			wyswietl_historie_dzialan(id_k);
+			odmroz_konto(id_k);
 			break;
 		case 5:
+			cout << "\nPODAJ ID KONTA:\n";
+			cin >> id_k;
+			wyswietl_historie_dzialan(id_k);
+			break;
+		case 6:
 			cout << "\nPODAJ ID DZIALANIA:\n";
 			cin >> id_d;
 			modyfikuj_stan_dzialania(id_d);
 			break;
-		case 6:
+		case 7:
 			monitoruj_kredyty();
 			break;
-		case 7:
+		case 8:
 			monituruj_przelewy();
 			break;
-		case 8:
+		case 9:
 			monitoruj_lokaty();
 			break;
-		case 9:
+		case 10:
 			pobierz_liste_bledow();
 			break;
-		case 10:
+		case 11:
 			cout << "\nPODAJ ID BLEDU:\n";
 			cin >> id_b;
 			sprawdz_stan_bledu(id_b);
 			break;
-		case 11:
+		case 12:
 			cout << "\nPODAJ ID BLEDU:\n";
 			cin >> id_b;
 			cout << "\nPODAJ NOWY STATUS [ 0 -> NIENAPRAWIONY ; 1 -> NAPRAWIONY ]:\n";
 			cin >> s;
 			zmien_status_bledu(id_b,s);
 			break;
-		case 12:
+		case 13:
 			zaktualizuj_liste_bledow();
 			break;
-		case 13:
+		case 14:
 			cout << "PODAJ TYTUL BLEDU: ";
 			getline(cin, tt);
 			cout << "TWOJ TYTUL: " << tt << ".\n";
@@ -99,22 +112,22 @@ void Administrator::operacje_na_koncie() {
 			cout << "TWOJA TRESC: " << tr << ".\n";
 			b->utworz_blad(tt, tr);
 			break;
-		case 14:
+		case 15:
 			break;
 		default:
 			wyswietl_blad("Zly numer operacji.\n");
 			break;
 		}
 		delete b;
-	} while (operacja != 14);
-	if (operacja == 14) wyloguj();
+	} while (operacja != 15);
+	if (operacja == 15) wyloguj();
 }
 
 
 void Administrator::zaloguj(int id, string haslo) {
-	string sql = "SELECT * FROM Admin WHERE ID = '"+ to_string(id) + "' AND Haslo = '" + haslo + "';";
+	string sql = "SELECT * FROM Admin WHERE ID = '"+ to_string(id) + "' AND Haslo = '" + haslo + "';";	// sciaganie danych z bazy
 	Admin_Log.clear();
-	Admin_Log = Baza::daneadminazbazy("admin.db", sql);
+	Admin_Log = Baza::daneadminazbazy("admin.db", sql);	// zapisz do wektora dane
 
 	if (Admin_Log.empty())
 	{
@@ -122,12 +135,12 @@ void Administrator::zaloguj(int id, string haslo) {
 	}
 	else
 	{
-		Admin_Log[0]->operacje_na_koncie();
+		Admin_Log[0]->operacje_na_koncie();		// jesli konto istnieje przejdz do panelu operacji
 	}
 }
 
 void Administrator::wyloguj() {
-	while (!Admin_Log.empty())
+	while (!Admin_Log.empty())				// skasuj dane z wektora
 	{
 		delete Admin_Log.back();
 		Admin_Log.pop_back();
@@ -138,11 +151,9 @@ void Administrator::wyloguj() {
 bool Administrator::rejestracja(int id_od_banku, string haslo, string email) {
 
 	// stworz baze przy pierwszej rejestracji
-
 	// Baza::stworzBazeAdmin();
 
 	bool poprawnedane = sprawdz_poprawnosc_danych(haslo);
-
 	if (poprawnedane == true)
 	{
 		wprowadz_konto_do_bazy(id_od_banku, haslo, email);
@@ -153,13 +164,12 @@ bool Administrator::rejestracja(int id_od_banku, string haslo, string email) {
 		wyswietl_blad("Niepoprawne dane");
 		return false;
 	}
-
 }
 
+// sprawdza, czy haslo jest zgodne ze wzorem
 bool Administrator::sprawdz_poprawnosc_danych(string haslo) {
 
-	// haslo >9 liter
-
+	// haslo >9 liter, co najmniej jedna duza i jedna mala, co najmniej jedna cyfra
 	int dlugoschasla = haslo.length();
 	if (haslo == "")
 	{
@@ -222,14 +232,14 @@ bool Administrator::wprowadz_konto_do_bazy(int id, string haslo, string email) {
 
 	string sql;
 	sql = "INSERT INTO Admin (ID,Imie,Nazwisko, Haslo,Email) "
-		"VALUES ( '" + to_string(id) + "','" + imie + "','" + nazwisko + "','" + haslo + "','" + email + "'); ";
+		"VALUES ( '" + to_string(id) + "','" + imie + "','" + nazwisko + "','" + haslo + "','" + email + "'); ";	// wprowadzenie do bazy danych
 	Baza::wykonaj("admin.db", sql);
 	return false;
-
 }
 
+// funkcja zamienia dane klienta w rekordzie 
 void Administrator::zaktualizuj_dane_konta(int id) {
-	int c;
+	int c;	// wybor czynnosci
 	string im, nz, nip, nr_tel;
 	string sql;
 	cout << "KLIENT ID " << id << endl;
@@ -275,9 +285,17 @@ void Administrator::zaktualizuj_dane_konta(int id) {
 	} while (c != 0);
 }
 
+// funkcja zamraza konto klienta : ustawienie statusu Zamrozone na 1
+// funkcja odwrotna : odmroz konto
 void Administrator::zamroz_konto(int id) {
 	string sql;
 	sql = "UPDATE Klienci SET Zamrozone = '" + to_string(1) + "' WHERE ID = '" + to_string(id) + "';";
+	Baza::wykonaj("kilenci.db", sql);
+}
+
+void Administrator::odmroz_konto(int id) {
+	string sql;
+	sql = "UPDATE Klienci SET Zamrozone = '" + to_string(0) + "' WHERE ID = '" + to_string(id) + "';";
 	Baza::wykonaj("kilenci.db", sql);
 }
 
@@ -298,6 +316,7 @@ void Administrator::modyfikuj_stan_dzialania(int id) {
 }
 
 vector<Konto*> dane;
+// funkcja szuka konta o podanym id albo pesel, zapisuje w wektorze i wyswietla na ekran
 void Administrator::znajdz_konto() {
 	int opcja;
 	int id_f;
@@ -351,25 +370,29 @@ void Administrator::wyswietl_blad(string blad) {
 	cout << blad << endl;
 }
 
+// wyswietla bledy na ekranie
 void Administrator::pobierz_liste_bledow() {
 	string sql;
 	sql = "SELECT Tytul,Tresc,ID,Status,Data FROM Blad;";
 	Baza::daneBlad("blad.db", sql);
 }
 
+// sprawdza status bledu o zadanym id
 void Administrator::sprawdz_stan_bledu(unsigned long int id) {
 	string sql;
 	sql = "SELECT Tytul,Tresc,ID,Status,Data FROM Blad WHERE ID = '" + to_string(id) + "';";
 	Baza::daneBlad("blad.db", sql);
 }
 
-void Administrator::zaktualizuj_liste_bledow() { // skasuj bledy o status=1
+// usuwa z bazy danych bledy o statusie = 1
+void Administrator::zaktualizuj_liste_bledow() {
 	string sql;
 	sql = "DELETE FROM Blad WHERE Status = 1;";
 	Baza::wykonaj("blad.db", sql);
 }
 
-void Administrator::zmien_status_bledu(unsigned long int id, int status) { // zmien status na 0 albo na 1
+// zmienia status bledu na 0 albo 1
+void Administrator::zmien_status_bledu(unsigned long int id, int status) { 
 	string sql;
 	sql = "UPDATE Blad SET Status = '" + to_string(status) + "' WHERE ID = '" + to_string(id) + "';";
 	Baza::wykonaj("blad.db", sql);
