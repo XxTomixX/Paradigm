@@ -124,7 +124,7 @@ void Konto::przelew_menu(int& opreacja_przelew, Przelew*& now)
 	unsigned long int id_przelewu = 0;;
 	string typ_przelewu = "";
 
-	while (opreacja_przelew != 3)
+	while (opreacja_przelew != 1)
 	{
 		cout << "Czy chcesz wykonac przelew?" << endl<<"1-Tak"<<endl<<"2-Nie"<<endl;
 		cin >> opreacja_przelew;

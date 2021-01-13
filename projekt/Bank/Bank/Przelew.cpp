@@ -47,14 +47,15 @@ void Przelew::stworz_przelew(unsigned long int id_odbiorca, double kwota) {
 }
 
 bool Przelew::wyslij_przelew() {
-	// TODO - implement Przelew::wyslij_przelew
-	throw "Not yet implemented";
+	cout << "Przelew został wykonany" << endl;
+	return true;
 }
 
 bool Przelew::potwierdz_wykonanie_przelewu(bool przelac) {
 	wyslij_przelew();
-	Przelew::zapisz_przelew_w_bazie(id_odbiorca);
-	cout << "Przelew zostal wykonany";
+	string typ_przelewu = "k";
+	Przelew::zapisz_przelew_w_bazie(id_odbiorca,typ_przelewu);
+	cout << "Przelew zostal wykonany"<<endl;
 	return true;
 }
 
@@ -65,7 +66,7 @@ void Przelew::kod_weryfikacji() {
 	cout << "Kod potwierdzajacy" << endl;
 	for (int i = 0; i < 4; i++)
 	{
-		x = (rand() % 10);
+		x = (rand() % 10)+1;
 
 		tab_kod_potwierdz[i] = x;
 
@@ -77,7 +78,7 @@ void Przelew::kod_weryfikacji() {
 	{
 		cout << "Podaj kod: (kazda liczbe zakoncz enterem)" << endl;
 		cin >> x1;
-		if (x1 = tab_kod_potwierdz[i])
+		if (x1 == tab_kod_potwierdz[i])
 		{
 			cout << "Sprawdzanie..." << endl;
 			ii++;
@@ -96,7 +97,7 @@ void Przelew::kod_weryfikacji() {
 	}
 }
 
-void Przelew::zapisz_przelew_w_bazie(unsigned long int id_odbiorca) {
+void Przelew::zapisz_przelew_w_bazie(unsigned long int id_odbiorca,string typ_przelewu) {
 	string sql = "INSERT INTO Przelewy (ID,PrzelewID,Typ,Kwota) "
 		"VALUES ( ABS(random() % (9999999999 - 1000000000) + 1000000000),'" + to_string(id_odbiorca) + "','" + typ_przelewu + "','" + to_string(kwota);
 	Baza::wykonaj("przelewy.db", sql);

@@ -31,7 +31,7 @@ public:
 	//bool podaj_kod_weryfikacji(int tab_kod_potwierdz[4]);
 	void kod_weryfikacji();
 
-	void zapisz_przelew_w_bazie(unsigned long int id_odbiorca);
+	void zapisz_przelew_w_bazie(unsigned long int id_odbiorca,string typ_przelewu);
 
 	void potwierdz_przelew();
 

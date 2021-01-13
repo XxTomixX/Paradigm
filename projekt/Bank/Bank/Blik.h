@@ -9,16 +9,22 @@
 using namespace std;
 
 class Blik {
-
+private:
+	unsigned long int id_odbiorca;
+	double kwota;
+	unsigned long int id_przelewu;
+	string typ_przelewu;
 
 public:
-	int generuj_kod_blik();
+	void generuj_i_zweryfikuj_kod_blik();
 
 	string wyswietl_blad();
 
-	int terminal_request();
+	void terminal_request();
 
-	bool zweryfikuj_kod();
+	void zapisz_przelew_w_bazie(unsigned long int id_odbiorca, string typ_przelewu);
+
+	//bool zweryfikuj_kod();
 
 	void stworz_przelew();
 
