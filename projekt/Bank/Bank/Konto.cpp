@@ -55,8 +55,9 @@ void Konto::operacje_na_koncie() {
 
 	
 	int opreacja = 0;
-	
+	int operacja_przelew = 0;
 	Bankomat* maszyna;
+	Przelew* now = NULL;
 	
 	string id = "";
 	string haslo = "";
@@ -79,7 +80,8 @@ void Konto::operacje_na_koncie() {
 		switch (opreacja)
 		{
 		case 1:
-
+			operacja_przelew = 1;
+			przelew_menu(operacja_przelew, now);
 			break;
 
 		case 2:
@@ -138,6 +140,41 @@ void Konto::operacje_na_koncie() {
 		}
 	}
 
+}
+
+void Konto::przelew_menu(int& opreacja_przelew, Przelew*& now)
+{
+	unsigned long int id_odbiorca = 0;
+	double kwota = 0;;
+	unsigned long int id_przelewu = 0;;
+	string typ_przelewu = "";
+
+	while (opreacja_przelew == 1)
+	{
+		cout << "Czy chcesz wykonac przelew?" << endl << "1-Tak" << endl << "2-Nie" << endl;
+		cin >> opreacja_przelew;
+		switch (opreacja_przelew)
+		{
+		case 1:
+
+			cout << "Podaj id odbiorcy ";
+			cin >> id_odbiorca;
+			cout << "Podaj kwote przelewu: ";
+			cin >> kwota;
+			now = new Przelew(id_odbiorca, kwota, id_przelewu, typ_przelewu);
+			now->stworz_przelew(id_odbiorca, kwota);
+
+			break;
+
+		case 2:
+
+			break;
+
+		default:
+
+			break;
+		}
+	}
 }
 
 void Konto::kredyt_menu()

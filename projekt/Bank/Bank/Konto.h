@@ -33,6 +33,8 @@ public:
 
 	void operacje_na_koncie();
 
+	void przelew_menu(int& opreacja_przelew, Przelew*& nowy);
+
 	void kredyt_menu();
 
 	void lokata_menu();
