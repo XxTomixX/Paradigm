@@ -215,9 +215,7 @@ void Konto::kredyt_menu()
 
 void Konto::lokata_menu()
 {
-	string typ = "";
-	double kwota = 0;
-	Lokata* nowa= NULL;
+	
 
 	int operacja_lokaty = 0;
 	while (operacja_lokaty != 4)
@@ -230,44 +228,15 @@ void Konto::lokata_menu()
 		switch (operacja_lokaty)
 		{
 		case 1:
-			cout << "Podaj typ lokaty: ";
-			cin >> typ;
-			cout << "Podaj wielkoœæ lokaty: ";
-			cin >> kwota;
-			nowa = new Lokata(typ, kwota, 0,0);
-			if (kwota > saldo_konta)
-			{
-				cout << "Brak œrodków do utworzenia lokaty" << endl;
-			}
-			else
-			{
-				nowa->zapisz_lokate_do_bazy(id);
-			}
-
-			
-			delete nowa;
+			tworzenie_lokaty();
 			break;
 
 		case 2:
 			lista_lokat();
-			
-
 			break;
 
 		case 3:
-			lista_lokat();
-
-			if (lokaty.size() < 0)
-			{
-				cout << "Brak lokat" << endl;
-			}
-			else
-			{
-				int anulowanie = 0;
-				cout << "Wybierz lokate: " << endl;
-				cin >> anulowanie;
-				lokaty[anulowanie]->anuluj_lokate(id);
-			}
+			anuluj_lokate();
 			break;
 
 		default:
@@ -275,6 +244,45 @@ void Konto::lokata_menu()
 			break;
 		}
 	}
+}
+
+void Konto::anuluj_lokate()
+{
+	lista_lokat();
+	if (lokaty.size() < 0)
+	{
+		cout << "Brak lokat" << endl;
+	}
+	else
+	{
+		int anulowanie = 0;
+		cout << "Wybierz lokate: " << endl;
+		cin >> anulowanie;
+		lokaty[anulowanie]->anuluj_lokate(id);
+	}
+}
+
+void Konto::tworzenie_lokaty()
+{
+	string typ = "";
+	double kwota = 0;
+	Lokata* nowa = NULL;
+	cout << "Podaj typ lokaty: ";
+	cin >> typ;
+	cout << "Podaj wielkoœæ lokaty: ";
+	cin >> kwota;
+	nowa = new Lokata(typ, kwota, 0, 0);
+	if (kwota > saldo_konta)
+	{
+		cout << "Brak œrodków do utworzenia lokaty" << endl;
+	}
+	else
+	{
+		nowa->zapisz_lokate_do_bazy(id);
+	}
+
+
+	delete nowa;
 }
 
 void Konto::lista_lokat()

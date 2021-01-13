@@ -37,6 +37,10 @@ public:
 
 	void lokata_menu();
 
+	void anuluj_lokate();
+
+	void tworzenie_lokaty();
+
 	void lista_lokat();
 
 	void lista_kredytow();

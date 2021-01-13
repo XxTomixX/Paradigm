@@ -348,4 +348,37 @@ vector<Blad*> Baza::daneBlad(string nazwabazy, string sql) {
 	return wektor_bledow;
 }
 
+//Zwraca konto admina o podanym hasle
+vector<Administrator*> Admin_danezbazy;
+int back_danezbazyadmin(void* NotUsed, int argc, char** argv, char** azColName) {
 
+	cout << "===================" << endl;
+	for (int i = 0; i < argc; i++)
+	{
+		cout << i << " " << argv[i] << endl;
+	}
+
+	danezbazy.clear();
+	string id = (string)argv[0];
+	Administrator* Admin_kontozbazy = new Administrator(stoll(id), (string)argv[1], (string)argv[2], (string)argv[3], (string)argv[4]);
+	Admin_danezbazy.push_back(Admin_kontozbazy);
+	return 0;
+}
+
+vector<Administrator*> Baza::daneadminazbazy(string nazwabazy, string sql) {
+
+	sqlite3* db = polaczdobazy(nazwabazy);
+	int rc;
+	char* zErrMsg = 0;
+	rc = sqlite3_exec(db, sql.c_str(), back_danezbazyadmin, NULL, &zErrMsg);
+
+	if (rc != SQLITE_OK) {
+		//fprintf(stderr, "SQL error: %s\n", zErrMsg);
+		sqlite3_free(zErrMsg);
+	}
+	else {
+		fprintf(stdout, "Wypisano \n");
+	}
+	sqlite3_close(db);
+	return Admin_danezbazy;
+}
