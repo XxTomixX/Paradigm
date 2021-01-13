@@ -35,7 +35,7 @@ public:
 	void podajidkont(string haslo);
 
 
-	Klient(string im = "",string na = "",string pe = "", string ni = ""):Osoba(im = "", na = ""),pesel(pe),nip(ni)
+	Klient(string im = "",string na = "",string pe = "", string ni = ""):Osoba(im, na),pesel(pe),nip(ni)
 	{
 	
 	}

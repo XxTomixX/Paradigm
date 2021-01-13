@@ -328,7 +328,7 @@ int back_daneBlad(void* NotUsed, int argc, char** argv, char** azColName) {
 }
 
 vector<Blad*> Baza::daneBlad(string nazwabazy, string sql) {
-
+	wektor_bledow.clear();
 	sqlite3* db = polaczdobazy(nazwabazy);
 
 	int rc;
@@ -366,7 +366,7 @@ int back_danezbazyadmin(void* NotUsed, int argc, char** argv, char** azColName) 
 }
 
 vector<Administrator*> Baza::daneadminazbazy(string nazwabazy, string sql) {
-
+	Admin_danezbazy.clear();
 	sqlite3* db = polaczdobazy(nazwabazy);
 	int rc;
 	char* zErrMsg = 0;

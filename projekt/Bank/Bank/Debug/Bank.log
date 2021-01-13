@@ -1,25 +1,12 @@
 ﻿  Administrator.cpp
-C:\Users\paw19\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(134,17): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\u0142" nie może być przedstawiony w bieżącej stronie kodowej (1252)
-C:\Users\paw19\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(134,17): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\u0119" nie może być przedstawiony w bieżącej stronie kodowej (1252)
-C:\Users\paw19\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(181,17): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\uFFFD" nie może być przedstawiony w bieżącej stronie kodowej (1252)
-C:\Users\paw19\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(211,18): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\uFFFD" nie może być przedstawiony w bieżącej stronie kodowej (1252)
-C:\Users\paw19\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(217,18): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\uFFFD" nie może być przedstawiony w bieżącej stronie kodowej (1252)
-C:\Users\paw19\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(223,18): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\uFFFD" nie może być przedstawiony w bieżącej stronie kodowej (1252)
-  Bankomat.cpp
-  Blad.cpp
-  Blik.cpp
-C:\Users\paw19\Documents\GitHub\Paradigm\projekt\Bank\Bank\Blik.cpp(5,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
-  Klient.cpp
-  Konto.cpp
+C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(56,27): warning C4244: "argument": konwersja z "__int64" do "int", możliwa utrata danych
+C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(61,17): warning C4244: "argument": konwersja z "__int64" do "int", możliwa utrata danych
+C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(66,17): warning C4244: "argument": konwersja z "__int64" do "int", możliwa utrata danych
+C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(18,20): warning C4101: "id_d": lokalna zmienna, do której nie istnieje odwołanie
+C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(175,17): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\uFFFD" nie może być przedstawiony w bieżącej stronie kodowej (1250)
+C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(205,18): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\uFFFD" nie może być przedstawiony w bieżącej stronie kodowej (1250)
+C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(211,18): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\uFFFD" nie może być przedstawiony w bieżącej stronie kodowej (1250)
+C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(217,18): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\uFFFD" nie może być przedstawiony w bieżącej stronie kodowej (1250)
   Kredyt.cpp
-  Kurs.cpp
-  Lokata.cpp
-  main.cpp
-  Przelew.cpp
-C:\Users\paw19\Documents\GitHub\Paradigm\projekt\Bank\Bank\Przelew.cpp(46,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
-  Baza.cpp
-C:\Users\paw19\Documents\GitHub\Paradigm\projekt\Bank\Bank\Baza.cpp(325,68): warning C4244: "argument": konwersja z "__int64" do "unsigned long", możliwa utrata danych
-C:\Users\paw19\Documents\GitHub\Paradigm\projekt\Bank\Bank\Baza.cpp(363,59): warning C4244: "argument": konwersja z "__int64" do "int", możliwa utrata danych
   Generowanie kodu...
-LINK : warning LNK4098: domyślna biblioteka „LIBCMT” powoduje konflikt z innymi bibliotekami; użyj opcji /NODEFAULTLIB:biblioteka
-  Bank.vcxproj -> C:\Users\paw19\Documents\GitHub\Paradigm\projekt\Bank\Debug\Bank.exe
+  Bank.vcxproj -> C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Debug\Bank.exe

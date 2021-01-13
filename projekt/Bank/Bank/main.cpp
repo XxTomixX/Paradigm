@@ -59,20 +59,9 @@ int main()
 
 void menu_logowanie(int operacja)
 {
-	
-	
 	int log = 0;
-
 	while (log != 3)
 	{
-		Klient* logowany = new Klient();
-		string id ="";
-		string haslo="";
-
-		Administrator* Admin_Logowany = new Administrator();
-		int id_a;
-		string haslo_a = "";
-
 		cout << "1: Klient" << endl;
 		cout << "2: Administrator" << endl;
 		cout << "3: Menu" << endl;
@@ -80,25 +69,11 @@ void menu_logowanie(int operacja)
 		switch (log)
 		{
 		case 1:
-
-			cout << "Podaj id konta" << endl;
-			cin >> id;
-			cout << "Podaj haslo konta" << endl;
-			cin >> haslo;
-
-			cout << id << " " << haslo << endl;
-			logowany->zaloguj(id, haslo);
-			delete logowany;
+			log_Klient();
 			break;
 
 		case 2:
-			cout << "Administracja - Panel logowania"<<endl;
-			cout << "Podaj id konta" << endl;
-			cin >> id_a;
-			cout << "Podaj haslo konta" << endl;
-			cin >> haslo_a;
-			Admin_Logowany->zaloguj(id_a, haslo_a);
-			delete Admin_Logowany;
+			log_Admin();
 			break;
 
 		default:
@@ -106,7 +81,35 @@ void menu_logowanie(int operacja)
 			break;
 		}
 	}
+}
 
+void log_Admin()
+{
+	Administrator* Admin_Logowany = new Administrator();
+	int id_a;
+	string haslo_a = "";
+	cout << "Administracja - Panel logowania" << endl;
+	cout << "Podaj id konta" << endl;
+	cin >> id_a;
+	cout << "Podaj haslo konta" << endl;
+	cin >> haslo_a;
+	Admin_Logowany->zaloguj(id_a, haslo_a);
+	delete Admin_Logowany;
+}
+
+void log_Klient()
+{
+	Klient* logowany = new Klient();
+	string id = "";
+	string haslo = "";
+	cout << "Podaj id konta" << endl;
+	cin >> id;
+	cout << "Podaj haslo konta" << endl;
+	cin >> haslo;
+
+	cout << id << " " << haslo << endl;
+	logowany->zaloguj(id, haslo);
+	delete logowany;
 }
 
 void rejestracja()
@@ -128,7 +131,7 @@ void rejestracja()
 			string tel = "";
 			int wyjscie = 0;
 
-			cout << "Menu 1 konntynuj rejestracje 0" << endl;
+			cout << "[0] KONTYNUUJ\n[1] POWRÓT DO MENU\n" << endl;
 			cin >> wyjscie;
 			if (wyjscie == 1)
 			{
@@ -175,7 +178,7 @@ void rejestracja()
 			string email_a = "";
 			int wyjscie = 0;
 
-			cout << "Menu 1 konntynuj rejestracje 0" << endl;
+			cout << "[0] KONTYNUUJ\n[1] POWRÓT DO MENU\n" << endl;
 			cin >> wyjscie;
 			if (wyjscie == 1)
 			{

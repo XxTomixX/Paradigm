@@ -56,16 +56,17 @@ void Konto::operacje_na_koncie() {
 	
 	int opreacja = 0;
 	int operacja_przelew = 0;
-	Bankomat* maszyna;
-	Przelew* now = NULL;
+	
 	
 	string id = "";
 	string haslo = "";
 
-	int ilosc_gotowki = 0;
+	double ilosc_gotowki = 0.0;
 
 	while (opreacja != 10)
 	{
+		Bankomat* maszyna=new Bankomat;
+		Przelew* now = new Przelew;
 		cout << "1: Przelew" << endl;
 		cout << "2: Kredyt" << endl;
 		cout << "3: Lokata" << endl;
@@ -77,6 +78,7 @@ void Konto::operacje_na_koncie() {
 		cout << "9: Wyp³aæ gotówke" << endl;
 		cout << "10: Wyloguj" << endl;
 		cin >> opreacja;
+		cin.ignore();
 		switch (opreacja)
 		{
 		case 1:
@@ -101,12 +103,12 @@ void Konto::operacje_na_koncie() {
 
 		case 5:
 			usun_konto();
-			opreacja = 7;
+			opreacja = 10;
 			break;
 
 		case 6:
 			zamroz_konto();
-			opreacja = 7;
+			opreacja =10;
 			break;
 
 		case 7:
@@ -119,7 +121,6 @@ void Konto::operacje_na_koncie() {
 			cin >> ilosc_gotowki;
 			maszyna = new Bankomat(ilosc_gotowki);
 			maszyna->wplac_pieniadze(this);
-			delete maszyna;
 			stan_konta();
 			break;
 
@@ -130,23 +131,22 @@ void Konto::operacje_na_koncie() {
 			maszyna = new Bankomat(ilosc_gotowki);
 			maszyna->wyplac_pieniadze(this);
 			stan_konta();
-			delete maszyna;
-
 			break;
 
 		default:
-
 			break;
 		}
+		delete now;
+		delete maszyna;
 	}
-
+	
 }
 
 void Konto::przelew_menu(int& opreacja_przelew, Przelew*& now)
 {
 	unsigned long int id_odbiorca = 0;
-	double kwota = 0;;
-	unsigned long int id_przelewu = 0;;
+	double kwota = 0.0;
+	unsigned long int id_przelewu = 0;
 	string typ_przelewu = "";
 
 	while (opreacja_przelew == 1)
@@ -183,12 +183,12 @@ void Konto::kredyt_menu()
 	Kredyt* nowy = NULL;
 
 	string typ = "";
-	double kwota = 0;
+	double kwota = 0.0;
 	string waluta = "";
-	double oprocentowanie = 0;
+	double oprocentowanie = 0.0;
 	string data_zaciagniecia = "";
 	string termin_splaty = "";
-	unsigned long int id_kredytu = 0;
+	long long int id_kredytu = 0;
 
 	string sql;
 
@@ -236,15 +236,8 @@ void Konto::kredyt_menu()
 				cin >> przewalutowany_kredyt;
 				kredyty[przewalutowany_kredyt]->przewalutowanie_kredytu();
 			}
-			//sql = "SELECT * FROM Kredyty WHERE KlientID = '" + to_string(id) + "';";
-			//kredyty = Baza::danezbazykredyt("kredyty.db", sql);
-
-			
-
 			break;
-
 		default:
-
 			break;
 		}
 	}
@@ -252,8 +245,6 @@ void Konto::kredyt_menu()
 
 void Konto::lokata_menu()
 {
-	
-
 	int operacja_lokaty = 0;
 	while (operacja_lokaty != 4)
 	{
@@ -302,7 +293,7 @@ void Konto::anuluj_lokate()
 void Konto::tworzenie_lokaty()
 {
 	string typ = "";
-	double kwota = 0;
+	double kwota = 0.0;
 	Lokata* nowa = NULL;
 	cout << "Podaj typ lokaty: ";
 	cin >> typ;
@@ -317,8 +308,6 @@ void Konto::tworzenie_lokaty()
 	{
 		nowa->zapisz_lokate_do_bazy(id);
 	}
-
-
 	delete nowa;
 }
 
@@ -346,7 +335,7 @@ void Konto::lista_kredytow()
 
 double Konto::przewalutowanie()
 {
-	int kwota = 0;
+	double kwota = 0.0;
 	string waluta = "";
 
 	cout << "Podaj kwote (z³): ";

@@ -14,7 +14,7 @@ vector<Administrator*> Admin_Log;
 // panel operacji wyswietlany po zalogowaniu
 void Administrator::operacje_na_koncie() {
 	int operacja;
-	int id_k;	// po kolei : id konta, dzialania (np przelew), id bledu
+	long long int id_k;	// po kolei : id konta, dzialania (np przelew), id bledu
 	unsigned long int id_d;
 	unsigned long int id_b;
 	int s;		// status bledu
@@ -33,16 +33,15 @@ void Administrator::operacje_na_koncie() {
 		cout << "3: Zamroz konto" << endl;
 		cout << "4: Odmroz konto" << endl;
 		cout << "5: Wyswietl historie dzialan" << endl;
-		cout << "6: Zmodyfikuj dzialanie" << endl;
-		cout << "7: Monitoruj kredyty" << endl;
-		cout << "8: Monitoruj przelewy" << endl;
-		cout << "9: Monitoruj lokaty" << endl;
-		cout << "10: Pobierz liste bledow" << endl;
-		cout << "11: Sprawdz stan bledu" << endl;
-		cout << "12: Zmien status bledu" << endl;
-		cout << "13: Zaktualizuj liste bledow" << endl;
-		cout << "14: Zglos blad" << endl;
-		cout << "15: Wyloguj" << endl;
+		cout << "6: Monitoruj kredyty" << endl;
+		cout << "7: Monitoruj przelewy" << endl;
+		cout << "8: Monitoruj lokaty" << endl;
+		cout << "9: Pobierz liste bledow" << endl;
+		cout << "10: Sprawdz stan bledu" << endl;
+		cout << "11: Zmien status bledu" << endl;
+		cout << "12: Zaktualizuj liste bledow" << endl;
+		cout << "13: Zglos blad" << endl;
+		cout << "14: Wyloguj" << endl;
 		cin >> operacja;
 		cin.ignore();
 		switch (operacja)
@@ -72,38 +71,33 @@ void Administrator::operacje_na_koncie() {
 			wyswietl_historie_dzialan(id_k);
 			break;
 		case 6:
-			cout << "\nPODAJ ID DZIALANIA:\n";
-			cin >> id_d;
-			modyfikuj_stan_dzialania(id_d);
-			break;
-		case 7:
 			monitoruj_kredyty();
 			break;
-		case 8:
+		case 7:
 			monituruj_przelewy();
 			break;
-		case 9:
+		case 8:
 			monitoruj_lokaty();
 			break;
-		case 10:
+		case 9:
 			pobierz_liste_bledow();
 			break;
-		case 11:
+		case 10:
 			cout << "\nPODAJ ID BLEDU:\n";
 			cin >> id_b;
 			sprawdz_stan_bledu(id_b);
 			break;
-		case 12:
+		case 11:
 			cout << "\nPODAJ ID BLEDU:\n";
 			cin >> id_b;
 			cout << "\nPODAJ NOWY STATUS [ 0 -> NIENAPRAWIONY ; 1 -> NAPRAWIONY ]:\n";
 			cin >> s;
 			zmien_status_bledu(id_b,s);
 			break;
-		case 13:
+		case 12:
 			zaktualizuj_liste_bledow();
 			break;
-		case 14:
+		case 13:
 			cout << "PODAJ TYTUL BLEDU: ";
 			getline(cin, tt);
 			cout << "TWOJ TYTUL: " << tt << ".\n";
@@ -112,15 +106,15 @@ void Administrator::operacje_na_koncie() {
 			cout << "TWOJA TRESC: " << tr << ".\n";
 			b->utworz_blad(tt, tr);
 			break;
-		case 15:
+		case 14:
 			break;
 		default:
 			wyswietl_blad("Zly numer operacji.\n");
 			break;
 		}
 		delete b;
-	} while (operacja != 15);
-	if (operacja == 15) wyloguj();
+	} while (operacja != 14);
+	if (operacja == 14) wyloguj();
 }
 
 
@@ -299,20 +293,32 @@ void Administrator::odmroz_konto(int id) {
 	Baza::wykonaj("kilenci.db", sql);
 }
 
-void Administrator::wyswietl_historie_dzialan(int id) {
+vector<Przelew*> przelewy;
+vector<Kredyt*> kredyty;
+vector<Lokata*> lokaty;
+
+void Administrator::wyswietl_historie_dzialan(long long int id) {
+	string sql;
 	cout << "ID KONTA: " << id << endl;
 	cout << "\nPRZELEWY:\n";
 	//
-	cout << "LOKATY:\n";
-	//
-	cout << "\nKREDYTY:\n";
-	//
-	throw "Not yet implemented";
-}
 
-void Administrator::modyfikuj_stan_dzialania(int id) {
-	// TODO - implement Administrator::modyfikuj_stan_dzialania
-	throw "Not yet implemented";
+	cout << "LOKATY:\n";
+	sql = "SELECT * FROM Lokaty WHERE KlientID = '" + to_string(id) + "';";
+	lokaty = Baza::danezbazylokat("lokaty.db", sql);
+
+	for (auto& lokata : lokaty)
+	{
+		lokata->get_informacje();
+	}
+
+	cout << "\nKREDYTY:\n";
+	sql = "SELECT * FROM Kredyty WHERE KlientID = '" + to_string(id) + "';";
+	kredyty = Baza::danezbazykredyt("kredyty.db", sql);
+	for (auto& kredyt : kredyty)
+	{
+		kredyt->get_informacje();
+	}
 }
 
 vector<Konto*> dane;

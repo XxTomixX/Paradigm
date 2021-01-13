@@ -22,7 +22,7 @@ public:
 	void zaktualizuj_dane_konta(int id);
 	void zamroz_konto(int id);
 	void odmroz_konto(int id);
-	void wyswietl_historie_dzialan(int id);
+	void wyswietl_historie_dzialan(long long int id);
 	// operacje na bledach
 	void pobierz_liste_bledow();
 	void zaktualizuj_liste_bledow();
@@ -32,7 +32,6 @@ public:
 	void monitoruj_lokaty();
 	void monitoruj_kredyty();
 	void monituruj_przelewy();
-	void modyfikuj_stan_dzialania(int id);
 	// blad w dzialaniu
 	void wyswietl_blad(string);
 	// konstruktor

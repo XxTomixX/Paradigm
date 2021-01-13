@@ -64,7 +64,7 @@ void Kredyt::zapisz_kredyt_w_bazie(long long int id) {
 	//Dodanie kredytu do bazy
 	string sql_kredyt = "INSERT INTO Kredyty (ID,KlientID,Typ,Kwota,Waluta,Oprocentowanie,Zaciagniecie,Splata) "
 		"VALUES ( ABS(random() % (9999999999 - 1000000000) + 1000000000),'" + to_string(id) + "','" + typ_kredytu + "','"
-		+ to_string(kwota) + "','" + waluta_kredytu + "','" + to_string(oprocentowanie) + "',date('now'),date('now','+6 month')); ";
+		+ to_string(kwota) + "','ZL', 5 ,date('now'),date('now','+6 month')); ";
 
 	//Zwiêkszenie salda o kredyt
 	string sql_konto = "UPDATE Klienci SET Saldo = Saldo +" + to_string(kwota) + " WHERE ID =" + to_string(id) + ";";
