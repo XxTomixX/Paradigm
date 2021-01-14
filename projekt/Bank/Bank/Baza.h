@@ -18,7 +18,7 @@ public:
 	static void idkont(string nazwabazy, string sql);
 	static vector<Kredyt*> danezbazykredyt(string nazwabazy, string sql);
 	static vector<Lokata*> danezbazylokat(string nazwabazy, string sql);
-  
+	static vector<Przelew*> danezbazyprzelew(string nazwabazy, string sql);
 	
 
 	static void stworzBazeBledow();
@@ -30,6 +30,7 @@ public:
   
 	static void stworzBazePrzelewow();
 	static void stworzBazePrzelewowBlik();
+	
 };
 
 

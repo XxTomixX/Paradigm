@@ -20,6 +20,12 @@ sqlite3* Baza::polaczdobazy(string nazwabazy) {
 	string sql;
 
 	rc = sqlite3_open(nazwabazy.c_str(), &db);
+	if (rc) {
+		return NULL;
+	}
+	else {
+		return db;
+	}
 }
 
 //Czy klient istnieje zwraca bool
@@ -186,7 +192,36 @@ vector<Lokata*> Baza::danezbazylokat(string nazwabazy, string sql) {
 	return danelokat;
 }
 
+vector<Przelew*> daneprzelewow;
+int back_danezbazyprzelewow(void* NotUsed, int argc, char** argv, char** azColName) {
+	// (unsigned long int id_o = 0 0 double kwo = 0 I, unsigned long int id_p = 0 II, string t_p = "" III , long long int ID = 0 IV)
+	string id_przelew = (string)argv[0];
+	Przelew* przelew = new Przelew ( stoll(argv[1]), atof(argv[4]), stoll(id_przelew), (string)argv[3], stoll(argv[2]) );
+	daneprzelewow.push_back(przelew);
+	cout << endl;
+	return 0;
+}
 
+vector<Przelew*> Baza::danezbazyprzelew(string nazwabazy, string sql) {
+
+	sqlite3* db = polaczdobazy(nazwabazy);
+	daneprzelewow.clear();
+	int rc;
+	char* zErrMsg = 0;
+	rc = sqlite3_exec(db, sql.c_str(), back_danezbazyprzelewow, NULL, &zErrMsg);
+
+	if (rc != SQLITE_OK) {
+		fprintf(stderr, "SQL error: %s\n", zErrMsg);
+		sqlite3_free(zErrMsg);
+	}
+	else {
+		fprintf(stdout, "Wypisano \n");
+	}
+	sqlite3_close(db);
+
+
+	return daneprzelewow;
+}
 
 
 

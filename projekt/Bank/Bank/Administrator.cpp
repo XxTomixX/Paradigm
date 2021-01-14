@@ -15,8 +15,8 @@ vector<Administrator*> Admin_Log;
 void Administrator::operacje_na_koncie() {
 	int operacja;
 	long long int id_k;	// po kolei : id konta, dzialania (np przelew), id bledu
-	unsigned long int id_d;
-	unsigned long int id_b;
+	long long int id_d;
+	long long int id_b;
 	int s;		// status bledu
 
 	string tt;	// tytul bledu
@@ -71,13 +71,19 @@ void Administrator::operacje_na_koncie() {
 			wyswietl_historie_dzialan(id_k);
 			break;
 		case 6:
-			monitoruj_kredyty();
+			cout << "\nPODAJ ID DZIALANIA:\n";
+			cin >> id_d;
+			monitoruj_kredyty(id_d);
 			break;
 		case 7:
-			monituruj_przelewy();
+			cout << "\nPODAJ ID DZIALANIA:\n";
+			cin >> id_d;
+			monituruj_przelewy(id_d);
 			break;
 		case 8:
-			monitoruj_lokaty();
+			cout << "\nPODAJ ID DZIALANIA:\n";
+			cin >> id_d;
+			monitoruj_lokaty(id_d);
 			break;
 		case 9:
 			pobierz_liste_bledow();
@@ -232,7 +238,7 @@ bool Administrator::wprowadz_konto_do_bazy(int id, string haslo, string email) {
 }
 
 // funkcja zamienia dane klienta w rekordzie 
-void Administrator::zaktualizuj_dane_konta(int id) {
+void Administrator::zaktualizuj_dane_konta(long long int id) {
 	int c;	// wybor czynnosci
 	string im, nz, nip, nr_tel;
 	string sql;
@@ -281,16 +287,16 @@ void Administrator::zaktualizuj_dane_konta(int id) {
 
 // funkcja zamraza konto klienta : ustawienie statusu Zamrozone na 1
 // funkcja odwrotna : odmroz konto
-void Administrator::zamroz_konto(int id) {
+void Administrator::zamroz_konto(long long int id) {
 	string sql;
 	sql = "UPDATE Klienci SET Zamrozone = '" + to_string(1) + "' WHERE ID = '" + to_string(id) + "';";
-	Baza::wykonaj("kilenci.db", sql);
+	Baza::wykonaj("klienci.db", sql);
 }
 
-void Administrator::odmroz_konto(int id) {
+void Administrator::odmroz_konto(long long int id) {
 	string sql;
 	sql = "UPDATE Klienci SET Zamrozone = '" + to_string(0) + "' WHERE ID = '" + to_string(id) + "';";
-	Baza::wykonaj("kilenci.db", sql);
+	Baza::wykonaj("klienci.db", sql);
 }
 
 vector<Przelew*> przelewy;
@@ -301,7 +307,13 @@ void Administrator::wyswietl_historie_dzialan(long long int id) {
 	string sql;
 	cout << "ID KONTA: " << id << endl;
 	cout << "\nPRZELEWY:\n";
-	//
+	sql = "SELECT * FROM Przelewy WHERE IDN = '" + to_string(id) + "';";
+	przelewy = Baza::danezbazyprzelew("przelewy.db", sql);
+
+	for (auto& przelew : przelewy)
+	{
+		przelew->get_informacje();
+	}
 
 	cout << "LOKATY:\n";
 	sql = "SELECT * FROM Lokaty WHERE KlientID = '" + to_string(id) + "';";
@@ -356,20 +368,52 @@ void Administrator::znajdz_konto() {
 		wyswietl_blad("Bledny numer operacji.");
 	}
 }
-
-void Administrator::monitoruj_lokaty() {
-	// TODO - implement Administrator::monitoruj_lokaty
-	throw "Not yet implemented";
+// status lokaty o zadanym id
+void Administrator::monitoruj_lokaty(long long int id) {
+	lokaty.clear();
+	string sql = "SELECT * FROM Lokaty WHERE ID = '" + to_string(id) + "';";
+	lokaty = Baza::danezbazylokat("lokaty.db", sql);
+	if (lokaty.empty()) {
+		wyswietl_blad("BLEDNE ID!\n");
+	}
+	else
+	{
+		for (auto& lokata : lokaty)
+		{
+			lokata->get_informacje();
+		}
+	}
 }
-
-void Administrator::monitoruj_kredyty() {
-	// TODO - implement Administrator::monitoruj_kredyty
-	throw "Not yet implemented";
+// status kredytu o zadanym id
+void Administrator::monitoruj_kredyty(long long int id) {
+	kredyty.clear();
+	string sql = "SELECT * FROM Kredyty WHERE ID = '" + to_string(id) + "';";
+	kredyty = Baza::danezbazykredyt("kredyty.db", sql);
+	if (kredyty.empty()) {
+		wyswietl_blad("BLEDNE ID!\n");
+	}
+	else {
+		for (auto& kredyt : kredyty)
+		{
+			kredyt->get_informacje();
+		}
+	}
 }
-
-void Administrator::monituruj_przelewy() {
-	// TODO - implement Administrator::monituruj_przelewy
-	throw "Not yet implemented";
+// status przelewu o zadanym id
+void Administrator::monituruj_przelewy(long long int id) {
+	przelewy.clear();
+	string sql = "SELECT * FROM Przelewy WHERE IDPrzelew = '" + to_string(id) + "';";
+	przelewy = Baza::danezbazyprzelew("przelewy.db", sql);
+	if (przelewy.empty()) {
+		wyswietl_blad("BLEDNE ID!\n");
+	}
+	else
+	{
+		for (auto& przelew : przelewy)
+		{
+			przelew->get_informacje();
+		}
+	}
 }
 
 void Administrator::wyswietl_blad(string blad) {
@@ -403,4 +447,3 @@ void Administrator::zmien_status_bledu(unsigned long int id, int status) {
 	sql = "UPDATE Blad SET Status = '" + to_string(status) + "' WHERE ID = '" + to_string(id) + "';";
 	Baza::wykonaj("blad.db", sql);
 }
-

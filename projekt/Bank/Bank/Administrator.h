@@ -19,9 +19,9 @@ public:
 	void operacje_na_koncie();
 	// operacje na koncie
 	void znajdz_konto();
-	void zaktualizuj_dane_konta(int id);
-	void zamroz_konto(int id);
-	void odmroz_konto(int id);
+	void zaktualizuj_dane_konta(long long int id);
+	void zamroz_konto(long long int id);
+	void odmroz_konto(long long int id);
 	void wyswietl_historie_dzialan(long long int id);
 	// operacje na bledach
 	void pobierz_liste_bledow();
@@ -29,9 +29,9 @@ public:
 	void sprawdz_stan_bledu(unsigned long int id);
 	void zmien_status_bledu(unsigned long int id, int status);
 	// operacje na czynnosciach
-	void monitoruj_lokaty();
-	void monitoruj_kredyty();
-	void monituruj_przelewy();
+	void monitoruj_lokaty(long long int id);
+	void monitoruj_kredyty(long long int id);
+	void monituruj_przelewy(long long int id);
 	// blad w dzialaniu
 	void wyswietl_blad(string);
 	// konstruktor

@@ -6,7 +6,7 @@ using namespace std;
 
 
 class Kredyt {
-	#include <vector>
+	
 private:
 	string typ_kredytu;
 	double kwota;

@@ -129,3 +129,12 @@ void Przelew::anuluj_przelew() {
 	}
 
 }
+
+void Przelew::get_informacje() {
+	cout << "ID odbiorcy:\t" << id_odbiorca<<endl;
+	cout << "KWOTA:\t" << kwota << endl;
+	cout << "ID przelewu:\t" << id_przelewu << endl;
+	cout << "TYP:\t" << typ_przelewu << endl;
+	cout << "ID nadawcy:\t" << ID << endl;
+	cout << endl;
+}
