@@ -40,7 +40,7 @@ void Blik::generuj_i_zweryfikuj_kod_blik() {
 }
 
 string Blik::wyswietl_blad() {
-	cout << "Wystapil blad. Skonczyl sie czas lub kod blik sie nie pokrywa" << endl;  //b??d w podawanie kodu
+	cout << "Wystapil blad. Skonczyl sie czas lub kod blik sie nie pokrywa" << endl;  //bladd w podawaniu kodu
 	return 0;
 }
 

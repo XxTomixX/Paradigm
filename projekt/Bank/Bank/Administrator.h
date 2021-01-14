@@ -16,7 +16,7 @@ public:
 	bool rejestracja(int id_od_banku, string haslo, string email);
 	bool sprawdz_poprawnosc_danych(string haslo);
 	bool wprowadz_konto_do_bazy(int id, string haslo, string email);
-	void operacje_na_koncie();
+	void operacje_na_koncie();	// panel obslugi
 	// operacje na koncie
 	void znajdz_konto();
 	void zaktualizuj_dane_konta(long long int id);

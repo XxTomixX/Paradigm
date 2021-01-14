@@ -2,8 +2,9 @@
 #include "Baza.h"
 using namespace std;
 
-
+// Tworzenie przelewu
 void Przelew::stworz_przelew(unsigned long int id_odbiorca, double kwota) {
+
 	int m;
 	double k;
 	k = kwota;
@@ -25,6 +26,7 @@ void Przelew::stworz_przelew(unsigned long int id_odbiorca, double kwota) {
 
 }
 
+// Obsluga BLIK
 void Przelew::blik_menu(Blik*& nowy,double k, unsigned long int id_od)
 {
 	nowy = new Blik(id_od,k);      //tworzenie przelewu blik
@@ -42,6 +44,7 @@ bool Przelew::wyslij_przelew() {  // przesy? pieni?dzy
 }
 
 bool Przelew::potwierdz_wykonanie_przelewu(bool przelac) {
+
 	wyslij_przelew();
 	string typ_przelewu = "k";
 	Przelew::zapisz_przelew_w_bazie(id_odbiorca, typ_przelewu);
@@ -50,6 +53,7 @@ bool Przelew::potwierdz_wykonanie_przelewu(bool przelac) {
 }
 
 void Przelew::kod_weryfikacji() {
+
 	srand(time(NULL));
 	int tab_kod_potwierdz[4];
 	int x;
@@ -88,12 +92,14 @@ void Przelew::kod_weryfikacji() {
 }
 
 void Przelew::zapisz_przelew_w_bazie(unsigned long int id_odbiorca, string typ_przelewu) {  //tworzenie bazy danych
+
 	string sql = "INSERT INTO Przelewy (IDPrzelew,ID,IDN,Typ,Kwota) "
 		"VALUES ( ABS(random() % (9999999999 - 1000000000) + 1000000000),'" + to_string(id_odbiorca) + "','" + to_string(ID) + "','" + typ_przelewu + "','" + to_string(kwota) + "');";
 	Baza::wykonaj("przelewy.db", sql);
 }
 
 void Przelew::potwierdz_przelew() {   //dodatkowe potwierdzenie przelewu
+
 	int p;
 	cout << "Czy na pewno chcesz wykonac przelew?" << endl << "1-Tak" << endl << "2-Nie" << endl;;
 	cin >> p;
@@ -110,6 +116,7 @@ void Przelew::potwierdz_przelew() {   //dodatkowe potwierdzenie przelewu
 }
 
 void Przelew::anuluj_przelew() {
+
 	int a;
 	cout << "Czy na pewno chcesz anulowac przelew?" << endl << "1-Tak" << endl << "2-Nie" << endl;;  //potwierdzenie anulowania przelewu
 	cin >> a;
@@ -127,10 +134,10 @@ void Przelew::anuluj_przelew() {
 	{
 		cout << "zly znak";
 	}
-
 }
 
 void Przelew::get_informacje() {
+
 	cout << "ID odbiorcy:\t" << id_odbiorca<<endl;
 	cout << "KWOTA:\t" << kwota << endl;
 	cout << "ID przelewu:\t" << id_przelewu << endl;

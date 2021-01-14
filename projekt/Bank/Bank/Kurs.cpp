@@ -2,6 +2,7 @@
 
 //Przelicza z³otówki na USD lub EUR
 double Kurs::sprawdz_kurs(double kwota, string waluta) {
+
 	if (waluta == "EUR")
 	{
 		cout << "Twoje oszczêdnoœci w EURO: ";
@@ -19,6 +20,4 @@ double Kurs::sprawdz_kurs(double kwota, string waluta) {
 		cout << "Waluta nie obs³ugiwana" << endl;
 		return 0;
 	}
-
-	
 }

@@ -1,4 +1,3 @@
-
 #include "Osoba.h"
 #include "Klient.h"
 
@@ -20,14 +19,10 @@
 #include <string>
 #include <locale.h>
 
-using namespace std;
-
-void rejestracja();
 
 int main()
 {
 	setlocale(LC_CTYPE, "Polish");
-	
 	
 	int operacja = 0;
 	
@@ -51,11 +46,9 @@ int main()
 			break;
 
 		default:
-	
 			break;
 		}
 	}
-
 	system("Pause");
 }
 

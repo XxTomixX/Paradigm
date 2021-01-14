@@ -16,9 +16,6 @@ double Konto::stan_konta() {
 	return saldo_konta;
 }
 
-void Konto::zglos_blad(string tytul, string tresc) {
-
-}
 
 void Konto::wyswietl_komunikat(string komunikat) {
 	cout << komunikat << endl;
@@ -37,6 +34,8 @@ void Konto::zamroz_konto() {
 	Baza::wykonaj("klienci.db", sql);
 }
 
+//ponizej : funkcje pobierajace okreslone dane z konta
+
 long long int Konto::get_id() {
 	return id;
 }
@@ -52,6 +51,7 @@ long double Konto::get_saldo()
 	return saldo_konta;
 }
 
+//panel obslugi
 void Konto::operacje_na_koncie() {
 
 	cout << "Witaj. Konto na którym wykonywane s¹ operacje to: " << id<<endl;
@@ -61,11 +61,8 @@ void Konto::operacje_na_koncie() {
 	int opreacja = 0;
 	int operacja_przelew = 0;
 	
-	
 	string id = "";
 	string haslo = "";
-
-	
 
 	while (opreacja != 11)
 	{
@@ -133,9 +130,7 @@ void Konto::operacje_na_koncie() {
 			break;
 		}
 		delete now;
-		
 	}
-	
 }
 
 void Konto::zglos_blad()
@@ -209,13 +204,9 @@ void Konto::przelew_menu(int& opreacja_przelew, Przelew*& now)
 				now->stworz_przelew(id_odbiorca, kwota);
 			}
 			break;
-
 		case 2:
-
 			break;
-
 		default:
-
 			break;
 		}
 	}
@@ -238,12 +229,9 @@ void Konto::kredyt_menu()
 		case 1:
 			tworzenie_kredytu();
 			break;
-
 		case 2:
-	
 			lista_kredytow();
 			break;
-
 		case 3:
 			przewalutowanie_kredytu();
 			break;
@@ -307,17 +295,13 @@ void Konto::lokata_menu()
 		case 1:
 			tworzenie_lokaty();
 			break;
-
 		case 2:
 			lista_lokat();
 			break;
-
 		case 3:
 			anuluj_lokate();
 			break;
-
 		default:
-
 			break;
 		}
 	}
@@ -399,4 +383,14 @@ double Konto::zmiananakurs()
 	cin >> waluta;
 
 	return Kurs::sprawdz_kurs(kwota, waluta);
+}
+
+
+void Konto::get_informacje() {
+	cout << "ID:\t" << id << endl;
+	cout << "EMAIL:\t" << email << endl;
+	cout << "TEL:\t" << nr_telefonu << endl;
+	cout << "SALDO:\t" << saldo_konta << endl;
+	cout << "ZAMROZONE:\t" << czy_zamrozone << endl;
+	cout << endl;
 }

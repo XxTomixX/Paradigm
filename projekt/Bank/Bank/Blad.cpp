@@ -2,7 +2,7 @@
 #include "Baza.h"
 #include "sql/sqlite3.h"
 
-
+// Wpisuje blad do bazy
 void Blad::utworz_blad(string tytul, string tresc) {
 
 	// Baza::stworzBazeBledow();

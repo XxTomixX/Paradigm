@@ -11,7 +11,7 @@
 
 using namespace std;
 
-//Nawiązanie połączenia z bazą
+// Nawiązanie połączenia z bazą
 sqlite3* Baza::polaczdobazy(string nazwabazy) {
 
 	sqlite3 *db;
@@ -28,7 +28,7 @@ sqlite3* Baza::polaczdobazy(string nazwabazy) {
 	}
 }
 
-//Czy klient istnieje zwraca bool
+// Czy klient istnieje, zwraca bool
 bool istnieje = false;
 int back_istnieje(void *NotUsed, int argc, char **argv, char **azColName) {
 
@@ -45,28 +45,26 @@ int back_istnieje(void *NotUsed, int argc, char **argv, char **azColName) {
 bool Baza::czyistnieje(string nazwabazy, string sql) {
 
 	istnieje = false;
-	sqlite3 *db = polaczdobazy(nazwabazy);
 
+	sqlite3 *db = polaczdobazy(nazwabazy);
 	int rc;
 	char *zErrMsg = 0;
 	rc = sqlite3_exec(db, sql.c_str(), back_istnieje, NULL, &zErrMsg);
 
 	if (rc != SQLITE_OK) {
-		//fprintf(stderr, "SQL error: %s\n", zErrMsg);
 		sqlite3_free(zErrMsg);
 		sqlite3_close(db);
 		
 	}
 	else {
-		//fprintf(stdout, "Istnieje \n");
+		fprintf(stdout, "Konto istnieje.\n");
 		sqlite3_close(db);
 		
 	}
-
 	return istnieje;
 }
 
-//Zwraca konto klienta o podanym haœle
+// Zwraca konto klienta o podanym haœle
 vector<Konto*> danezbazy;
 int back_danezbazyklienta(void *NotUsed, int argc, char **argv, char **azColName) {
 
@@ -74,33 +72,28 @@ int back_danezbazyklienta(void *NotUsed, int argc, char **argv, char **azColName
 	string id = (string)argv[2];
 	Konto* kontozbazy = new Konto((string)argv[0], (string)argv[1], stoll(id), stold(argv[3]), stoi(argv[4]));
 	danezbazy.push_back(kontozbazy);
-	//cout<<"sss"<<danezbazy[0]->get_id();
-	cout << endl;
 	return 0;
 }
 
 vector<Konto*> Baza::daneklientazbazy(string nazwabazy, string sql) {
 
 	sqlite3 *db = polaczdobazy(nazwabazy);
-
 	int rc;
 	char *zErrMsg = 0;
 	rc = sqlite3_exec(db, sql.c_str(), back_danezbazyklienta, NULL, &zErrMsg);
 
 	if (rc != SQLITE_OK) {
-		//fprintf(stderr, "SQL error: %s\n", zErrMsg);
+		fprintf(stderr, "SQL error: %s\n", zErrMsg);
 		sqlite3_free(zErrMsg);
 	}
 	else {
-		fprintf(stdout, "Wypisano \n");
+		fprintf(stdout, "Wypisano dane.\n");
 	}
 	sqlite3_close(db);
-
-
 	return danezbazy;
 }
 
-//Funkcja pomocnicza sqlite3 i metoda zwracajaca id konta
+// Funkcja pomocnicza sqlite3 i metoda zwracajaca id konta
 int back_idkonta(void *NotUsed, int argc, char **argv, char **azColName) {
 
 	cout << "ID twojego konta to: " << endl;
@@ -112,55 +105,48 @@ int back_idkonta(void *NotUsed, int argc, char **argv, char **azColName) {
 }
 
 void Baza::idkont(string nazwabazy, string sql) {
-	sqlite3 *db = polaczdobazy(nazwabazy);
 
+	sqlite3 *db = polaczdobazy(nazwabazy);
 	int rc;
 	char *zErrMsg = 0;
 	rc = sqlite3_exec(db, sql.c_str(), back_idkonta, NULL, &zErrMsg);
 
 	if (rc != SQLITE_OK) {
-		//fprintf(stderr, "SQL error: %s\n", zErrMsg);
 		sqlite3_free(zErrMsg);
-	}
-	else {
-		//fprintf(stdout, "Wypisano \n");
 	}
 	sqlite3_close(db);
 }
 
-//Zwraca Kredyty klienta o ID
+// Zwraca Kredyty klienta o ID
 vector<Kredyt*> danekredytowe;
 int back_danezbazykredyty(void *NotUsed, int argc, char **argv, char **azColName) {
 
 	string id_kredyt = (string)argv[0];
-	//Kredyt(string typ = "", double kwo = 0, string waluta = "", double opr = 0, string data_za = "", string term = "", long int id = 0) 
 	Kredyt* kredyt = new Kredyt((string)argv[2], atof(argv[3]), (string)argv[4], atof(argv[5]), (string)argv[6], (string)argv[7], stoll(id_kredyt));
 	danekredytowe.push_back(kredyt);
 	return 0;
 }
 
 vector<Kredyt*> Baza::danezbazykredyt(string nazwabazy, string sql) {
-
-	sqlite3 *db = polaczdobazy(nazwabazy);
+	
 	danekredytowe.clear();
+	sqlite3 *db = polaczdobazy(nazwabazy);
 	int rc;
 	char *zErrMsg = 0;
 	rc = sqlite3_exec(db, sql.c_str(), back_danezbazykredyty, NULL, &zErrMsg);
 
 	if (rc != SQLITE_OK) {
-		fprintf(stderr, "SQL error: %s\n", zErrMsg);
+		// fprintf(stderr, "SQL error: %s\n", zErrMsg);
 		sqlite3_free(zErrMsg);
 	}
 	else {
-		fprintf(stdout, "Wypisano \n");
+		fprintf(stdout, "Wypisano dane.\n");
 	}
 	sqlite3_close(db);
-
-
 	return danekredytowe;
 }
 
-//Zwraca Lokaty klienta o ID
+// Zwraca Lokaty klienta o ID
 vector<Lokata*> danelokat;
 int back_danezbazylokaty(void *NotUsed, int argc, char **argv, char **azColName) {
 
@@ -172,9 +158,9 @@ int back_danezbazylokaty(void *NotUsed, int argc, char **argv, char **azColName)
 }
 
 vector<Lokata*> Baza::danezbazylokat(string nazwabazy, string sql) {
-
-	sqlite3 *db = polaczdobazy(nazwabazy);
+	
 	danelokat.clear();
+	sqlite3 *db = polaczdobazy(nazwabazy);
 	int rc;
 	char *zErrMsg = 0;
 	rc = sqlite3_exec(db, sql.c_str(), back_danezbazylokaty, NULL, &zErrMsg);
@@ -187,14 +173,12 @@ vector<Lokata*> Baza::danezbazylokat(string nazwabazy, string sql) {
 		fprintf(stdout, "Wypisano \n");
 	}
 	sqlite3_close(db);
-
-
 	return danelokat;
 }
 
 vector<Przelew*> daneprzelewow;
 int back_danezbazyprzelewow(void* NotUsed, int argc, char** argv, char** azColName) {
-	// (unsigned long int id_o = 0 0 double kwo = 0 I, unsigned long int id_p = 0 II, string t_p = "" III , long long int ID = 0 IV)
+
 	string id_przelew = (string)argv[0];
 	Przelew* przelew = new Przelew ( stoll(argv[1]), atof(argv[4]), stoll(id_przelew), (string)argv[3], stoll(argv[2]) );
 	daneprzelewow.push_back(przelew);
@@ -211,29 +195,24 @@ vector<Przelew*> Baza::danezbazyprzelew(string nazwabazy, string sql) {
 	rc = sqlite3_exec(db, sql.c_str(), back_danezbazyprzelewow, NULL, &zErrMsg);
 
 	if (rc != SQLITE_OK) {
-		fprintf(stderr, "SQL error: %s\n", zErrMsg);
+		// fprintf(stderr, "SQL error: %s\n", zErrMsg);
 		sqlite3_free(zErrMsg);
 	}
 	else {
 		fprintf(stdout, "Wypisano \n");
 	}
 	sqlite3_close(db);
-
-
 	return daneprzelewow;
 }
 
-
-
 // BLAD
-
+// Tworzenie bazy bledow
 void Baza::stworzBazeBledow() {
+
 	sqlite3* db;
 	char* zErrMsg = 0;
 	int rc;
 	string sql;
-
-
 	rc = sqlite3_open("blad.db", &db);
 
 	if (rc) {
@@ -243,7 +222,6 @@ void Baza::stworzBazeBledow() {
 		fprintf(stdout, "Opened database successfully\n");
 	}
 
-
 	sql = "CREATE TABLE Blad("
 		"ID INT PRIMARY KEY,"
 		"Tytul           TEXT    NOT NULL,"
@@ -252,9 +230,7 @@ void Baza::stworzBazeBledow() {
 		"Data       TEXT    NOT NULL"
 		");";
 
-
 	rc = sqlite3_exec(db, sql.c_str(), NULL, 0, &zErrMsg);
-
 	if (rc != SQLITE_OK) {
 		fprintf(stderr, "SQL error: %s\n", zErrMsg);
 		sqlite3_free(zErrMsg);
@@ -267,14 +243,12 @@ void Baza::stworzBazeBledow() {
 }
 
 // ADMIN
-
+// Tworzenie bazy administratorow
 void Baza::stworzBazeAdmin() {
 	sqlite3* db;
 	char* zErrMsg = 0;
 	int rc;
 	string sql;
-
-
 	rc = sqlite3_open("admin.db", &db);
 
 	if (rc) {
@@ -284,7 +258,6 @@ void Baza::stworzBazeAdmin() {
 		fprintf(stdout, "Opened database successfully\n");
 	}
 
-
 	sql = "CREATE TABLE Admin("
 		"ID INT PRIMARY KEY,"
 		"Imie           TEXT    NOT NULL,"
@@ -293,9 +266,7 @@ void Baza::stworzBazeAdmin() {
 		"Email       TEXT    NOT NULL"
 		");";
 
-
 	rc = sqlite3_exec(db, sql.c_str(), NULL, 0, &zErrMsg);
-
 	if (rc != SQLITE_OK) {
 		fprintf(stderr, "SQL error: %s\n", zErrMsg);
 		sqlite3_free(zErrMsg);
@@ -304,25 +275,23 @@ void Baza::stworzBazeAdmin() {
 		fprintf(stdout, "Table created successfully\n");
 	}
 	sqlite3_close(db);
-
 }
-//Przelewy
+
+// Przelewy
+// Tworzenie bazy przelewow
 void Baza::stworzBazePrzelewow() {
+
 	sqlite3* db;
 	char* zErrMsg = 0;
 	int rc;
 	string sql;
-
-
 	rc = sqlite3_open("przelewy.db", &db);
-
 	if (rc) {
 		fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
 	}
 	else {
 		fprintf(stdout, "Opened database successfully\n");
 	}
-
 
 	sql = "CREATE TABLE Przelewy("
 		"IDPrzelew INT PRIMARY KEY,"
@@ -331,9 +300,7 @@ void Baza::stworzBazePrzelewow() {
 		"Kwota       DOUBLE    NOT NULL"
 		");";
 
-
 	rc = sqlite3_exec(db, sql.c_str(), NULL, 0, &zErrMsg);
-
 	if (rc != SQLITE_OK) {
 		fprintf(stderr, "SQL error: %s\n", zErrMsg);
 		sqlite3_free(zErrMsg);
@@ -342,9 +309,9 @@ void Baza::stworzBazePrzelewow() {
 		fprintf(stdout, "Table created successfully\n");
 	}
 	sqlite3_close(db);
-
 }
-//Blik
+// Blik
+// Tworzenie bazy przelewow blik
 void Baza::stworzBazePrzelewowBlik() {
 	sqlite3* db;
 	char* zErrMsg = 0;
@@ -361,7 +328,6 @@ void Baza::stworzBazePrzelewowBlik() {
 		fprintf(stdout, "Opened database successfully\n");
 	}
 
-
 	sql = "CREATE TABLE PrzelewyBlik("
 		"IDPrzelew INT PRIMARY KEY,"
 		"ID           INT    NOT NULL,"
@@ -370,9 +336,7 @@ void Baza::stworzBazePrzelewowBlik() {
 		"Kwota       DOUBLE    NOT NULL"
 		");";
 
-
 	rc = sqlite3_exec(db, sql.c_str(), NULL, 0, &zErrMsg);
-
 	if (rc != SQLITE_OK) {
 		fprintf(stderr, "SQL error: %s\n", zErrMsg);
 		sqlite3_free(zErrMsg);
@@ -381,7 +345,6 @@ void Baza::stworzBazePrzelewowBlik() {
 		fprintf(stdout, "Table created successfully\n");
 	}
 	sqlite3_close(db);
-
 }
 
 //Wykonuje polecenia SQL na bazie
@@ -401,7 +364,6 @@ bool Baza::wykonaj(string nazwa, string sql) {
 		sqlite3_close(db);
 		return true;
 	}
-
 }
 
 //Zwraca błędy z bazy 
@@ -433,11 +395,9 @@ vector<Blad*> Baza::daneBlad(string nazwabazy, string sql) {
 		sqlite3_free(zErrMsg);
 	}
 	else {
-		fprintf(stdout, "Wypisano \n");
+		fprintf(stdout, "Wypisano dane bledow.\n");
 	}
 	sqlite3_close(db);
-
-
 	return wektor_bledow;
 }
 
@@ -470,7 +430,7 @@ vector<Administrator*> Baza::daneadminazbazy(string nazwabazy, string sql) {
 		sqlite3_free(zErrMsg);
 	}
 	else {
-		fprintf(stdout, "Wypisano \n");
+		fprintf(stdout, "Wypisano dane.\n");
 	}
 	sqlite3_close(db);
 	return Admin_danezbazy;

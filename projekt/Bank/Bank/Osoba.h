@@ -6,10 +6,6 @@
 using namespace std;
 
 class Osoba {
-
-
-	
-
 public:
 	string imie;
 	string nazwisko;

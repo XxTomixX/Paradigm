@@ -7,7 +7,6 @@
 
 using namespace std;
 
-
 class Blad {
 
 private:
@@ -16,8 +15,6 @@ private:
 	unsigned long int id_bledu;
 	bool czy_naprawiony;
 	string data;
-	
-
 public:
 	Blad() {};
 	Blad(string tt, string tr, unsigned long int i, bool cn, string d) : tytul(tt), tresc(tr), id_bledu(i), czy_naprawiony(cn), data(d) {};

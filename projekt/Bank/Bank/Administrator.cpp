@@ -49,7 +49,6 @@ void Administrator::operacje_na_koncie() {
 		case 1:
 			znajdz_konto();
 			break;
-
 		case 2:
 			cout << "\nPODAJ ID KONTA:\n";
 			cin >> id_k;
@@ -337,7 +336,7 @@ vector<Konto*> dane;
 // funkcja szuka konta o podanym id albo pesel, zapisuje w wektorze i wyswietla na ekran
 void Administrator::znajdz_konto() {
 	int opcja;
-	int id_f;
+	long long int id_f;
 	string pesel_f;
 	string sql;
 	cout << "WYSZUKAJ PO:\n1.ID\n2.PESEL\n";
@@ -345,23 +344,35 @@ void Administrator::znajdz_konto() {
 	if (opcja == 1) {
 		cout << "\nPODAJ ID KLIENTA:\n";
 		cin >> id_f;
-		sql = "SELECT Email,Tel,ID,Saldo,Zamrozone FROM Klienci WHERE ID = '" + to_string(id_f) + "';";
+		sql = "SELECT Email,Tel,ID,Saldo,Zamrozone FROM Klienci WHERE ID = " + to_string(id_f) + ";";
 		dane.clear();
 		dane = Baza::daneklientazbazy("klienci.db", sql);
 		if (dane.empty())
 		{
 			wyswietl_blad("Klient nie istnieje.");
 		}
+		else {
+			for (auto& konto : dane)
+			{
+				konto->get_informacje();
+			}
+		}
 	}
 	else if (opcja == 2) {
 		cout << "\nPODAJ PESEL KLIENTA:\n";
 		cin >> pesel_f;
-		sql = "SELECT Email,Tel,ID,Saldo,Zamrozone FROM Klienci WHERE Pesel = '" + pesel_f + "';";
+		sql = "SELECT Email,Tel,ID,Saldo,Zamrozone FROM Klienci WHERE Pesel = " + pesel_f + ";";
 		dane.clear();
 		dane = Baza::daneklientazbazy("klienci.db", sql);
 		if (dane.empty())
 		{
 			wyswietl_blad("Klient nie istnieje.");
+		}
+		else {
+			for (auto& konto : dane)
+			{
+				konto->get_informacje();
+			}
 		}
 	}
 	else if (opcja < 0 || opcja >2) {

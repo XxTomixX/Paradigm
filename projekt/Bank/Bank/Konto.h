@@ -18,6 +18,7 @@ private:
 	long long int id;
 	long double saldo_konta;
 	bool czy_zamrozone;
+	// wektory do przechowywania danych z odpowiednich baz
 	vector<Przelew*> przelewy;
 	vector<Kredyt*> kredyty;
 	vector<Lokata*> lokaty;
@@ -31,7 +32,7 @@ public:
 
 	void wyswietl_komunikat(string komunikat);
 
-	void operacje_na_koncie();
+	void operacje_na_koncie();	// panel obslugi
 
 	void zglos_blad();
 
@@ -39,15 +40,15 @@ public:
 
 	void wplac_gotowke();
 
-	void przelew_menu(int& opreacja_przelew, Przelew*& nowy);
+	void przelew_menu(int& opreacja_przelew, Przelew*& nowy);	// panel obslugi przelewow
 
-	void kredyt_menu();
+	void kredyt_menu();	// panel obslugi kredytow
 
 	void przewalutowanie_kredytu();
 
 	void tworzenie_kredytu();
 
-	void lokata_menu();
+	void lokata_menu();	// panel obslugi lokat
 
 	void anuluj_lokate();
 
@@ -68,6 +69,8 @@ public:
 	bool get_zamrozone();
 
 	long double get_saldo();
+
+	void get_informacje();
 
 	Konto(string em = "",string nr = "",long long int i = 0,long double sal = 0,bool czy = false):email(em),nr_telefonu(nr),id(i),saldo_konta(sal),czy_zamrozone(czy)
 	{

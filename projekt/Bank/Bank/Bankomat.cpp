@@ -37,7 +37,6 @@ bool Bankomat::wyplac_pieniadze(Konto* konto) {
 }
 
 bool Bankomat::czy_poprawna_ilosc_gotowki_w_maszynie() {
-	//Po³¹czenei z bankomatem
-
+	// Polaczenie z bankomatem
 	return true;
 }

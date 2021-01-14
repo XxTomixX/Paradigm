@@ -54,6 +54,7 @@ bool Kredyt::sprawdzanie_poprawnosci_danych_kredytowych() {
 
 //Potwierdzenie wziêcia kredytu
 bool Kredyt::zaakceptuj_kredyt() {
+
 	int akceptacja_kredytu = 0;
 	cout << "Czy akceptujesz kredyt ? (1 tak 0 nie): ";
 	cin >> akceptacja_kredytu;
@@ -87,8 +88,7 @@ void Kredyt::zapisz_kredyt_w_bazie(long long int id) {
 }
 
 //Zwraca informacje o kredycie
-void Kredyt::get_informacje()
-{
+void Kredyt::get_informacje(){
 
 	cout << "Id Kredytu: " << id_kredytu <<endl;
 	cout << "Kwota: " << kwota << endl;

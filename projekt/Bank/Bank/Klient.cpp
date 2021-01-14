@@ -175,7 +175,6 @@ void Klient::podajidkont(string haslo) {
 	Baza::idkont("klienci.db", sql);
 }
 
-
 //Wprowadzenie konta do bazy
 bool Klient::wprowadz_konto_do_bazy(string haslo, string email, string tel) {
 	

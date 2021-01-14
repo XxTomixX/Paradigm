@@ -11,7 +11,7 @@ class Klient : Osoba {
 private:
 	string pesel;
 	string nip;
-	vector<Konto*> konta;
+	vector<Konto*> konta;	// wektor do przechowania konta klienta z bazy danych
 
 public:
 	void zaloguj(string id, string haslo);
@@ -29,6 +29,7 @@ public:
 	bool wprowadz_konto_do_bazy(string haslo, string email, string tel);
 
 	void podajidkont(string haslo);
+
 
 
 	Klient(string im = "",string na = "",string pe = "", string ni = ""):Osoba(im, na),pesel(pe),nip(ni)
