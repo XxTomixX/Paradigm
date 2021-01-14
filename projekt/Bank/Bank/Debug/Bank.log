@@ -1,10 +1,1 @@
-﻿  Administrator.cpp
-C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(93,23): warning C4244: "argument": konwersja z "__int64" do "unsigned long", możliwa utrata danych
-C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(100,23): warning C4244: "argument": konwersja z "__int64" do "unsigned long", możliwa utrata danych
-C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(180,17): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\uFFFD" nie może być przedstawiony w bieżącej stronie kodowej (1250)
-C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(210,18): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\uFFFD" nie może być przedstawiony w bieżącej stronie kodowej (1250)
-C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(216,18): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\uFFFD" nie może być przedstawiony w bieżącej stronie kodowej (1250)
-C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(222,18): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\uFFFD" nie może być przedstawiony w bieżącej stronie kodowej (1250)
-  main.cpp
-  Generowanie kodu...
-  Bank.vcxproj -> C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Debug\Bank.exe
+﻿  Bank.vcxproj -> D:\Git\Paradigm\projekt\Bank\Debug\Bank.exe
