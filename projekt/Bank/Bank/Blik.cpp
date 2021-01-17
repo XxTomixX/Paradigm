@@ -72,7 +72,7 @@ void Blik::stworz_przelew() {
 	Baza::wykonaj("klienci.db", sql_konto_odbiorcy);
 }
 
-void Blik::zapisz_przelew_w_bazie(unsigned long int id_odbiorca, string typ_przelewu,long long int ID) {  //zapis w bazie z przelewami
+void Blik::zapisz_przelew_w_bazie(long long int id_odbiorca, string typ_przelewu,long long int ID) {  //zapis w bazie z przelewami
 
 	string sql = "INSERT INTO Przelewy (IDPrzelew,ID,IDN,Typ,Kwota) "
 		"VALUES ( ABS(random() % (9999999999 - 1000000000) + 1000000000),'" + to_string(id_odbiorca) + "','" + to_string(ID) + "','" + typ_przelewu + "','" + to_string(kwota) + "');";

@@ -178,9 +178,9 @@ void Konto::wplac_gotowke()
 //obsluga menu przelewu
 void Konto::przelew_menu(int& opreacja_przelew, Przelew*& now)
 {
-	unsigned long int id_odbiorca = 0;
+	long long int id_odbiorca = 0;
 	double kwota = 0.0;
-	unsigned long int id_przelewu = 0;
+	long long int id_przelewu = 0;
 	string typ_przelewu = "";
 
 	while (opreacja_przelew == 1)

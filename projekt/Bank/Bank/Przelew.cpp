@@ -3,12 +3,12 @@
 using namespace std;
 
 // Tworzenie przelewu
-void Przelew::stworz_przelew(unsigned long int id_odbiorca, double kwota) {
+void Przelew::stworz_przelew(long long int id_odbiorca, double kwota) {
 
 	int m;
 	double k;
 	k = kwota;
-	unsigned long int id_od = id_odbiorca;
+	long long int id_od = id_odbiorca;
 	cout << "Rodzaje przelewu:" << endl;   //menu przelewów
 	cout << "1-Przelew klasyczny" << endl;
 	cout << "2-Blik" << endl;
@@ -27,7 +27,7 @@ void Przelew::stworz_przelew(unsigned long int id_odbiorca, double kwota) {
 }
 
 // Obsluga BLIK
-void Przelew::blik_menu(Blik*& nowy,double k, unsigned long int id_od)
+void Przelew::blik_menu(Blik*& nowy,double k, long long int id_od)
 {
 	nowy = new Blik(id_od,k);      //tworzenie przelewu blik
 	nowy->generuj_i_zweryfikuj_kod_blik();
@@ -91,7 +91,7 @@ void Przelew::kod_weryfikacji() {
 	}
 }
 
-void Przelew::zapisz_przelew_w_bazie(unsigned long int id_odbiorca, string typ_przelewu) {  //tworzenie bazy danych
+void Przelew::zapisz_przelew_w_bazie(long long int id_odbiorca, string typ_przelewu) {  //tworzenie bazy danych
 
 	string sql = "INSERT INTO Przelewy (IDPrzelew,ID,IDN,Typ,Kwota) "
 		"VALUES ( ABS(random() % (9999999999 - 1000000000) + 1000000000),'" + to_string(id_odbiorca) + "','" + to_string(ID) + "','" + typ_przelewu + "','" + to_string(kwota) + "');";
