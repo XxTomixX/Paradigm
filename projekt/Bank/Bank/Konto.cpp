@@ -35,11 +35,9 @@ void Konto::zamroz_konto() {
 }
 
 //ponizej : funkcje pobierajace okreslone dane z konta
-
 long long int Konto::get_id() {
 	return id;
 }
-
 
 bool Konto::get_zamrozone()
 {
@@ -133,6 +131,7 @@ void Konto::operacje_na_koncie() {
 	}
 }
 
+//funkcja pozwala zg³osiæ b³¹d 
 void Konto::zglos_blad()
 {
 	Blad* blad = new Blad();
@@ -385,7 +384,7 @@ double Konto::zmiananakurs()
 	return Kurs::sprawdz_kurs(kwota, waluta);
 }
 
-
+//metoda zwraca informacje o koncie
 void Konto::get_informacje() {
 	cout << "ID:\t" << id << endl;
 	cout << "EMAIL:\t" << email << endl;

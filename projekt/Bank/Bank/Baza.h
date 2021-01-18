@@ -12,8 +12,11 @@ class Baza {
 
 public:
 
+	// obs³uguje po³¹cznie z baz¹
 	static sqlite3* polaczdobazy(string nazwa);
-	static bool wykonaj(string nazwa, string sql);	// wykonaj na bazie zadana komende SQL
+
+	// wykonaj na bazie zadana komende SQL
+	static bool wykonaj(string nazwa, string sql);	
 	static bool czyistnieje(string nazwabazy, string sql);
 	static void idkont(string nazwabazy, string sql);
 

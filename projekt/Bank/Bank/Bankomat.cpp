@@ -4,6 +4,7 @@
 
 using namespace std;
 
+// pozwala wp³aciæ gotówkê na konta
 bool Bankomat::wplac_pieniadze(Konto* konto) {
 	
 	if (czy_poprawna_ilosc_gotowki_w_maszynie())
@@ -20,6 +21,7 @@ bool Bankomat::wplac_pieniadze(Konto* konto) {
 	
 }
 
+// pozwala wyp³aciæ gotówkê z konta
 bool Bankomat::wyplac_pieniadze(Konto* konto) {
 	
 	if (konto->get_saldo() > gotowka)

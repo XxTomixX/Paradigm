@@ -1,17 +1,13 @@
 #include "Osoba.h"
 #include "Klient.h"
-
 #include "Konto.h"
 #include "Bankomat.h"
 #include "Przelew.h"
 #include "Kredyt.h"
 #include "Lokata.h"
-
-
 #include "Administrator.h"
 #include "Blik.h"
 #include "Kurs.h"
-
 #include "Blad.h"
 #include "main.h"
 
@@ -26,6 +22,7 @@ int main()
 	
 	int operacja = 0;
 	
+	//Menu główne banku
 	while (operacja != 3)
 	{
 		cout << "Witaj w Banku" << endl;
@@ -52,6 +49,7 @@ int main()
 	system("Pause");
 }
 
+//Funkcja obsługująca menu logowania
 void menu_logowanie(int operacja)
 {
 	int log = 0;
@@ -78,6 +76,7 @@ void menu_logowanie(int operacja)
 	}
 }
 
+//Funkcja obsługująca logowanie Administratora
 void log_Admin()
 {
 	Administrator* Admin_Logowany = new Administrator();
@@ -92,6 +91,7 @@ void log_Admin()
 	delete Admin_Logowany;
 }
 
+//Funkcja obsługująca logowanie Klienta
 void log_Klient()
 {
 	Klient* logowany = new Klient();
@@ -107,6 +107,7 @@ void log_Klient()
 	delete logowany;
 }
 
+//Funkcja obsługująca rejestracje Klienta
 void rejestracja()
 {
 	int wybor;

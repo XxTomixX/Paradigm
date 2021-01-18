@@ -26,56 +26,40 @@ private:
 
 public:
 
-	void zglos_blad(string tytul, string tresc);
-
 	double stan_konta();
 
-	void wyswietl_komunikat(string komunikat);
-
-	void operacje_na_koncie();	// panel obslugi
-
-	void zglos_blad();
-
-	void wyplac_gotowke();
-
-	void wplac_gotowke();
-
-	void przelew_menu(int& opreacja_przelew, Przelew*& nowy);	// panel obslugi przelewow
-
-	void kredyt_menu();	// panel obslugi kredytow
-
-	void przewalutowanie_kredytu();
-
-	void tworzenie_kredytu();
-
-	void lokata_menu();	// panel obslugi lokat
-
+	// panel obslugi przelewow
+	void przelew_menu(int& opreacja_przelew, Przelew*& nowy);	
+	
+	// panel obslugi lokat
+	void lokata_menu();	
 	void anuluj_lokate();
-
 	void tworzenie_lokaty();
-
 	void lista_lokat();
 
+	// panel obslugi kredytow
+	void kredyt_menu();	
+	void przewalutowanie_kredytu();
+	void tworzenie_kredytu();
 	void lista_kredytow();
 
-	double zmiananakurs();
-
+	// zwracane informacje o koncie
 	long long int get_id();
-
-	void usun_konto();
-	
 	void zamroz_konto();
-	
 	bool get_zamrozone();
-
 	long double get_saldo();
-
 	void get_informacje();
 
-	Konto(string em = "",string nr = "",long long int i = 0,long double sal = 0,bool czy = false):email(em),nr_telefonu(nr),id(i),saldo_konta(sal),czy_zamrozone(czy)
-	{
-	
-	}
+	// panel operacji na koncie
+	void operacje_na_koncie();	
+	void zglos_blad();
+	void wyplac_gotowke();
+	void wplac_gotowke();
+	double zmiananakurs();
+	void usun_konto();
+	void wyswietl_komunikat(string komunikat);
+
+	Konto(string em = "",string nr = "",long long int i = 0,long double sal = 0,bool czy = false):email(em),nr_telefonu(nr),id(i),saldo_konta(sal),czy_zamrozone(czy){}
 
 };
 
