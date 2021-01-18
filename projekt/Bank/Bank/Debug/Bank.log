@@ -1,23 +1,23 @@
 ﻿  Administrator.cpp
-D:\Git\Paradigm\projekt\Bank\Bank\Administrator.cpp(93,23): warning C4244: "argument": konwersja z "__int64" do "unsigned long", możliwa utrata danych
-D:\Git\Paradigm\projekt\Bank\Bank\Administrator.cpp(100,23): warning C4244: "argument": konwersja z "__int64" do "unsigned long", możliwa utrata danych
-D:\Git\Paradigm\projekt\Bank\Bank\Administrator.cpp(180,17): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\uFFFD" nie może być przedstawiony w bieżącej stronie kodowej (1250)
-D:\Git\Paradigm\projekt\Bank\Bank\Administrator.cpp(210,18): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\uFFFD" nie może być przedstawiony w bieżącej stronie kodowej (1250)
-D:\Git\Paradigm\projekt\Bank\Bank\Administrator.cpp(216,18): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\uFFFD" nie może być przedstawiony w bieżącej stronie kodowej (1250)
-D:\Git\Paradigm\projekt\Bank\Bank\Administrator.cpp(222,18): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\uFFFD" nie może być przedstawiony w bieżącej stronie kodowej (1250)
+C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(93,23): warning C4244: "argument": konwersja z "__int64" do "unsigned long", możliwa utrata danych
+C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(100,23): warning C4244: "argument": konwersja z "__int64" do "unsigned long", możliwa utrata danych
+C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(180,17): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\uFFFD" nie może być przedstawiony w bieżącej stronie kodowej (1250)
+C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(210,18): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\uFFFD" nie może być przedstawiony w bieżącej stronie kodowej (1250)
+C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(216,18): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\uFFFD" nie może być przedstawiony w bieżącej stronie kodowej (1250)
+C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(222,18): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\uFFFD" nie może być przedstawiony w bieżącej stronie kodowej (1250)
   Bankomat.cpp
   Baza.cpp
-D:\Git\Paradigm\projekt\Bank\Bank\Baza.cpp(380,68): warning C4244: "argument": konwersja z "__int64" do "unsigned long", możliwa utrata danych
-D:\Git\Paradigm\projekt\Bank\Bank\Baza.cpp(416,59): warning C4244: "argument": konwersja z "__int64" do "int", możliwa utrata danych
+C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Baza.cpp(380,68): warning C4244: "argument": konwersja z "__int64" do "unsigned long", możliwa utrata danych
+C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Baza.cpp(416,59): warning C4244: "argument": konwersja z "__int64" do "int", możliwa utrata danych
   Blad.cpp
   Blik.cpp
-D:\Git\Paradigm\projekt\Bank\Bank\Blik.cpp(5,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Blik.cpp(5,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
   Klient.cpp
   Konto.cpp
   Kredyt.cpp
   Lokata.cpp
   Przelew.cpp
-D:\Git\Paradigm\projekt\Bank\Bank\Przelew.cpp(57,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Przelew.cpp(57,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
   main.cpp
   Generowanie kodu...
-  Bank.vcxproj -> D:\Git\Paradigm\projekt\Bank\Debug\Bank.exe
+  Bank.vcxproj -> C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Debug\Bank.exe

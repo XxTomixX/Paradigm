@@ -35,9 +35,9 @@ void Konto::zamroz_konto() {
 }
 
 //ponizej : funkcje pobierajace okreslone dane z konta
-long long int Konto::get_id() {
+/*long long int Konto::get_id() {
 	return id;
-}
+}*/
 
 bool Konto::get_zamrozone()
 {

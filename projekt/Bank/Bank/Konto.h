@@ -44,7 +44,9 @@ public:
 	void lista_kredytow();
 
 	// zwracane informacje o koncie
-	long long int get_id();
+	long long int get_id() {
+		return id;
+	}
 	void zamroz_konto();
 	bool get_zamrozone();
 	long double get_saldo();
