@@ -335,6 +335,7 @@ void Administrator::wyswietl_historie_dzialan(long long int id) {
 vector<Konto*> dane;
 // funkcja szuka konta o podanym id albo pesel, zapisuje w wektorze i wyswietla na ekran
 void Administrator::znajdz_konto() {
+	dane.clear();
 	int opcja;
 	long long int id_f;
 	string pesel_f;
@@ -439,7 +440,7 @@ void Administrator::pobierz_liste_bledow() {
 }
 
 // sprawdza status bledu o zadanym id
-void Administrator::sprawdz_stan_bledu(unsigned long int id) {
+void Administrator::sprawdz_stan_bledu(long long int id) {
 	string sql;
 	sql = "SELECT Tytul,Tresc,ID,Status,Data FROM Blad WHERE ID = '" + to_string(id) + "';";
 	Baza::daneBlad("blad.db", sql);
@@ -453,7 +454,7 @@ void Administrator::zaktualizuj_liste_bledow() {
 }
 
 // zmienia status bledu na 0 albo 1
-void Administrator::zmien_status_bledu(unsigned long int id, int status) { 
+void Administrator::zmien_status_bledu(long long int id, int status) { 
 	string sql;
 	sql = "UPDATE Blad SET Status = '" + to_string(status) + "' WHERE ID = '" + to_string(id) + "';";
 	Baza::wykonaj("blad.db", sql);

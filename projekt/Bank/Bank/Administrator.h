@@ -26,8 +26,8 @@ public:
 	// operacje na bledach
 	void pobierz_liste_bledow();
 	void zaktualizuj_liste_bledow();
-	void sprawdz_stan_bledu(unsigned long int id);
-	void zmien_status_bledu(unsigned long int id, int status);
+	void sprawdz_stan_bledu(long long int id);
+	void zmien_status_bledu(long long int id, int status);
 	// operacje na czynnosciach
 	void monitoruj_lokaty(long long int id);
 	void monitoruj_kredyty(long long int id);

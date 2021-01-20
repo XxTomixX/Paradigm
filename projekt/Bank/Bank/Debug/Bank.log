@@ -1,23 +1,31 @@
 ﻿  Administrator.cpp
-C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(93,23): warning C4244: "argument": konwersja z "__int64" do "unsigned long", możliwa utrata danych
-C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(100,23): warning C4244: "argument": konwersja z "__int64" do "unsigned long", możliwa utrata danych
+C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Blad.h(19,38): warning C4244: "return": konwersja z "__int64" do "unsigned long", możliwa utrata danych
 C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(180,17): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\uFFFD" nie może być przedstawiony w bieżącej stronie kodowej (1250)
 C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(210,18): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\uFFFD" nie może być przedstawiony w bieżącej stronie kodowej (1250)
 C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(216,18): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\uFFFD" nie może być przedstawiony w bieżącej stronie kodowej (1250)
 C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Administrator.cpp(222,18): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\uFFFD" nie może być przedstawiony w bieżącej stronie kodowej (1250)
   Bankomat.cpp
+C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Blad.h(19,38): warning C4244: "return": konwersja z "__int64" do "unsigned long", możliwa utrata danych
   Baza.cpp
-C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Baza.cpp(380,68): warning C4244: "argument": konwersja z "__int64" do "unsigned long", możliwa utrata danych
-C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Baza.cpp(416,59): warning C4244: "argument": konwersja z "__int64" do "int", możliwa utrata danych
+C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Blad.h(19,38): warning C4244: "return": konwersja z "__int64" do "unsigned long", możliwa utrata danych
+C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Baza.cpp(417,59): warning C4244: "argument": konwersja z "__int64" do "int", możliwa utrata danych
   Blad.cpp
+C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Blad.h(19,38): warning C4244: "return": konwersja z "__int64" do "unsigned long", możliwa utrata danych
   Blik.cpp
+C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Blad.h(19,38): warning C4244: "return": konwersja z "__int64" do "unsigned long", możliwa utrata danych
 C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Blik.cpp(5,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
   Klient.cpp
+C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Blad.h(19,38): warning C4244: "return": konwersja z "__int64" do "unsigned long", możliwa utrata danych
   Konto.cpp
+C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Blad.h(19,38): warning C4244: "return": konwersja z "__int64" do "unsigned long", możliwa utrata danych
   Kredyt.cpp
+C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Blad.h(19,38): warning C4244: "return": konwersja z "__int64" do "unsigned long", możliwa utrata danych
   Lokata.cpp
+C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Blad.h(19,38): warning C4244: "return": konwersja z "__int64" do "unsigned long", możliwa utrata danych
   Przelew.cpp
+C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Blad.h(19,38): warning C4244: "return": konwersja z "__int64" do "unsigned long", możliwa utrata danych
 C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Przelew.cpp(57,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
   main.cpp
+C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Bank\Blad.h(19,38): warning C4244: "return": konwersja z "__int64" do "unsigned long", możliwa utrata danych
   Generowanie kodu...
   Bank.vcxproj -> C:\Users\PC\Documents\GitHub\Paradigm\projekt\Bank\Debug\Bank.exe

@@ -12,13 +12,13 @@ class Blad {
 private:
 	string tytul;
 	string tresc;
-	unsigned long int id_bledu;
+	long long int id_bledu;
 	bool czy_naprawiony;
 	string data;
 public:
 	unsigned long int get_id() { return id_bledu; } // do testow
 	Blad() {};
-	Blad(string tt, string tr, unsigned long int i, bool cn, string d) : tytul(tt), tresc(tr), id_bledu(i), czy_naprawiony(cn), data(d) {};
+	Blad(string tt, string tr, long long int i, bool cn, string d) : tytul(tt), tresc(tr), id_bledu(i), czy_naprawiony(cn), data(d) {};
 	void utworz_blad(string tytul, string tresc);
 };
 

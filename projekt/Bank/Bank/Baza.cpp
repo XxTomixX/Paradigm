@@ -77,6 +77,7 @@ int back_danezbazyklienta(void *NotUsed, int argc, char **argv, char **azColName
 
 vector<Konto*> Baza::daneklientazbazy(string nazwabazy, string sql) {
 
+	danezbazy.clear();
 	sqlite3 *db = polaczdobazy(nazwabazy);
 	int rc;
 	char *zErrMsg = 0;
@@ -151,7 +152,8 @@ vector<Lokata*> danelokat;
 int back_danezbazylokaty(void *NotUsed, int argc, char **argv, char **azColName) {
 
 	string id_lokat = (string)argv[0];
-	Lokata* lokata = new Lokata((string)argv[2], atof(argv[3]), (int)argv[4], stoll(id_lokat));
+	string oprc = (string)argv[4];
+	Lokata* lokata = new Lokata((string)argv[2], atof(argv[3]), stoi(oprc), stoll(id_lokat));
 	danelokat.push_back(lokata);
 	cout << endl;
 	return 0;
@@ -385,13 +387,12 @@ int back_daneBlad(void* NotUsed, int argc, char** argv, char** azColName) {
 vector<Blad*> Baza::daneBlad(string nazwabazy, string sql) {
 	wektor_bledow.clear();
 	sqlite3* db = polaczdobazy(nazwabazy);
-
 	int rc;
 	char* zErrMsg = 0;
 	rc = sqlite3_exec(db, sql.c_str(), back_daneBlad, NULL, &zErrMsg);
 
 	if (rc != SQLITE_OK) {
-		//fprintf(stderr, "SQL error: %s\n", zErrMsg);
+		fprintf(stderr, "SQL error: %s\n", zErrMsg);
 		sqlite3_free(zErrMsg);
 	}
 	else {
